@@ -6,10 +6,19 @@
     <description>Recent content in mysql on Halface</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 09 Mar 2020 08:16:27 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 15 Jul 2020 13:57:46 +0800</lastBuildDate>
     
 	<atom:link href="https://h4lf4c3.github.io/tags/mysql/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Mysql主主互备</title>
+      <link>https://h4lf4c3.github.io/post/mysql%E4%B8%BB%E4%B8%BB%E4%BA%92%E5%A4%87/</link>
+      <pubDate>Wed, 15 Jul 2020 13:57:46 +0800</pubDate>
+      
+      <guid>https://h4lf4c3.github.io/post/mysql%E4%B8%BB%E4%B8%BB%E4%BA%92%E5%A4%87/</guid>
+      <description>mysql主主互备 1 2 3 实验环境： hjj2017110109 192.168.160.80 hjj2017110109_node2 192.168.160.81 修改第一节点的/etc/my.cnf配置文件 添加如下 1 2 3 4 5 6 server_id = 1 log-bin = mysql-bin relay-log = mysql-relay-bin replicate-wild-ignore-table=mysql.% #指定不需要复</description>
+    </item>
     
     <item>
       <title>mysql高可用Amoeba读写分离</title>

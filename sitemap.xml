@@ -3,21 +3,49 @@
   
   <url>
     <loc>https://h4lf4c3.github.io/categories/</loc>
-    <lastmod>2020-05-14T10:53:55+00:00</lastmod>
+    <lastmod>2020-07-15T13:57:46+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://h4lf4c3.github.io/</loc>
-    <lastmod>2020-05-14T10:53:55+00:00</lastmod>
+    <lastmod>2020-07-15T13:57:46+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://h4lf4c3.github.io/tags/mysql/</loc>
+    <lastmod>2020-07-15T13:57:46+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://h4lf4c3.github.io/categories/mysql/</loc>
+    <lastmod>2020-07-15T13:57:46+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://h4lf4c3.github.io/post/mysql%E4%B8%BB%E4%B8%BB%E4%BA%92%E5%A4%87/</loc>
+    <lastmod>2020-07-15T13:57:46+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://h4lf4c3.github.io/post/</loc>
-    <lastmod>2020-05-14T10:53:55+00:00</lastmod>
+    <lastmod>2020-07-15T13:57:46+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://h4lf4c3.github.io/tags/</loc>
+    <lastmod>2020-07-15T13:57:46+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -38,13 +66,6 @@
   
   <url>
     <loc>https://h4lf4c3.github.io/post/spark%E4%B8%AD%E7%9A%84aggregate%E5%87%BD%E6%95%B0/</loc>
-    <lastmod>2020-05-14T10:53:55+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://h4lf4c3.github.io/tags/</loc>
     <lastmod>2020-05-14T10:53:55+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -212,13 +233,6 @@
   </url>
   
   <url>
-    <loc>https://h4lf4c3.github.io/categories/mysql/</loc>
-    <lastmod>2020-04-14T08:58:05+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://h4lf4c3.github.io/categories/prometheus/</loc>
     <lastmod>2020-04-14T08:58:05+00:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -242,13 +256,6 @@
   <url>
     <loc>https://h4lf4c3.github.io/categories/%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/</loc>
     <lastmod>2020-04-14T00:05:39+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://h4lf4c3.github.io/tags/mysql/</loc>
-    <lastmod>2020-03-09T08:16:27+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
