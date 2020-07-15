@@ -1,0 +1,2 @@
+User-agent: *
+Sitemap: https://h4lf4c3.github.io/sitemap.xml
