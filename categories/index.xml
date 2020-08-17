@@ -6,10 +6,37 @@
     <description>Recent content in Categories on Halface</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Wed, 15 Jul 2020 13:57:46 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 17 Aug 2020 17:12:01 +0800</lastBuildDate>
     
 	<atom:link href="https://h4lf4c3.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>hadoop</title>
+      <link>https://h4lf4c3.github.io/categories/hadoop/</link>
+      <pubDate>Mon, 17 Aug 2020 17:12:01 +0800</pubDate>
+      
+      <guid>https://h4lf4c3.github.io/categories/hadoop/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>案例</title>
+      <link>https://h4lf4c3.github.io/categories/%E6%A1%88%E4%BE%8B/</link>
+      <pubDate>Mon, 17 Aug 2020 17:12:01 +0800</pubDate>
+      
+      <guid>https://h4lf4c3.github.io/categories/%E6%A1%88%E4%BE%8B/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>笔记</title>
+      <link>https://h4lf4c3.github.io/categories/%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Mon, 17 Aug 2020 17:12:01 +0800</pubDate>
+      
+      <guid>https://h4lf4c3.github.io/categories/%E7%AC%94%E8%AE%B0/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>mysql</title>
@@ -143,15 +170,6 @@
       <pubDate>Sun, 24 Mar 2019 08:37:49 +0000</pubDate>
       
       <guid>https://h4lf4c3.github.io/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>hadoop</title>
-      <link>https://h4lf4c3.github.io/categories/hadoop/</link>
-      <pubDate>Fri, 25 Jan 2019 08:37:49 +0000</pubDate>
-      
-      <guid>https://h4lf4c3.github.io/categories/hadoop/</guid>
       <description></description>
     </item>
     
