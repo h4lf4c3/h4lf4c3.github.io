@@ -6,10 +6,19 @@
     <description>Recent content in 案例 on Halface</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 17 Aug 2020 17:12:01 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 18 Aug 2020 15:25:22 +0800</lastBuildDate>
     
 	<atom:link href="https://h4lf4c3.github.io/categories/%E6%A1%88%E4%BE%8B/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Hadoop案例笔记2</title>
+      <link>https://h4lf4c3.github.io/post/hadoop%E6%A1%88%E4%BE%8B%E7%AC%94%E8%AE%B02/</link>
+      <pubDate>Tue, 18 Aug 2020 15:25:22 +0800</pubDate>
+      
+      <guid>https://h4lf4c3.github.io/post/hadoop%E6%A1%88%E4%BE%8B%E7%AC%94%E8%AE%B02/</guid>
+      <description>Hadoop案例笔记2 内容接上一个笔记https://h4lf4c3.github.io/post/hadoop%E6%A1%88%E4%B</description>
+    </item>
     
     <item>
       <title>Hadoop案例笔记1</title>
