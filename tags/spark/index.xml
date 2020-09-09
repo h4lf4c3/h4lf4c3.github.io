@@ -6,10 +6,19 @@
     <description>Recent content in spark on Halface</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 14 May 2020 10:53:55 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 09 Sep 2020 13:58:04 +0800</lastBuildDate>
     
 	<atom:link href="https://h4lf4c3.github.io/tags/spark/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Spark二次排序笔记</title>
+      <link>https://h4lf4c3.github.io/post/spark%E4%BA%8C%E6%AC%A1%E6%8E%92%E5%BA%8F%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Wed, 09 Sep 2020 13:58:04 +0800</pubDate>
+      
+      <guid>https://h4lf4c3.github.io/post/spark%E4%BA%8C%E6%AC%A1%E6%8E%92%E5%BA%8F%E7%AC%94%E8%AE%B0/</guid>
+      <description>Spark二次排序笔记 引言 让我们先思考一下什么是二次排序，这是一个很典型的数据处理算法。首先我们有一个数据，这个数据的key之间是有序的，而</description>
+    </item>
     
     <item>
       <title>spark中的aggregate函数</title>
