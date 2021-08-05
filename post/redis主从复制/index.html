@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>redis笔记2-命令 - Halface</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="halface" /><meta name="description" content="reds主从复制笔记
+关于redis的风险问题讨论  机器出现故障  如果机器产生故障，数据丢失会对业务项目造成灾难性后果
+ 容量产生瓶颈 " /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.85.0 with theme even" />
+
+
+<link rel="canonical" href="https://halface.gitee.io/post/redis%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<link href="/sass/main.min.8c3cbcb0324c2bb4875ceccba4007cbad4b4ac8377f33af9953c3e7684534a50.css" rel="stylesheet">
+<link href="/lib/fancybox/jquery.fancybox-3.1.20.min.css" rel="stylesheet">
+
+
+<meta property="og:title" content="redis笔记2-命令" />
+<meta property="og:description" content="reds主从复制笔记
+关于redis的风险问题讨论
+
+机器出现故障
+
+如果机器产生故障，数据丢失会对业务项目造成灾难性后果
+
+容量产生瓶颈
+" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://halface.gitee.io/post/redis%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2020-04-30T09:42:58+00:00" />
+<meta property="article:modified_time" content="2020-04-30T09:42:58+00:00" />
+
+<meta itemprop="name" content="redis笔记2-命令">
+<meta itemprop="description" content="reds主从复制笔记
+关于redis的风险问题讨论
+
+机器出现故障
+
+如果机器产生故障，数据丢失会对业务项目造成灾难性后果
+
+容量产生瓶颈
+"><meta itemprop="datePublished" content="2020-04-30T09:42:58+00:00" />
+<meta itemprop="dateModified" content="2020-04-30T09:42:58+00:00" />
+<meta itemprop="wordCount" content="1515">
+<meta itemprop="keywords" content="redis," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="redis笔记2-命令"/>
+<meta name="twitter:description" content="reds主从复制笔记
+关于redis的风险问题讨论
+
+机器出现故障
+
+如果机器产生故障，数据丢失会对业务项目造成灾难性后果
+
+容量产生瓶颈
+"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Halface</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Halface</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">redis笔记2-命令</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-04-30 </span>
+        <div class="post-category">
+            <a href="/categories/redis/"> redis </a>
+            </div>
+          <span class="more-meta"> 约 1515 字 </span>
+          <span class="more-meta"> 预计阅读 4 分钟 </span>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#关于redis的风险问题讨论">关于redis的风险问题讨论</a></li>
+    <li><a href="#主从复制作用">主从复制作用</a></li>
+    <li><a href="#主从复制">主从复制</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>reds主从复制笔记</p>
+<h2 id="关于redis的风险问题讨论">关于redis的风险问题讨论</h2>
+<ul>
+<li>机器出现故障</li>
+</ul>
+<p>如果机器产生故障，数据丢失会对业务项目造成灾难性后果</p>
+<ul>
+<li>容量产生瓶颈</li>
+</ul>
+<p>机器的内存，硬盘是有限的，如果一直采用单机，那么内存就要一直升级。</p>
+<ul>
+<li>I/O开销</li>
+</ul>
+<p>如果对单一服务器总是进行读写操作，开销是非常大的。需要缓解压力。</p>
+<p>**由此，要避免服务器产生故障，我们要准备多台服务器，用来组成集群，互相连通，读写分离，将数据复制成多个副本，并保存在不同的节点上，而且保证数据都是同步的，当一台机器出现宕机的情况，其他的服务器不会受到影响，继续提供服务。**因而我们需要提供一些高可用方案来实现这些功能。</p>
+<p>redis主从复制，也就是将master中的数据即时有效的复制到slave中。例如：</p>
+<p><img src="/img/redis%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6/1.png" alt=""></p>
+<p>集群的方案：</p>
+<ul>
+<li>
+<p>提供数据：master，主节点，负责写数据，做操作时会将变化的数据自动同步到slave</p>
+</li>
+<li>
+<p>接收数据：slave，从节点，负责读数据，禁止写数据</p>
+</li>
+</ul>
+<h2 id="主从复制作用">主从复制作用</h2>
+<ul>
+<li>读写分离：master写，slave读，提高服务器读写负载能力</li>
+<li>负载均衡：基于主从结构，配合读写分离，由slave分担master负载，并根据需求，改变slave的数量，通过多个从节点分担数据读取负载，大大提高Redis服务器并发量与数据吞吐量</li>
+<li>故障恢复：当master出现问题，由slave提供服务，实现快速的故障恢复</li>
+<li>数据冗余：实现数据热备份，是持久化之外的一种数据冗余方式</li>
+</ul>
+<h2 id="主从复制">主从复制</h2>
+<p><strong>1.主从连接</strong></p>
+<p>首先slave会发送命令slaveof ip port，master接收到命令开始响应，slave保存master的ip和端口，根据保存的信息创建连接master的socket，为了保证连接正常，slave会周期发送ping命令，master再响应pong，有密码的话，slave会发送auth password，master验证授权，最后slave发送端口信息，master保存slave端口号。（步骤都会在启动日志中有显示）</p>
+<p>三种方式：</p>
+<blockquote>
+<p>①.使用客户端命令： slaveof <!-- raw HTML omitted --> <!-- raw HTML omitted --></p>
+<p>②.启动服务器时加参数：redis-server -slaveof <!-- raw HTML omitted --> <!-- raw HTML omitted --></p>
+<p>③.修改配置文件：在slave节点的conf文件中添加：slaveof <!-- raw HTML omitted --> <!-- raw HTML omitted --></p>
+<p>如果设置了密码，那么slave的conf文件中还要加入masterauth <!-- raw HTML omitted -->，要不然无法授权</p>
+</blockquote>
+<p>这里选择用第三种方式来连接。</p>
+<p><img src="/img/redis%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6/2.png" alt=""></p>
+<p>master节点</p>
+<p><img src="/img/redis%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6/3.png" alt=""></p>
+<p>slave节点</p>
+<p>然后向master中写一个数据，成功在slave中读取到</p>
+<p><img src="/img/redis%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6/4.png" alt=""></p>
+<p>如果想断开连接的话，我们在slave节点客户端使用命令：slaveof no one即可。</p>
+<hr>
+<p><strong>2.数据同步</strong></p>
+<p>slave初次连接master之后，master会将所有数据复制到slave中，将slave的状态更新成master的当前状态。数据同步的阶段主要是两步，第一步做全量复制，第二步做部分复制。</p>
+<p><strong>全量复制</strong>：slave请求同步数据，然后master创建rdb同步数据，通过socket发送给slave，slave接收rdb并清空数据，执行rdb恢复，并发送命令告诉master，rdb恢复完成。</p>
+<blockquote>
+<p>但是有一点，在执行全量复制过程中，master复制缓冲区中还是会有一条条的指令过来，这时候的状态并不在全量复制的快照中，所以，需要再进行第二步，部分复制。</p>
+</blockquote>
+<p><strong>部分复制</strong>：slave请求部分同步数据，然后master复制缓冲区的信息给slave，slave接收信息并执行，恢复数据。</p>
+<blockquote>
+<p>如果复制缓冲区的大小设置不合理，会导致数据溢出，比如说，全量复制的周期长了，由于缓冲区是一个FIFO队列，满了的情况下，再进来命令，那么前面的命令就会丢失，所以进行部分复制的时候会有数据丢失，那么又要进行第二次全量复制，导致slave陷入死循环。</p>
+<p>所以我们可以自行在配置文件中配置合适的repl-backlog-size的大小</p>
+</blockquote>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">halface</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2020-04-30
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/redis/">redis</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/idea%E8%BF%9C%E7%A8%8B%E6%8F%90%E4%BA%A4spark%E7%A4%BA%E4%BE%8B%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%B8%AA%E5%9D%91/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">spark示例遇到的一个坑</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/redis%E7%AC%94%E8%AE%B02-%E5%91%BD%E4%BB%A4/">
+            <span class="next-text nav-default">redis笔记2-命令</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+  <a href="https://halface.gitee.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2021
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">halface</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+  <script type="text/javascript" src="/lib/fancybox/jquery.fancybox-3.1.20.min.js"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.2517c0eb67172a0bae917de4af59b10ca2531411a009d4c0b82f5685259e5771.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

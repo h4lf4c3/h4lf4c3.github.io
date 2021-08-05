@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>docker构建mysql,zabbix,Prometheus - Halface</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="halface" /><meta name="description" content="docker部署mysql,zabbix,prometheus docker安装 根据阿里开源镜像站上提示做即可
+" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.85.0 with theme even" />
+
+
+<link rel="canonical" href="https://halface.gitee.io/post/docker%E6%9E%84%E5%BB%BAmysqlzabbixprometheus/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<link href="/sass/main.min.8c3cbcb0324c2bb4875ceccba4007cbad4b4ac8377f33af9953c3e7684534a50.css" rel="stylesheet">
+<link href="/lib/fancybox/jquery.fancybox-3.1.20.min.css" rel="stylesheet">
+
+
+<meta property="og:title" content="docker构建mysql,zabbix,Prometheus" />
+<meta property="og:description" content="docker部署mysql,zabbix,prometheus
+docker安装
+根据阿里开源镜像站上提示做即可" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://halface.gitee.io/post/docker%E6%9E%84%E5%BB%BAmysqlzabbixprometheus/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2020-04-14T08:58:05+00:00" />
+<meta property="article:modified_time" content="2020-04-14T08:58:05+00:00" />
+
+<meta itemprop="name" content="docker构建mysql,zabbix,Prometheus">
+<meta itemprop="description" content="docker部署mysql,zabbix,prometheus
+docker安装
+根据阿里开源镜像站上提示做即可"><meta itemprop="datePublished" content="2020-04-14T08:58:05+00:00" />
+<meta itemprop="dateModified" content="2020-04-14T08:58:05+00:00" />
+<meta itemprop="wordCount" content="740">
+<meta itemprop="keywords" content="docker,运维," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="docker构建mysql,zabbix,Prometheus"/>
+<meta name="twitter:description" content="docker部署mysql,zabbix,prometheus
+docker安装
+根据阿里开源镜像站上提示做即可"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Halface</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Halface</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">docker构建mysql,zabbix,Prometheus</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-04-14 </span>
+        <div class="post-category">
+            <a href="/categories/docker/"> docker </a>
+            <a href="/categories/mysql/"> mysql </a>
+            <a href="/categories/zabbix/"> zabbix </a>
+            <a href="/categories/prometheus/"> prometheus </a>
+            </div>
+          <span class="more-meta"> 约 740 字 </span>
+          <span class="more-meta"> 预计阅读 2 分钟 </span>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#docker安装">docker安装</a></li>
+    <li><a href="#拉取所需的镜像">拉取所需的镜像</a></li>
+    <li><a href="#启动镜像">启动镜像</a>
+      <ul>
+        <li><a href="#启动mysql">启动mysql</a></li>
+        <li><a href="#启动zabbix-server-mysql">启动zabbix-server-mysql</a></li>
+        <li><a href="#启动zabbix-web-nginx-mysql">启动zabbix-web-nginx-mysql</a></li>
+        <li><a href="#启动zabbix-agent">启动zabbix-agent</a></li>
+        <li><a href="#登录zabbix-web端">登录zabbix web端</a></li>
+      </ul>
+    </li>
+    <li><a href="#prometheus部署">Prometheus部署</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <h1 id="docker部署mysqlzabbixprometheus">docker部署mysql,zabbix,prometheus</h1>
+<h2 id="docker安装">docker安装</h2>
+<p>根据阿里开源镜像站上提示做即可</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback"># step 1: 安装必要的一些系统工具
+yum install -y yum-utils device-mapper-persistent-data lvm2
+# Step 2: 添加软件源信息
+yum-config-manager --add-repo https://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
+# Step 3: 更新并安装Docker-CE
+yum makecache fast
+yum -y install docker-ce
+# Step 4: 开启Docker服务
+sudo service docker start
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="/img/docker%E6%9E%84%E5%BB%BAmysql,zabbix,Prometheus/1584361067196.png" alt="1584361067196"></p>
+<p>由于docker官方访问极慢，所以我们需要设置镜像加速器，我们可以登录阿里云的容器镜像服务，获取加速器地址</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">vim /etc/docker/daemon.json
+# 添加如下部分
+{
+  &#34;registry-mirrors&#34;: [&#34;https://e1dmqt0r.mirror.aliyuncs.com&#34;]
+}
+# 然后执行
+systemctl daemon-reload
+systemctl restart docker
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="拉取所需的镜像">拉取所需的镜像</h2>
+<p><img src="/img/docker%E6%9E%84%E5%BB%BAmysql,zabbix,Prometheus/1584361147597.png" alt="1584361147597"></p>
+<p>执行命令获取镜像</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">docker pull mysql:5.7
+docker pull zabbix/zabbix-server-mysql
+docker pull zabbix/zabbix-agent
+docker pull zabbix/zabbix-web-nginx-mysql
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="/img/docker%E6%9E%84%E5%BB%BAmysql,zabbix,Prometheus/1584361601737.png" alt="1584361601737"></p>
+<p><img src="/img/docker%E6%9E%84%E5%BB%BAmysql,zabbix,Prometheus/1584361810291.png" alt="1584361810291"></p>
+<p><img src="/img/docker%E6%9E%84%E5%BB%BAmysql,zabbix,Prometheus/1584361846547.png" alt="1584361846547"></p>
+<p><img src="/img/docker%E6%9E%84%E5%BB%BAmysql,zabbix,Prometheus/1584361892622.png" alt="1584361892622"></p>
+<p>完成后，我们可以执行docker images查看本地的镜像</p>
+<p><img src="/img/docker%E6%9E%84%E5%BB%BAmysql,zabbix,Prometheus/1584361942491.png" alt="1584361942491"></p>
+<h2 id="启动镜像">启动镜像</h2>
+<h3 id="启动mysql">启动mysql</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">docker run --name mysql-zabbix \
+-e MYSQL_ROOT_PASSWORD=&#34;123456&#34; \ # 数据库root用户密码
+-e MYSQL_USER=&#34;zabbix&#34; \   # 新建zabbix用户
+-e MYSQL_PASSWORD=&#34;zabbix&#34; \  # zabbix密码为zabbix
+-e MYSQL_DATABASE=&#34;zabbix&#34; \ # 新建数据库zabbix
+-p 3306:3306 \  # 端口
+-d mysql:5.7  # 后台运行
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="/img/docker%E6%9E%84%E5%BB%BAmysql,zabbix,Prometheus/1584362540518.png" alt="1584362540518"></p>
+<h3 id="启动zabbix-server-mysql">启动zabbix-server-mysql</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">docker run --name zabbix-server \
+-e DB_SERVER_HOST=&#34;mysql-zabbix&#34; \
+-e MYSQL_DATABASE=&#34;zabbix&#34; \
+-e MYSQL_USER=&#34;zabbix&#34; \
+-e MYSQL_DATABASE=&#34;zabbix&#34; \
+-e MYSQL_PASSWORD=&#34;zabbix&#34; \
+--link mysql-zabbix:mysql \
+-p 10051:10051 \
+-d zabbix/zabbix-server-mysql:latest
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="/img/docker%E6%9E%84%E5%BB%BAmysql,zabbix,Prometheus/1584363192727.png" alt="1584363192727"></p>
+<h3 id="启动zabbix-web-nginx-mysql">启动zabbix-web-nginx-mysql</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">docker run --name zabbix-web \
+-e DB_SERVER_HOST=&#34;mysql-zabbix&#34; \
+-e MYSQL_USER=&#34;zabbix&#34; \
+-e MYSQL_PASSWORD=&#34;zabbix&#34; \
+-e MYSQL_DATABASE=&#34;zabbix&#34; \
+-e MYSQL_ROOT_PASSWORD=&#34;123456&#34; \
+--link mysql-zabbix:mysql \
+--link zabbix-server:zabbix-server \
+-p 8000:80 \
+-d zabbix/zabbix-web-nginx-mysql:latest
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="/img/docker%E6%9E%84%E5%BB%BAmysql,zabbix,Prometheus/1584363512675.png" alt="1584363512675"></p>
+<h3 id="启动zabbix-agent">启动zabbix-agent</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">docker run --name zabbix-agent \
+--link zabbix-server:zabbix-server \
+-d zabbix/zabbix-agent:latest
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="/img/docker%E6%9E%84%E5%BB%BAmysql,zabbix,Prometheus/1584363698307.png" alt="1584363698307"></p>
+<p>然后使用docker ps可以查看当前正在运行的镜像</p>
+<p><img src="/img/docker%E6%9E%84%E5%BB%BAmysql,zabbix,Prometheus/1584363786186.png" alt="1584363786186"></p>
+<h3 id="登录zabbix-web端">登录zabbix web端</h3>
+<p>地址栏输入ip+web端口，这里指定的是8000</p>
+<p><img src="/img/docker%E6%9E%84%E5%BB%BAmysql,zabbix,Prometheus/1584363924201.png" alt="1584363924201"></p>
+<p>默认用户/密码是 admin/zabbix，登录进来，界面正常，完成部署</p>
+<p><img src="/img/docker%E6%9E%84%E5%BB%BAmysql,zabbix,Prometheus/1584364450340.png" alt="1584364450340"></p>
+<h2 id="prometheus部署">Prometheus部署</h2>
+<p>这里我们前提要准备prometheus.yml文件，直接将Prometheus安装包里面的拿来用。</p>
+<p><img src="/img/docker%E6%9E%84%E5%BB%BAmysql,zabbix,Prometheus/1584364939173.png" alt="1584364939173"></p>
+<p>然后就是拉去Prometheus镜像。</p>
+<p><img src="/img/docker%E6%9E%84%E5%BB%BAmysql,zabbix,Prometheus/1584364994339.png" alt="1584364994339"></p>
+<p><img src="/img/docker%E6%9E%84%E5%BB%BAmysql,zabbix,Prometheus/1584365060051.png" alt="1584365060051">启动Prometheus镜像</p>
+<p><img src="/img/docker%E6%9E%84%E5%BB%BAmysql,zabbix,Prometheus/1584365904743.png" alt="1584365904743"></p>
+<p>进入网页输入ip+9090端口，完成部署</p>
+<p><img src="/img/docker%E6%9E%84%E5%BB%BAmysql,zabbix,Prometheus/1584366008186.png" alt="1584366008186"></p>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">halface</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2020-04-14
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/docker/">docker</a>
+          <a href="/tags/%E8%BF%90%E7%BB%B4/">运维</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/ansible-playbook%E9%83%A8%E7%BD%B2lnmp%E5%92%8Clamp/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">ansible-playbook部署LNMP和LAMP</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/redis%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2/">
+            <span class="next-text nav-default">redis集群安装</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+  <a href="https://halface.gitee.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2021
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">halface</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+  <script type="text/javascript" src="/lib/fancybox/jquery.fancybox-3.1.20.min.js"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.2517c0eb67172a0bae917de4af59b10ca2531411a009d4c0b82f5685259e5771.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Mysql主主互备 - Halface</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="halface" /><meta name="description" content="mysql主主互备 1 2 3 实验环境： hjj2017110109 192.168.160.80 hjj2017110109_node2 192.168.160.81 修改第一节点的/etc/my.cnf配置文件 添加如下 1 2 3 4 5 6 server_id = 1 log-bin = mysql-bin relay-log = mysql-relay-bin replicate-wild-ignore-table=mysql.% #指定不需要复" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.85.0 with theme even" />
+
+
+<link rel="canonical" href="https://halface.gitee.io/post/mysql%E4%B8%BB%E4%B8%BB%E4%BA%92%E5%A4%87/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<link href="/sass/main.min.8c3cbcb0324c2bb4875ceccba4007cbad4b4ac8377f33af9953c3e7684534a50.css" rel="stylesheet">
+<link href="/lib/fancybox/jquery.fancybox-3.1.20.min.css" rel="stylesheet">
+
+
+<meta property="og:title" content="Mysql主主互备" />
+<meta property="og:description" content="mysql主主互备 1 2 3 实验环境： hjj2017110109 192.168.160.80 hjj2017110109_node2 192.168.160.81 修改第一节点的/etc/my.cnf配置文件 添加如下 1 2 3 4 5 6 server_id = 1 log-bin = mysql-bin relay-log = mysql-relay-bin replicate-wild-ignore-table=mysql.% #指定不需要复" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://halface.gitee.io/post/mysql%E4%B8%BB%E4%B8%BB%E4%BA%92%E5%A4%87/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2020-07-15T13:57:46+08:00" />
+<meta property="article:modified_time" content="2020-07-15T13:57:46+08:00" />
+
+<meta itemprop="name" content="Mysql主主互备">
+<meta itemprop="description" content="mysql主主互备 1 2 3 实验环境： hjj2017110109 192.168.160.80 hjj2017110109_node2 192.168.160.81 修改第一节点的/etc/my.cnf配置文件 添加如下 1 2 3 4 5 6 server_id = 1 log-bin = mysql-bin relay-log = mysql-relay-bin replicate-wild-ignore-table=mysql.% #指定不需要复"><meta itemprop="datePublished" content="2020-07-15T13:57:46+08:00" />
+<meta itemprop="dateModified" content="2020-07-15T13:57:46+08:00" />
+<meta itemprop="wordCount" content="342">
+<meta itemprop="keywords" content="mysql," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Mysql主主互备"/>
+<meta name="twitter:description" content="mysql主主互备 1 2 3 实验环境： hjj2017110109 192.168.160.80 hjj2017110109_node2 192.168.160.81 修改第一节点的/etc/my.cnf配置文件 添加如下 1 2 3 4 5 6 server_id = 1 log-bin = mysql-bin relay-log = mysql-relay-bin replicate-wild-ignore-table=mysql.% #指定不需要复"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Halface</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Halface</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Mysql主主互备</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-07-15 </span>
+        <div class="post-category">
+            <a href="/categories/mysql/"> mysql </a>
+            </div>
+          <span class="more-meta"> 约 342 字 </span>
+          <span class="more-meta"> 预计阅读 1 分钟 </span>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#修改第一节点的etcmycnf配置文件">修改第一节点的/etc/my.cnf配置文件</a></li>
+    <li><a href="#修改第二节点的etcmycnf配置文件">修改第二节点的/etc/my.cnf配置文件</a></li>
+    <li><a href="#记录两个节点的file和position的值">记录两个节点的File和Position的值</a></li>
+    <li><a href="#创建主从同步用户">创建主从同步用户</a></li>
+    <li><a href="#测试">测试</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <h1 id="mysql主主互备">mysql主主互备</h1>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">实验环境：
+hjj2017110109 192.168.160.80   
+hjj2017110109_node2 192.168.160.81
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="修改第一节点的etcmycnf配置文件">修改第一节点的/etc/my.cnf配置文件</h2>
+<p>添加如下</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">server_id = 1
+log-bin = mysql-bin
+relay-log = mysql-relay-bin
+replicate-wild-ignore-table=mysql.% #指定不需要复制的库，mysql.%表示mysql库下的所有对象
+replicate-wild-ignore-table=test.%
+replicate-wild-ignore-table=information_schema.%
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="修改第二节点的etcmycnf配置文件">修改第二节点的/etc/my.cnf配置文件</h2>
+<p>添加如下</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">server_id = 2
+log-bin = mysql-bin
+relay-log = mysql-relay-bin
+replicate-wild-ignore-table=mysql.%
+replicate-wild-ignore-table=test.%
+replicate-wild-ignore-table=information_schema.%
+</code></pre></td></tr></table>
+</div>
+</div><p>修改好配置文件后，重启两台机器的mysql。</p>
+<h2 id="记录两个节点的file和position的值">记录两个节点的File和Position的值</h2>
+<p>节点一</p>
+<p><img src="/img/mysql%E4%B8%BB%E4%B8%BB%E4%BA%92%E5%A4%87/1.png" alt=""></p>
+<p>节点二</p>
+<p><img src="/img/mysql%E4%B8%BB%E4%B8%BB%E4%BA%92%E5%A4%87/2.png" alt=""></p>
+<h2 id="创建主从同步用户">创建主从同步用户</h2>
+<p>节点一中，进入mysql，执行以下命令</p>
+<p><img src="/img/mysql%E4%B8%BB%E4%B8%BB%E4%BA%92%E5%A4%87/3.png" alt=""></p>
+<p>节点二中，进入mysql，执行以下命令</p>
+<p><img src="/img/mysql%E4%B8%BB%E4%B8%BB%E4%BA%92%E5%A4%87/4.png" alt=""></p>
+<p>然后使用show slave status\G; 命令查看</p>
+<p><img src="/img/mysql%E4%B8%BB%E4%B8%BB%E4%BA%92%E5%A4%87/5.png" alt=""></p>
+<p>两个节点都出现yes时，部署成功。</p>
+<h2 id="测试">测试</h2>
+<p>我们在第一节点上创建一个bigdata数据库，然后到第二节点进行查看。成功同步了</p>
+<p><img src="/img/mysql%E4%B8%BB%E4%B8%BB%E4%BA%92%E5%A4%87/7.png" alt=""></p>
+<p>我们再去第二节点删除这一数据库。发现在第一节点查不到，同步成功。</p>
+<p><img src="/img/mysql%E4%B8%BB%E4%B8%BB%E4%BA%92%E5%A4%87/8.png" alt=""></p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">halface</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2020-07-15
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/mysql/">mysql</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/hadoop%E6%A1%88%E4%BE%8B%E7%AC%94%E8%AE%B01/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Hadoop案例笔记1</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/spark%E4%B8%AD%E7%9A%84aggregate%E5%87%BD%E6%95%B0/">
+            <span class="next-text nav-default">spark中的aggregate函数</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+  <a href="https://halface.gitee.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2021
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">halface</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+  <script type="text/javascript" src="/lib/fancybox/jquery.fancybox-3.1.20.min.js"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.2517c0eb67172a0bae917de4af59b10ca2531411a009d4c0b82f5685259e5771.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>组成原理 on Halface</title>
+    <link>https://halface.gitee.io/tags/%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/</link>
+    <description>Recent content in 组成原理 on Halface</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Tue, 05 Mar 2019 08:37:49 +0000</lastBuildDate><atom:link href="https://halface.gitee.io/tags/%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>汇编_寄存器</title>
+      <link>https://halface.gitee.io/post/%E6%B1%87%E7%BC%96-%E5%AF%84%E5%AD%98%E5%99%A8/</link>
+      <pubDate>Tue, 05 Mar 2019 08:37:49 +0000</pubDate>
+      
+      <guid>https://halface.gitee.io/post/%E6%B1%87%E7%BC%96-%E5%AF%84%E5%AD%98%E5%99%A8/</guid>
+      <description>&lt;h1 id=&#34;笔记1935&#34;&gt;笔记19/3/5&lt;/h1&gt;
+&lt;h2 id=&#34;0x00简单介绍&#34;&gt;0x00简单介绍&lt;/h2&gt;
+&lt;hr&gt;
+&lt;p&gt;通常我们写汇编语言时，会接触到CPU中的主要部件，寄存器。寄存器是CPU中，我们可以用指令读写的部件，我们可以同过改变各种寄存器中的内容实现控制寄存器。这里，我学习的汇编是基于8086CPU的。不同的CPU，寄存器个数不同，结构也不同。8086有14个寄存器，分别是：AX,BX,CX,DX,SI,DI,SP,BP,IP,CS,SS,DS,ES,PSW。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

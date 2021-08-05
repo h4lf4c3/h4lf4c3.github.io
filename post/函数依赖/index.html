@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>函数依赖 - Halface</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="halface" /><meta name="description" content="关系模型与规范化 具体定义 二话不说，直接上书上定义，比较枯燥。
+" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.85.0 with theme even" />
+
+
+<link rel="canonical" href="https://halface.gitee.io/post/%E5%87%BD%E6%95%B0%E4%BE%9D%E8%B5%96/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<link href="/sass/main.min.8c3cbcb0324c2bb4875ceccba4007cbad4b4ac8377f33af9953c3e7684534a50.css" rel="stylesheet">
+<link href="/lib/fancybox/jquery.fancybox-3.1.20.min.css" rel="stylesheet">
+
+
+<meta property="og:title" content="函数依赖" />
+<meta property="og:description" content="关系模型与规范化
+具体定义
+二话不说，直接上书上定义，比较枯燥。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://halface.gitee.io/post/%E5%87%BD%E6%95%B0%E4%BE%9D%E8%B5%96/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2019-03-24T08:37:49+00:00" />
+<meta property="article:modified_time" content="2019-03-24T08:37:49+00:00" />
+
+<meta itemprop="name" content="函数依赖">
+<meta itemprop="description" content="关系模型与规范化
+具体定义
+二话不说，直接上书上定义，比较枯燥。"><meta itemprop="datePublished" content="2019-03-24T08:37:49+00:00" />
+<meta itemprop="dateModified" content="2019-03-24T08:37:49+00:00" />
+<meta itemprop="wordCount" content="1631">
+<meta itemprop="keywords" content="数据库,笔记," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="函数依赖"/>
+<meta name="twitter:description" content="关系模型与规范化
+具体定义
+二话不说，直接上书上定义，比较枯燥。"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Halface</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Halface</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">函数依赖</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-03-24 </span>
+        <div class="post-category">
+            <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"> 数据库 </a>
+            </div>
+          <span class="more-meta"> 约 1631 字 </span>
+          <span class="more-meta"> 预计阅读 4 分钟 </span>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#具体定义">具体定义</a></li>
+    <li><a href="#相关术语">相关术语</a></li>
+    <li><a href="#函数依赖">函数依赖</a></li>
+    <li><a href="#其他概念">其他概念</a></li>
+    <li><a href="#范式">范式</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <h1 id="关系模型与规范化">关系模型与规范化</h1>
+<h2 id="具体定义">具体定义</h2>
+<p>二话不说，直接上书上定义，比较枯燥。</p>
+<p>设有关系模式 R(U)，X 和 Y 均为 U={A1，A2，…，An}的子集，r 是 R 的任一具体关系，r 中不可能存在两个元组在 X 的属性值相等，而在 Y 上的属性值不等(也就是说，如果对于 r 中的任意两个元组 t 和 s，只要有 t[X]=s[X]，就有 t[Y]=s[Y])，则称 X 函数决定 Y，或称 Y 函数依赖于 X，记<strong>作</strong> <strong>X→Y</strong>，其中 X 叫作决定因素(Determinant)，Y叫作依赖因素(Dependent)。</p>
+<p>在一张表内，两个字段值之间的一一对应关系称为<strong>函数依赖</strong>。通俗点儿讲，在一个数据库表内，如果字段A的值能够唯一确定字段B的值，那么字段B函数依赖于字段A。例如下面这张表：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">学号</th>
+<th style="text-align:center">姓名</th>
+<th style="text-align:center">系别</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">01</td>
+<td style="text-align:center">小明</td>
+<td style="text-align:center">计算机</td>
+</tr>
+<tr>
+<td style="text-align:center">02</td>
+<td style="text-align:center">张三</td>
+<td style="text-align:center">化学</td>
+</tr>
+<tr>
+<td style="text-align:center">03</td>
+<td style="text-align:center">李四</td>
+<td style="text-align:center">计算机</td>
+</tr>
+</tbody>
+</table>
+<p>学号可以决定系别，学号决定姓名，姓名不能决定系别（因为重名啊^_^);</p>
+<h2 id="相关术语">相关术语</h2>
+<p>这个我还是直接搬书上的定义。</p>
+<p>(1)X→Y，但 Y ⊈ X，则称 X→Y 是<strong>非平凡的函数依赖</strong>。</p>
+<p>(2)X→Y，但 Y ⊆ X，则称 X→Y 是<strong>平凡的函数依赖</strong>。因为平凡的函数依赖总是成立的，所以若不特别声明，本书后面提到的函数依赖，都不包含平凡的函数依赖。</p>
+<p>(3)若 X→Y，Y→X，则称 X←→Y。</p>
+<p>(4)若 Y 不函数依赖于 X，则记作 X→Y。</p>
+<h2 id="函数依赖">函数依赖</h2>
+<p>直接上定义：</p>
+<p>在关系模式 R(U)中，如果 X→Y，并且对于 X 的任何一个真子集 X＇，都有 X＇-/-&gt;Y，则称 Y 对 X 完全函数依赖</p>
+<p>若 X→Y，如果存在 X 的某一真子集 X＇(X＇ ⊆ X)，使 X＇→Y，则称 Y 对 X 部分函数依赖;</p>
+<p>举个例子就知道了：</p>
+<p><strong>在学生选课关系SC(Sno,Sname,Cno,Grade)中，属性分别表示学生学号、姓名、选修课程的课程号、成绩。</strong>
+在关系SC(Sno, Sname, Cno, Grade)中，由于：Sno-/-&gt;Grade, Cno-/-&gt;Grade，
+但是呢，（sno,cno)&ndash;&gt;grade,  然后（sno,cno,sname)&ndash;&gt;grade,  前者叫做完全函数依赖，后者叫做部分函数依赖，我们将定义通俗地理解一遍：
+<strong>对于前者，(sno,cno)有两个真子集，一个是sno，一个是cno，但是呢，sno不能决定grade,cno也不能决定grade，但是原集（sno，cno）可以决定，这恰好就定义啊，（sno，cno）是X，Y是grade, 而sno,cno分别是X',  X'--&gt;Y,所以不就叫完全函数依赖了嘛。</strong></p>
+<p><strong>对于后者，我们也能以同样的思路理解定义，(sno,cno,sname)的真子集有sno,cno, sname,(sno,cno),..<del>后面我就不写了</del>，存在（sno,cno)，即 X‘ 决定了grade,那么这就是部分函数依赖</strong></p>
+<p>传递依赖就不用细说了，听名字就知道什么意思了，直接定义吧：</p>
+<p>在关系模式 R(U)中，X、Y、Z 是 R 的 3 个不同的属性或属性组，如果 X→Y(Y ⊄ X，Y 不是 X 的子集)，且 Y -/-&gt; X，Y→Z，Z ∉ Y.则称 Z 对X传递函数依赖</p>
+<h2 id="其他概念">其他概念</h2>
+<p><strong>码</strong>：(这里我就不想说定义了)，表中可以唯一确定一个元组的某个属性(组)，如果这个码不止一个，那么就是候选码，然后选一成为主码；单个属性就叫做单码，如果整个属性集合是码，那就叫做全码；
+<strong>主属性</strong>：包含在任意候选码中的属性
+<strong>非主属性</strong>：不包含在任何候选码中的属性</p>
+<h2 id="范式">范式</h2>
+<p>关系按其规范化程度从低到高可分为 5 级范式(Normal Form)，分别称为 1NF、2NF、3NF(BCNF)、4NF、5NF。规范化程度较高者必是较低者的子集，即5NF⊆4NF⊆BCNF⊆3NF⊆2NF⊆1NF</p>
+<p>1.一范式1NF：属性不可分</p>
+<p>2.二范式2NF：首先符合一范式，其次非主属性完全依赖于关系模式中的某个候选码</p>
+<p>3.三范式3NF：首先符号二范式，其次消除掉关系模式中的传递依赖</p>
+<p>3.BCNF：首先符合三范式，也就是说，关系模式中，若每个决定因素都包含码，就是BCNF
+等价定义：设R是关系模式，F是它的依赖集，关系模式R属于BCNF当且仅当其F中每个依赖的左边都包含候选码。</p>
+<p><img src="/img/%E5%87%BD%E6%95%B0%E4%BE%9D%E8%B5%96/1.png" alt=""></p>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">halface</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2019-03-24
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
+          <a href="/tags/%E7%AC%94%E8%AE%B0/">笔记</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/mysql%E9%AB%98%E5%8F%AF%E7%94%A8amoeba%E8%AF%BB%E5%86%99%E5%88%86%E7%A6%BB/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">mysql高可用Amoeba读写分离</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/%E6%B1%87%E7%BC%96-%E5%AF%84%E5%AD%98%E5%99%A8/">
+            <span class="next-text nav-default">汇编_寄存器</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+  <a href="https://halface.gitee.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2021
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">halface</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+  <script type="text/javascript" src="/lib/fancybox/jquery.fancybox-3.1.20.min.js"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.2517c0eb67172a0bae917de4af59b10ca2531411a009d4c0b82f5685259e5771.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

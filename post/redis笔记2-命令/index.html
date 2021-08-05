@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>redis笔记2-命令 - Halface</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="halface" /><meta name="description" content="Redis各个常用命令总结  基础的命令在上一篇文章
+" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.85.0 with theme even" />
+
+
+<link rel="canonical" href="https://halface.gitee.io/post/redis%E7%AC%94%E8%AE%B02-%E5%91%BD%E4%BB%A4/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<link href="/sass/main.min.8c3cbcb0324c2bb4875ceccba4007cbad4b4ac8377f33af9953c3e7684534a50.css" rel="stylesheet">
+<link href="/lib/fancybox/jquery.fancybox-3.1.20.min.css" rel="stylesheet">
+
+
+<meta property="og:title" content="redis笔记2-命令" />
+<meta property="og:description" content="Redis各个常用命令总结
+
+基础的命令在上一篇文章
+" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://halface.gitee.io/post/redis%E7%AC%94%E8%AE%B02-%E5%91%BD%E4%BB%A4/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2020-04-26T08:25:58+00:00" />
+<meta property="article:modified_time" content="2020-04-26T08:25:58+00:00" />
+
+<meta itemprop="name" content="redis笔记2-命令">
+<meta itemprop="description" content="Redis各个常用命令总结
+
+基础的命令在上一篇文章
+"><meta itemprop="datePublished" content="2020-04-26T08:25:58+00:00" />
+<meta itemprop="dateModified" content="2020-04-26T08:25:58+00:00" />
+<meta itemprop="wordCount" content="2170">
+<meta itemprop="keywords" content="redis,笔记," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="redis笔记2-命令"/>
+<meta name="twitter:description" content="Redis各个常用命令总结
+
+基础的命令在上一篇文章
+"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Halface</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Halface</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">redis笔记2-命令</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-04-26 </span>
+        <div class="post-category">
+            <a href="/categories/redis/"> redis </a>
+            <a href="/categories/nosql/"> nosql </a>
+            </div>
+          <span class="more-meta"> 约 2170 字 </span>
+          <span class="more-meta"> 预计阅读 5 分钟 </span>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#字符串">字符串</a></li>
+    <li><a href="#列表">列表</a></li>
+    <li><a href="#集合">集合</a></li>
+    <li><a href="#散列">散列</a></li>
+    <li><a href="#有序集合">有序集合</a></li>
+    <li><a href="#其他命令">其他命令</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <h1 id="redis各个常用命令总结">Redis各个常用命令总结</h1>
+<blockquote>
+<p>基础的命令在上一篇文章</p>
+</blockquote>
+<h2 id="字符串">字符串</h2>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>INCR</td>
+<td>INCR key-name——将键存储的值加上1</td>
+</tr>
+<tr>
+<td>DECR</td>
+<td>DECR key-name——将键存储的值减去1</td>
+</tr>
+<tr>
+<td>INCRBY</td>
+<td>INCRBY key-name amount——将键存储的值加上整数amount</td>
+</tr>
+<tr>
+<td>DECRBY</td>
+<td>DECRBY key-name amount——将键存储的值减去整数amount</td>
+</tr>
+<tr>
+<td>APPEND</td>
+<td>APPEND key-name value——将值value追加到给定键key-name当前存储的值的末尾</td>
+</tr>
+<tr>
+<td>GETRANGE</td>
+<td>GETRANGE key-name start end——获取一个由偏移量start至偏移量end范围内所有字符组成的子串，包括start和end在内</td>
+</tr>
+<tr>
+<td>SETRANGE</td>
+<td>SETRANGE key-name offset value——将从start偏移量开始的子串设置为给定值</td>
+</tr>
+</tbody>
+</table>
+<p>示例：</p>
+<p><img src="/img/redis%E7%AC%94%E8%AE%B02-%E5%91%BD%E4%BB%A4/1.png" alt=""></p>
+<h2 id="列表">列表</h2>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RPUSH</td>
+<td>RPUSH key-name value [value &hellip;]——将一个或多个值推入列表的右端</td>
+</tr>
+<tr>
+<td>LPUSH</td>
+<td>LPUSH key-name value [value &hellip;]——将一个或多个值推入列表的左端</td>
+</tr>
+<tr>
+<td>RPOP</td>
+<td>RPOP key-name——移除并返回列表最右端的元素</td>
+</tr>
+<tr>
+<td>LPOP</td>
+<td>LPOP key-name——移除并返回列表最左端的元素</td>
+</tr>
+<tr>
+<td>LINDEX</td>
+<td>LINDEX key-name offset——返回列表中偏移量为offset的元素</td>
+</tr>
+<tr>
+<td>LRANGE</td>
+<td>LRANGE key-name start end——返回列表从start偏移量到end偏移量范围内的所有元素，其中偏移量为start和偏移量为end的元素也会包含在被返回的元素之内</td>
+</tr>
+<tr>
+<td>LTRIM</td>
+<td>LTRIM key-name start end——对列表进行修剪，只保留从start偏移量到end偏移量范围内的元素，其中偏移量为start和偏移量为end的元素也会被保留</td>
+</tr>
+<tr>
+<td>BLPOP</td>
+<td>BLPOP key-name [key-name &hellip;] timeout——从第一个非空列表中弹出位于最左端的元素，或者在timeout秒之内阻塞并等待可弹出的元素出现</td>
+</tr>
+<tr>
+<td>BRPOP</td>
+<td>BRPOP key-name [key-name &hellip;] timeout——从第一个非空列表中弹出位于最右端的元素，或者在timeout秒之内阻塞并等待可弹出的元素出现</td>
+</tr>
+<tr>
+<td>RPOPLPUSH</td>
+<td>RPOPLPUSH source-key dest-key——从source-key列表中弹出位于最右端的元素，然后将这个元素推入dest-key列表的最左端，并向用户返回这个元素</td>
+</tr>
+<tr>
+<td>BRPOPLPUSH</td>
+<td>BRPOPLPUSH source-key dest-key timeout——从source-key列表中弹出位于最右端的元素，然后将这个元素推入dest-key列表的最左端，并向用户返回这个元素；如果source-key为空，那么在timeout秒之内阻塞并等待可弹出的元素出现</td>
+</tr>
+</tbody>
+</table>
+<p>示例：</p>
+<p><img src="/img/redis%E7%AC%94%E8%AE%B02-%E5%91%BD%E4%BB%A4/2.png" alt=""></p>
+<p><img src="/img/redis%E7%AC%94%E8%AE%B02-%E5%91%BD%E4%BB%A4/3.png" alt=""></p>
+<h2 id="集合">集合</h2>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SCARD</td>
+<td>SCARD key-name——返回集合包含的元素的数量</td>
+</tr>
+<tr>
+<td>SRANDMEMBER</td>
+<td>SRANDMEMBER key-name [count]——从集合里面随机地返回一个或多个元素。当count为正数时，命令返回的随机元素不会重复；当count为负数时，命令返回的随机元素可能会出现重复</td>
+</tr>
+<tr>
+<td>SPOP</td>
+<td>SPOP key-name——随机地移除集合中的一个元素，并返回被移除的元素</td>
+</tr>
+<tr>
+<td>SMOVE</td>
+<td>SMOVE source-key dest-key item——如果集合source-key包含元素item，那么从集合source-key里面移除元素item，并将元素item添加到集合dest-key中；如果item被成功移除，那么命令返回1，否则返回0</td>
+</tr>
+<tr>
+<td>SDIFF</td>
+<td>SDIFF key-name [key-name &hellip;]——返回那些存在于第一个集合、但不存在于其他集合中的元素（数学上的差集运算）</td>
+</tr>
+<tr>
+<td>SDIFFSTORE</td>
+<td>SDIFFSTORE dest-key key-name [key-name &hellip;]——将那些存在于第一个集合但并不存在于其他集合中的元素（数学上的差集运算）存储到dest-key键里面</td>
+</tr>
+<tr>
+<td>SINTER</td>
+<td>SINTER key-name [key-name &hellip;]——返回那些同时存在于所有集合中的元素（数学上的交集运算）</td>
+</tr>
+<tr>
+<td>SINTERSTORE</td>
+<td>SINTERSTORE dest-key key-name [key-name &hellip;]——将那些同时存在于所有集合的元素（数学上的交集运算）存储到dest-key键里面</td>
+</tr>
+<tr>
+<td>SUNION</td>
+<td>SUNION key-name [key-name &hellip;]——返回那些至少存在于一个集合中的元素（数学上的并集计算）</td>
+</tr>
+<tr>
+<td>SUNIONSTORE</td>
+<td>SUNIONSTORE dest-key key-name [key-name &hellip;]——将那些至少存在于一个集合中的元素（数学上的并集计算）存储到dest-key键里面</td>
+</tr>
+</tbody>
+</table>
+<p>示例：</p>
+<p><img src="/img/redis%E7%AC%94%E8%AE%B02-%E5%91%BD%E4%BB%A4/4.png" alt=""></p>
+<p><img src="/img/redis%E7%AC%94%E8%AE%B02-%E5%91%BD%E4%BB%A4/5.png" alt=""></p>
+<p><img src="/img/redis%E7%AC%94%E8%AE%B02-%E5%91%BD%E4%BB%A4/6.png" alt=""></p>
+<h2 id="散列">散列</h2>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>HMGET</td>
+<td>HMGET key-name key [key &hellip;]——从散列里面获取一个或多个键的值</td>
+</tr>
+<tr>
+<td>HMSET</td>
+<td>HMSET key-name key value [key value &hellip;]——为散列里面的一个或多个键设置值</td>
+</tr>
+<tr>
+<td>HLEN</td>
+<td>HLEN key-name——返回散列包含的键值对数量</td>
+</tr>
+<tr>
+<td>HDEL</td>
+<td>HDEL key-name key [key &hellip;]——删除散列里面的一个或多个键值对，返回成功找到并删除的键值对数量</td>
+</tr>
+<tr>
+<td>HEXISTS</td>
+<td>HEXISTS key-name key——检查给定键是否存在于散列中</td>
+</tr>
+<tr>
+<td>HKEYS</td>
+<td>HKEYS key-name——获取散列包含的所有键</td>
+</tr>
+<tr>
+<td>HVALS</td>
+<td>HVALS key-name——获取散列包含的所有值</td>
+</tr>
+<tr>
+<td>HINCRBY</td>
+<td>HINCRBY key-name key increment——将键key存储的值加上整数increment</td>
+</tr>
+</tbody>
+</table>
+<p>示例：</p>
+<p><img src="/img/redis%E7%AC%94%E8%AE%B02-%E5%91%BD%E4%BB%A4/7.png" alt=""></p>
+<p><img src="/img/redis%E7%AC%94%E8%AE%B02-%E5%91%BD%E4%BB%A4/8.png" alt=""></p>
+<h2 id="有序集合">有序集合</h2>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ZCARD</td>
+<td>ZCARD key-name——返回有序集合包含的成员数量</td>
+</tr>
+<tr>
+<td>ZINCRBY</td>
+<td>ZINCRBY key-name increment member——将member成员的分值加上increment</td>
+</tr>
+<tr>
+<td>ZCOUNT</td>
+<td>ZCOUNT key-name min max——返回分值介于min和max之间的成员数量</td>
+</tr>
+<tr>
+<td>ZRANK</td>
+<td>ZRANK key-name member——返回成员member在有序集合中的排名</td>
+</tr>
+<tr>
+<td>ZSCORE</td>
+<td>ZSCORE key-name member——返回成员member的分值</td>
+</tr>
+<tr>
+<td>ZREVRANK</td>
+<td>ZREVRANK key-name member——返回有序集合里成员member的排名，成员按照分值从大到小排列</td>
+</tr>
+<tr>
+<td>ZREVRANGE</td>
+<td>ZREVRANGE key-name start stop [WITHSCORES]——返回有序集合给定排名范围内的成员，成员按照分值从大到小排列</td>
+</tr>
+<tr>
+<td>ZRANGEBYSCORE</td>
+<td>ZRANGEBYSCORE key min max [WITHSCORES] [LIMIT offset count]——返回有序集合中，分值介于min和max之间的所有成员</td>
+</tr>
+</tbody>
+</table>
+<p>示例：</p>
+<p><img src="/img/redis%E7%AC%94%E8%AE%B02-%E5%91%BD%E4%BB%A4/9.png" alt=""></p>
+<h2 id="其他命令">其他命令</h2>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SORT</td>
+<td>根据给定的选项，对输入列表、集合或者有序集合进行排序，然后返回或者存储排序的结果</td>
+</tr>
+<tr>
+<td>PERSIST</td>
+<td>PERSIST key-name——移除键的过期时间</td>
+</tr>
+<tr>
+<td>TTL</td>
+<td>TTL key-name——查看给定键距离过期还有多少秒</td>
+</tr>
+<tr>
+<td>EXPIRE</td>
+<td>EXPIRE key-name seconds——让给定键在指定的秒数之后过期</td>
+</tr>
+<tr>
+<td>PTTL</td>
+<td>PTTL key-name——查看给定键距离过期时间还有多少毫秒</td>
+</tr>
+<tr>
+<td>PEXPIRE</td>
+<td>PEXPIRE key-name milliseconds——让给定键在指定的毫秒数之后过期</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<p>redis所有的命令都可以在  <a href="http://redis.io/commands">http://redis.io/commands</a>   查询，掌握常用的命令足够实现一些功能。</p>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">halface</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2020-04-26
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/redis/">redis</a>
+          <a href="/tags/%E7%AC%94%E8%AE%B0/">笔记</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/redis%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">redis笔记2-命令</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/redis%E7%AC%94%E8%AE%B01-%E5%9F%BA%E7%A1%80/">
+            <span class="next-text nav-default">redis笔记1-基础</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+  <a href="https://halface.gitee.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2021
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">halface</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+  <script type="text/javascript" src="/lib/fancybox/jquery.fancybox-3.1.20.min.js"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.2517c0eb67172a0bae917de4af59b10ca2531411a009d4c0b82f5685259e5771.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

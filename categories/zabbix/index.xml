@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>zabbix on Halface</title>
+    <link>https://halface.gitee.io/categories/zabbix/</link>
+    <description>Recent content in zabbix on Halface</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Tue, 14 Apr 2020 08:58:05 +0000</lastBuildDate><atom:link href="https://halface.gitee.io/categories/zabbix/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>docker构建mysql,zabbix,Prometheus</title>
+      <link>https://halface.gitee.io/post/docker%E6%9E%84%E5%BB%BAmysqlzabbixprometheus/</link>
+      <pubDate>Tue, 14 Apr 2020 08:58:05 +0000</pubDate>
+      
+      <guid>https://halface.gitee.io/post/docker%E6%9E%84%E5%BB%BAmysqlzabbixprometheus/</guid>
+      <description>&lt;h1 id=&#34;docker部署mysqlzabbixprometheus&#34;&gt;docker部署mysql,zabbix,prometheus&lt;/h1&gt;
+&lt;h2 id=&#34;docker安装&#34;&gt;docker安装&lt;/h2&gt;
+&lt;p&gt;根据阿里开源镜像站上提示做即可&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>spark&#43;IDEA示例 - Halface</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="halface" /><meta name="description" content="spark&#43;IDEA示例 1 2 3 4 5 6 7 8  集群 master 192.168.160.21 slave1 192.168.160.22 slave2 192.168.160.23 这里用的安装包版本为 scala-2.11.8.tgz spark-2.1.3-bin-hadoop2.7.tgz spark安装包的选择根据你的hadoop和scala版本来，官网有详细说明   " /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.85.0 with theme even" />
+
+
+<link rel="canonical" href="https://halface.gitee.io/post/spark&#43;idea%E7%A4%BA%E4%BE%8B/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<link href="/sass/main.min.8c3cbcb0324c2bb4875ceccba4007cbad4b4ac8377f33af9953c3e7684534a50.css" rel="stylesheet">
+<link href="/lib/fancybox/jquery.fancybox-3.1.20.min.css" rel="stylesheet">
+
+
+<meta property="og:title" content="spark&#43;IDEA示例" />
+<meta property="og:description" content="spark&#43;IDEA示例
+
+
+1
+2
+3
+4
+5
+6
+7
+8
+
+
+集群
+master 192.168.160.21
+slave1 192.168.160.22
+slave2 192.168.160.23
+这里用的安装包版本为
+scala-2.11.8.tgz
+spark-2.1.3-bin-hadoop2.7.tgz
+spark安装包的选择根据你的hadoop和scala版本来，官网有详细说明
+
+
+" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://halface.gitee.io/post/spark&#43;idea%E7%A4%BA%E4%BE%8B/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2020-04-17T10:03:33+00:00" />
+<meta property="article:modified_time" content="2020-04-17T10:03:33+00:00" />
+
+<meta itemprop="name" content="spark&#43;IDEA示例">
+<meta itemprop="description" content="spark&#43;IDEA示例
+
+
+1
+2
+3
+4
+5
+6
+7
+8
+
+
+集群
+master 192.168.160.21
+slave1 192.168.160.22
+slave2 192.168.160.23
+这里用的安装包版本为
+scala-2.11.8.tgz
+spark-2.1.3-bin-hadoop2.7.tgz
+spark安装包的选择根据你的hadoop和scala版本来，官网有详细说明
+
+
+"><meta itemprop="datePublished" content="2020-04-17T10:03:33+00:00" />
+<meta itemprop="dateModified" content="2020-04-17T10:03:33+00:00" />
+<meta itemprop="wordCount" content="1268">
+<meta itemprop="keywords" content="spark," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="spark&#43;IDEA示例"/>
+<meta name="twitter:description" content="spark&#43;IDEA示例
+
+
+1
+2
+3
+4
+5
+6
+7
+8
+
+
+集群
+master 192.168.160.21
+slave1 192.168.160.22
+slave2 192.168.160.23
+这里用的安装包版本为
+scala-2.11.8.tgz
+spark-2.1.3-bin-hadoop2.7.tgz
+spark安装包的选择根据你的hadoop和scala版本来，官网有详细说明
+
+
+"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Halface</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Halface</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">spark&#43;IDEA示例</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-04-17 </span>
+        <div class="post-category">
+            <a href="/categories/spark/"> spark </a>
+            <a href="/categories/%E6%90%AD%E5%BB%BA/"> 搭建 </a>
+            </div>
+          <span class="more-meta"> 约 1268 字 </span>
+          <span class="more-meta"> 预计阅读 3 分钟 </span>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#scala安装">scala安装</a></li>
+    <li><a href="#spark集群搭建与配置">spark集群搭建与配置</a></li>
+    <li><a href="#启动spark集群">启动spark集群</a></li>
+    <li><a href="#ideasbt编程环境配置">IDEA+sbt编程环境配置</a></li>
+    <li><a href="#wordcount示例">wordcount示例</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <h1 id="sparkidea示例">spark+IDEA示例</h1>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">集群
+master 192.168.160.21
+slave1 192.168.160.22
+slave2 192.168.160.23
+这里用的安装包版本为
+scala-2.11.8.tgz
+spark-2.1.3-bin-hadoop2.7.tgz
+spark安装包的选择根据你的hadoop和scala版本来，官网有详细说明
+</code></pre></td></tr></table>
+</div>
+</div><hr>
+<p>Spark 支持在各种集群管理器上运行，包括 Hadoop YARN、Apache Mesos，以及 Spark 自带的一个简易调度器。这里我们采用hadoop yarn管理，所以先决条件是hadoop集群的搭建。其次，spark是由scala编写，所以我们还要有scala的环境。</p>
+<p><a href="https://h4lf4c3.github.io/2019/01/25/hadoop%E5%88%86%E5%B8%83%E5%BC%8F%E6%90%AD%E5%BB%BA/#more%C2%A0">Hadoop集群搭建过程</a></p>
+<hr>
+<h2 id="scala安装">scala安装</h2>
+<p>scala安装非常简单，同java的安装步骤一致，解压准备的安装包</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">tar xvf scala-2.11.8.tgz
+</code></pre></td></tr></table>
+</div>
+</div><p>然后配置环境变量，再使之生效即可</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">vim /etc/profile
+添加
+export SCALA_HOME=[你的scala目录]
+export PATH=$SCALA_HOME/bin:$PATH
+</code></pre></td></tr></table>
+</div>
+</div><p>使用scala -version可以查看版本，说明安装成功</p>
+<hr>
+<h2 id="spark集群搭建与配置">spark集群搭建与配置</h2>
+<p>首先解压准备的安装包</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">tar xvf spark-2.1.3-bin-hadoop2.7.tgz
+</code></pre></td></tr></table>
+</div>
+</div><p>然后进入spark目录下的conf文件夹中修改配置文件</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">conf下两个配置文件都是template结尾，我们可以cp一下
+cp spark-env.sh.template spark-env.sh
+cp slaves.template slaves
+</code></pre></td></tr></table>
+</div>
+</div><p>然后修改spark-env.sh，添加如下</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">export JAVA_HOME=[你的java目录]
+export SCALA_HOME=[你的scala目录]
+export SPARK_MASTER_IP=192.168.160.21 #master的ip
+export SPARK_WORKER_MEMORY=1024m #worker 的内存
+export HADOOP_CONF_DIR=[你的hadoop目录/etc/hadoop]
+</code></pre></td></tr></table>
+</div>
+</div><p>修改slaves，删去原本的localhost，添加</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">slave1
+slave2
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="启动spark集群">启动spark集群</h2>
+<p>首先要先启动Hadoop集群，然后再启动spark</p>
+<p>进入spark目录下的sbin文件夹</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">./start-all.sh # 启动所有集群
+</code></pre></td></tr></table>
+</div>
+</div><p>启动成功后，使用jps查看进程</p>
+<p><img src="/img/spark+IDEA%E7%A4%BA%E4%BE%8B/6.png" alt=""></p>
+<p>master节点上多了个master</p>
+<p><img src="/img/spark+IDEA%E7%A4%BA%E4%BE%8B/7.png" alt=""></p>
+<p>两个slave节点多了worker</p>
+<p>然后打开192.168.160.21:8080在web界面可以查看节点情况</p>
+<h2 id="ideasbt编程环境配置">IDEA+sbt编程环境配置</h2>
+<p>当然你的windows环境下也要安装相应版本scala</p>
+<p>首先IDEA安装scala插件</p>
+<p><img src="/img/spark+IDEA%E7%A4%BA%E4%BE%8B/1.png" alt=""></p>
+<p><img src="/img/spark+IDEA%E7%A4%BA%E4%BE%8B/2.png" alt=""></p>
+<p>搜索scala，然后安装即可</p>
+<p><img src="/img/spark+IDEA%E7%A4%BA%E4%BE%8B/3.png" alt=""></p>
+<p>然后新建项目，选择scala-&gt;sbt，然后点击next
+<img src="/img/spark+IDEA%E7%A4%BA%E4%BE%8B/4.png" alt=""></p>
+<p>这里根据我们的scala选择版本，根据spark版本前提来，然后命个名和路径选择，jdk那里点击new，选择到你安装jdk的文件夹，然后点击finish</p>
+<p><img src="/img/spark+IDEA%E7%A4%BA%E4%BE%8B/5.png" alt=""></p>
+<p>项目建好后，我们编辑项目中的build.sbt文件，里面默认有了name和version，还有scalaVersion，我们根据spark官网，添加</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">libraryDependencies += &#34;org.apache.spark&#34; %% &#34;spark-core&#34; % &#34;2.1.3&#34;
+</code></pre></td></tr></table>
+</div>
+</div><p>然后右下角会跳出一个提示，我们点Enable-auto-import即可，然后就是漫长的等待dump project structure from sbt，这个过程非常慢，不过可以自行谷歌换成国内源。</p>
+<p>如果dump过程没有完成，你这时是无法新建scala class的。</p>
+<h2 id="wordcount示例">wordcount示例</h2>
+<p>dump完成后，我们右键项目中的src-&gt;main-&gt;scala，然后new-&gt;scala class 新建scala文件，编写代码</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">import</span> <span class="nn">org.apache.spark.SparkContext</span>
+<span class="k">import</span> <span class="nn">org.apache.spark.SparkContext._</span>
+<span class="k">import</span> <span class="nn">org.apache.spark.SparkConf</span>
+<span class="k">import</span> <span class="nn">org.apache.log4j.</span><span class="o">{</span><span class="nc">Level</span><span class="o">,</span><span class="nc">Logger</span><span class="o">}</span>
+
+<span class="k">object</span> <span class="nc">WordCount</span> <span class="o">{</span>
+  <span class="k">def</span> <span class="n">main</span><span class="o">(</span><span class="n">args</span><span class="k">:</span> <span class="kt">Array</span><span class="o">[</span><span class="kt">String</span><span class="o">])</span> <span class="o">{</span>
+    <span class="nc">Logger</span><span class="o">.</span><span class="n">getLogger</span><span class="o">(</span><span class="s">&#34;org.apache.spark&#34;</span><span class="o">).</span><span class="n">setLevel</span><span class="o">(</span><span class="nc">Level</span><span class="o">.</span><span class="nc">WARN</span><span class="o">)</span>
+    <span class="nc">Logger</span><span class="o">.</span><span class="n">getLogger</span><span class="o">(</span><span class="s">&#34;org.eclipse.jetty.server&#34;</span><span class="o">).</span><span class="n">setLevel</span><span class="o">(</span><span class="nc">Level</span><span class="o">.</span><span class="nc">OFF</span><span class="o">)</span>
+    <span class="k">val</span> <span class="n">inputFile</span> <span class="k">=</span>  <span class="s">&#34;hdfs://master:9000/input/word.txt&#34;</span>
+    <span class="k">val</span> <span class="n">conf</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">SparkConf</span><span class="o">().</span><span class="n">setAppName</span><span class="o">(</span><span class="s">&#34;WordCount&#34;</span><span class="o">).</span><span class="n">setMaster</span><span class="o">(</span><span class="s">&#34;local&#34;</span><span class="o">)</span>
+    <span class="k">val</span> <span class="n">sc</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">SparkContext</span><span class="o">(</span><span class="n">conf</span><span class="o">)</span>
+    <span class="k">val</span> <span class="n">textFile</span> <span class="k">=</span> <span class="n">sc</span><span class="o">.</span><span class="n">textFile</span><span class="o">(</span><span class="n">inputFile</span><span class="o">)</span>
+    <span class="k">val</span> <span class="n">wordCount</span> <span class="k">=</span> <span class="n">textFile</span><span class="o">.</span><span class="n">flatMap</span><span class="o">(</span><span class="n">line</span> <span class="k">=&gt;</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="o">(</span><span class="s">&#34; &#34;</span><span class="o">)).</span><span class="n">map</span><span class="o">(</span><span class="n">word</span> <span class="k">=&gt;</span> <span class="o">(</span><span class="n">word</span><span class="o">,</span> <span class="mi">1</span><span class="o">)).</span><span class="n">reduceByKey</span><span class="o">((</span><span class="n">a</span><span class="o">,</span> <span class="n">b</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="o">)</span>
+    <span class="n">wordCount</span><span class="o">.</span><span class="n">foreach</span><span class="o">(</span><span class="n">println</span><span class="o">)</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>然后右键运行，结果会显示在下方</p>
+<p><img src="/img/spark+IDEA%E7%A4%BA%E4%BE%8B/8.png" alt=""></p>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">halface</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2020-04-17
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/spark/">spark</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/redis%E7%AC%94%E8%AE%B01-%E5%9F%BA%E7%A1%80/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">redis笔记1-基础</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/playbook%E9%83%A8%E7%BD%B2elk%E6%97%A5%E5%BF%97%E7%B3%BB%E7%BB%9F/">
+            <span class="next-text nav-default">ansible实战</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+  <a href="https://halface.gitee.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2021
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">halface</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+  <script type="text/javascript" src="/lib/fancybox/jquery.fancybox-3.1.20.min.js"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.2517c0eb67172a0bae917de4af59b10ca2531411a009d4c0b82f5685259e5771.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

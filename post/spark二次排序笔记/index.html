@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Spark二次排序笔记 - Halface</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="halface" /><meta name="description" content="Spark二次排序笔记 引言 让我们先思考一下什么是二次排序，这是一个很典型的数据处理算法。首先我们有一个数据，这个数据的key之间是有序的，而" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.85.0 with theme even" />
+
+
+<link rel="canonical" href="https://halface.gitee.io/post/spark%E4%BA%8C%E6%AC%A1%E6%8E%92%E5%BA%8F%E7%AC%94%E8%AE%B0/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<link href="/sass/main.min.8c3cbcb0324c2bb4875ceccba4007cbad4b4ac8377f33af9953c3e7684534a50.css" rel="stylesheet">
+<link href="/lib/fancybox/jquery.fancybox-3.1.20.min.css" rel="stylesheet">
+
+
+<meta property="og:title" content="Spark二次排序笔记" />
+<meta property="og:description" content="Spark二次排序笔记 引言 让我们先思考一下什么是二次排序，这是一个很典型的数据处理算法。首先我们有一个数据，这个数据的key之间是有序的，而" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://halface.gitee.io/post/spark%E4%BA%8C%E6%AC%A1%E6%8E%92%E5%BA%8F%E7%AC%94%E8%AE%B0/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2020-09-09T13:58:04+08:00" />
+<meta property="article:modified_time" content="2020-09-09T13:58:04+08:00" />
+
+<meta itemprop="name" content="Spark二次排序笔记">
+<meta itemprop="description" content="Spark二次排序笔记 引言 让我们先思考一下什么是二次排序，这是一个很典型的数据处理算法。首先我们有一个数据，这个数据的key之间是有序的，而"><meta itemprop="datePublished" content="2020-09-09T13:58:04+08:00" />
+<meta itemprop="dateModified" content="2020-09-09T13:58:04+08:00" />
+<meta itemprop="wordCount" content="954">
+<meta itemprop="keywords" content="Spark," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Spark二次排序笔记"/>
+<meta name="twitter:description" content="Spark二次排序笔记 引言 让我们先思考一下什么是二次排序，这是一个很典型的数据处理算法。首先我们有一个数据，这个数据的key之间是有序的，而"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Halface</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Halface</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Spark二次排序笔记</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-09-09 </span>
+        <div class="post-category">
+            <a href="/categories/spark/"> Spark </a>
+            <a href="/categories/%E7%AC%94%E8%AE%B0/"> 笔记 </a>
+            </div>
+          <span class="more-meta"> 约 954 字 </span>
+          <span class="more-meta"> 预计阅读 2 分钟 </span>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#引言">引言</a></li>
+    <li><a href="#示例">示例</a></li>
+    <li><a href="#实现思路">实现思路</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <h1 id="spark二次排序笔记">Spark二次排序笔记</h1>
+<h2 id="引言">引言</h2>
+<p>让我们先思考一下什么是二次排序，这是一个很典型的数据处理算法。首先我们有一个数据，这个数据的key之间是有序的，而且每个key对应的value也是有序的。比如以下这种经典二次排序示例数据。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">2000,12,10
+2000,11,30
+2013,01,70
+2013,01,-10
+2000,11,-40
+2013,01,80
+---
+字段分别为年,月,值
+</code></pre></td></tr></table>
+</div>
+</div><p>我们的key是“年-月”，value就是值了，很明显，key是有序的，而且value也是有序的，最终要得到的结果就是这种</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">2000-11:-40,30
+2000-12:10
+2013-01:-10,70,80
+</code></pre></td></tr></table>
+</div>
+</div><p>思路很简单，每行数据都是由逗号分隔，所以我们将一行数据按逗号分割成一个字符串数组，那么这个数组里有三个元素，将第一个和第二个元素“年”“月”拼接成key，然后第三个元素就是value，这样的话，结果就是 (key,value)了，然后对key进行groupByKey即可得到最终的数据结构 (key,List(value))，但是后面的值还是无序的，所以需要再进行value内部排序。</p>
+<h2 id="示例">示例</h2>
+<p>关于示例，我就不用”年月值“数据了，采用一个<code>name,time,value</code> 数据，要求以时间大小来进行二次排序</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">p,4,40
+p,6,20
+x,2,9
+y,2,5
+x,1,3
+y,1,7
+y,3,1
+x,3,6
+z,1,4
+z,2,8
+z,3,7
+z,4,0
+p,1,10
+p,3,60
+</code></pre></td></tr></table>
+</div>
+</div><p>最终结果为</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">(z=&gt;,4,8,7,0)
+(p=&gt;,10,60,40,20)
+(x=&gt;,3,9,6)
+(y=&gt;,7,5,1)
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="实现思路">实现思路</h2>
+<p>二次排序，算法思路都是一致的，此例数据以逗号为分隔符，得到字符串数组，第一个元素name作为分组的key，然后第二个元素time作为排序的key，value呢就是第三个元素，然后map返回值为 (groupKey,(sortKey,value))，再利用groupByKey得到数据结构为(groupKey,List((sortKey,value)))，然后内部排序使用sortBy，参数就是sortKey。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">package</span> <span class="nn">com.hjj.SecondarySort</span>
+
+<span class="k">import</span> <span class="nn">org.apache.spark.</span><span class="o">{</span><span class="nc">SparkConf</span><span class="o">,</span> <span class="nc">SparkContext</span><span class="o">}</span>
+
+<span class="k">object</span> <span class="nc">TimeSort</span> <span class="o">{</span>
+  <span class="k">def</span> <span class="n">main</span><span class="o">(</span><span class="n">args</span><span class="k">:</span> <span class="kt">Array</span><span class="o">[</span><span class="kt">String</span><span class="o">])</span><span class="k">:</span> <span class="kt">Unit</span> <span class="o">=</span> <span class="o">{</span>
+    <span class="k">val</span> <span class="n">inputPath</span> <span class="k">=</span> <span class="s">&#34;D:\\Code\\javaCode\\data\\input\\time_series.txt&#34;</span>
+    <span class="k">val</span> <span class="n">outputPath</span> <span class="k">=</span> <span class="s">&#34;D:\\Code\\javaCode\\data\\outputV2&#34;</span>
+
+    <span class="k">val</span> <span class="n">conf</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">SparkConf</span><span class="o">().</span><span class="n">setMaster</span><span class="o">(</span><span class="s">&#34;local&#34;</span><span class="o">).</span><span class="n">setAppName</span><span class="o">(</span><span class="s">&#34;TimeSort&#34;</span><span class="o">)</span>
+    <span class="k">val</span> <span class="n">sc</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">SparkContext</span><span class="o">(</span><span class="n">conf</span><span class="o">)</span>
+    <span class="k">val</span> <span class="n">data</span> <span class="k">=</span> <span class="n">sc</span><span class="o">.</span><span class="n">textFile</span><span class="o">(</span><span class="n">inputPath</span><span class="o">)</span>
+
+    <span class="c1">// 源数据格式为  p,4,10 =&gt; name,time,value
+</span><span class="c1"></span>    <span class="cm">/**
+</span><span class="cm">     * 我们按照时间大小来对值进行二次排序，比如：
+</span><span class="cm">     * p,4,10
+</span><span class="cm">     * p,1,30
+</span><span class="cm">     * p,6,40
+</span><span class="cm">     * 这种数据经过二次排序后就是
+</span><span class="cm">     * p=&gt;(30,10,40)
+</span><span class="cm">     */</span>
+    <span class="k">val</span> <span class="n">result</span> <span class="k">=</span> <span class="n">data</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="n">line</span> <span class="k">=&gt;</span> <span class="o">{</span>
+      <span class="k">val</span> <span class="n">arr</span> <span class="k">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="o">(</span><span class="s">&#34;,&#34;</span><span class="o">)</span>
+      <span class="k">val</span> <span class="n">groupKey</span> <span class="k">=</span> <span class="n">arr</span><span class="o">(</span><span class="mi">0</span><span class="o">)</span>
+      <span class="k">val</span> <span class="n">sortKey</span> <span class="k">=</span> <span class="n">arr</span><span class="o">(</span><span class="mi">1</span><span class="o">)</span>
+      <span class="k">val</span> <span class="n">value</span> <span class="k">=</span> <span class="n">arr</span><span class="o">(</span><span class="mi">2</span><span class="o">)</span>
+      <span class="o">(</span><span class="n">groupKey</span><span class="o">,(</span><span class="n">sortKey</span><span class="o">,</span><span class="n">value</span><span class="o">))</span> <span class="c1">// map返回一个key-value对，而这个key-value对的value也是一个key-value对，不过后者的key是用来后面进行内部排序
+</span><span class="c1"></span>    <span class="o">})</span>
+      <span class="o">.</span><span class="n">groupByKey</span><span class="o">()</span>  <span class="c1">// 利用groupKey进行分组
+</span><span class="c1"></span>      <span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="n">line</span> <span class="k">=&gt;</span> <span class="o">(</span><span class="n">line</span><span class="o">.</span><span class="n">_1</span><span class="o">+</span><span class="s">&#34;=&gt;&#34;</span><span class="o">,</span><span class="n">line</span><span class="o">.</span><span class="n">_2</span><span class="o">.</span><span class="n">toList</span><span class="o">.</span><span class="n">sortBy</span><span class="o">(</span><span class="k">_</span><span class="o">.</span><span class="n">_1</span><span class="o">).</span><span class="n">map</span><span class="o">(</span><span class="k">_</span><span class="o">.</span><span class="n">_2</span><span class="o">).</span><span class="n">mkString</span><span class="o">(</span><span class="s">&#34;,&#34;</span><span class="o">)))</span> <span class="c1">// 内部排序
+</span><span class="c1"></span>      <span class="c1">//.sortByKey()
+</span><span class="c1"></span>
+    <span class="n">result</span><span class="o">.</span><span class="n">foreach</span><span class="o">(</span><span class="n">println</span><span class="o">)</span>
+    <span class="c1">// result.saveAsTextFile(outputPath)
+</span><span class="c1"></span>  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>打印的结果如图</p>
+<p><img src="https://cdn.jsdelivr.net/gh/h4lf4c3/images/image/image-20200909135445416.png" alt="image-20200909135445416"></p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">halface</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2020-09-09
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/spark/">Spark</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/hive%E9%85%8D%E7%BD%AEjdbc/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Hive配置jdbc</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/hadoop%E6%A1%88%E4%BE%8B%E7%AC%94%E8%AE%B02/">
+            <span class="next-text nav-default">Hadoop案例笔记2</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+  <a href="https://halface.gitee.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2021
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">halface</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+  <script type="text/javascript" src="/lib/fancybox/jquery.fancybox-3.1.20.min.js"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.2517c0eb67172a0bae917de4af59b10ca2531411a009d4c0b82f5685259e5771.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

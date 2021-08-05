@@ -1,0 +1,2 @@
+User-agent: *
+Sitemap: https://halface.gitee.io/sitemap.xml

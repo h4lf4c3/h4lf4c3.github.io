@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>运维 on Halface</title>
+    <link>https://halface.gitee.io/categories/%E8%BF%90%E7%BB%B4/</link>
+    <description>Recent content in 运维 on Halface</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Tue, 14 Apr 2020 13:33:29 +0000</lastBuildDate><atom:link href="https://halface.gitee.io/categories/%E8%BF%90%E7%BB%B4/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ansible实战</title>
+      <link>https://halface.gitee.io/post/playbook%E9%83%A8%E7%BD%B2elk%E6%97%A5%E5%BF%97%E7%B3%BB%E7%BB%9F/</link>
+      <pubDate>Tue, 14 Apr 2020 13:33:29 +0000</pubDate>
+      
+      <guid>https://halface.gitee.io/post/playbook%E9%83%A8%E7%BD%B2elk%E6%97%A5%E5%BF%97%E7%B3%BB%E7%BB%9F/</guid>
+      <description>&lt;h1 id=&#34;playbook部署elk日志系统&#34;&gt;playbook部署ELK日志系统&lt;/h1&gt;
+&lt;h2 id=&#34;前话&#34;&gt;前话&lt;/h2&gt;
+&lt;p&gt;ansible管理集群是真的强啊。之前手动一步一步搭建ELK切换来切换去的很是麻烦，但是这次尝试使用playbook，直接给弄好，便捷啊&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

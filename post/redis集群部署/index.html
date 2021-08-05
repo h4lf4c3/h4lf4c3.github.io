@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>redis集群安装 - Halface</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="halface" /><meta name="description" content="redis集群安装 前言 标准redis集群为3主3从，我们在同一台主机中部署redis集群，节点分别为6391-6396
+首先建立redis集群目录，然后再建立6个节点的工作目录
+" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.85.0 with theme even" />
+
+
+<link rel="canonical" href="https://halface.gitee.io/post/redis%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<link href="/sass/main.min.8c3cbcb0324c2bb4875ceccba4007cbad4b4ac8377f33af9953c3e7684534a50.css" rel="stylesheet">
+<link href="/lib/fancybox/jquery.fancybox-3.1.20.min.css" rel="stylesheet">
+
+
+<meta property="og:title" content="redis集群安装" />
+<meta property="og:description" content="redis集群安装
+前言
+标准redis集群为3主3从，我们在同一台主机中部署redis集群，节点分别为6391-6396
+首先建立redis集群目录，然后再建立6个节点的工作目录" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://halface.gitee.io/post/redis%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2020-04-14T00:05:39+00:00" />
+<meta property="article:modified_time" content="2020-04-14T00:05:39+00:00" />
+
+<meta itemprop="name" content="redis集群安装">
+<meta itemprop="description" content="redis集群安装
+前言
+标准redis集群为3主3从，我们在同一台主机中部署redis集群，节点分别为6391-6396
+首先建立redis集群目录，然后再建立6个节点的工作目录"><meta itemprop="datePublished" content="2020-04-14T00:05:39+00:00" />
+<meta itemprop="dateModified" content="2020-04-14T00:05:39+00:00" />
+<meta itemprop="wordCount" content="470">
+<meta itemprop="keywords" content="redis," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="redis集群安装"/>
+<meta name="twitter:description" content="redis集群安装
+前言
+标准redis集群为3主3从，我们在同一台主机中部署redis集群，节点分别为6391-6396
+首先建立redis集群目录，然后再建立6个节点的工作目录"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Halface</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Halface</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">redis集群安装</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-04-14 </span>
+        <div class="post-category">
+            <a href="/categories/redis/"> redis </a>
+            <a href="/categories/nosql/"> nosql </a>
+            <a href="/categories/%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/"> 集群搭建 </a>
+            </div>
+          <span class="more-meta"> 约 470 字 </span>
+          <span class="more-meta"> 预计阅读 1 分钟 </span>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#前言">前言</a></li>
+    <li><a href="#构建安装环境">构建安装环境</a></li>
+    <li><a href="#安装redis节点">安装redis节点</a></li>
+    <li><a href="#验证集群">验证集群</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <h1 id="redis集群安装">redis集群安装</h1>
+<h2 id="前言">前言</h2>
+<p>标准redis集群为3主3从，我们在同一台主机中部署redis集群，节点分别为6391-6396</p>
+<p>首先建立redis集群目录，然后再建立6个节点的工作目录</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">mkdir -p /usr/local/redis-cluster
+cd /usr/local/redis-cluster
+mkdir -p 
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="/img/redis%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2/1584343851902.png" alt=""></p>
+<h2 id="构建安装环境">构建安装环境</h2>
+<p>首先是gcc gcc-c++环境</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback"> yum -y install gcc gcc-c++ libstdc++-devel
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="/img/redis%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2/1584344003510.png" alt=""></p>
+<p>安装ruby</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">yum -y install rh-ruby25
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="/img/redis%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2/1584344144629.png" alt=""></p>
+<p><img src="/img/redis%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2/1584344214263.png" alt=""></p>
+<h2 id="安装redis节点">安装redis节点</h2>
+<p>下载redis安装包</p>
+<p><img src="/img/redis%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2/1584344377453.png" alt=""></p>
+<p>一如既往的慢，还是找别的资源下载上传。。。</p>
+<p><img src="/img/redis%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2/1584344660018.png" alt=""></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">tar-zxvf redis-4.0.11.tar.gz
+</code></pre></td></tr></table>
+</div>
+</div><p>然后重命名一下</p>
+<p>开始安装
+<img src="/img/redis%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2/1584344942696.png" alt="">
+然后将redis配置文件redis.conf复制到集群目录下
+<img src="/img/redis%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2/1584345614028.png" alt="">
+然后将redis安装后的bin目录复制到6个redis节点工作目录中
+<img src="/img/redis%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2/1584345681487.png" alt=""></p>
+<p>配置6个节点的redis.conf文件</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">#bind 127.0.0.1
+protected-mode no
+daemonize yes
+cluster-enabled yes
+cluster-node-timeout 15000
+
+port参数改为对应的端口号
+</code></pre></td></tr></table>
+</div>
+</div><p>将redis.conf中相关参数，改为上述所示，然后复制进6个节点目录</p>
+<p><img src="/img/redis%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2/1584346079023.png" alt=""></p>
+<p>配置好之后就可以启动节点。分别在6个节点目录下执行</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">./bin/redis-server ./redis.conf
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="/img/redis%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2/1584346720293.png" alt=""></p>
+<p>可以看到，确实开启了6个节点</p>
+<p>接着我们进入解压的安装包的src目录下,执行</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback"> ./redis-trib.rb create --replicas 1 127.0.0.1:6391 127.0.0.1:6392 127.0.0.1:6393 127.0.0.1:6394 127.0.0.1:6395 127.0.0.1:6396
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="/img/redis%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2/1584346906079.png" alt=""></p>
+<h2 id="验证集群">验证集群</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">cd /usr/local/redis-cluster/6391
+# 登录6391节点
+./bin/redis-cli -c -p 6391
+# 然后我们随便写入一个数据
+set redis cluster
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="/img/redis%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2/1584347164163.png" alt=""></p>
+<p>再登录到其他节点，可以查看到数据</p>
+<p><img src="/img/redis%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2/1584347259421.png" alt=""></p>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">halface</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2020-04-14
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/redis/">redis</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/docker%E6%9E%84%E5%BB%BAmysqlzabbixprometheus/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">docker构建mysql,zabbix,Prometheus</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/mysql%E9%AB%98%E5%8F%AF%E7%94%A8amoeba%E8%AF%BB%E5%86%99%E5%88%86%E7%A6%BB/">
+            <span class="next-text nav-default">mysql高可用Amoeba读写分离</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+  <a href="https://halface.gitee.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2021
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">halface</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+  <script type="text/javascript" src="/lib/fancybox/jquery.fancybox-3.1.20.min.js"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.2517c0eb67172a0bae917de4af59b10ca2531411a009d4c0b82f5685259e5771.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

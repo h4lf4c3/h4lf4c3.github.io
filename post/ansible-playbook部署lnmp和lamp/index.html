@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>ansible-playbook部署LNMP和LAMP - Halface</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="halface" /><meta name="description" content="ansible-playbook部署LAMP和LNMP套件 LAMP playbook编写
+" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.85.0 with theme even" />
+
+
+<link rel="canonical" href="https://halface.gitee.io/post/ansible-playbook%E9%83%A8%E7%BD%B2lnmp%E5%92%8Clamp/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<link href="/sass/main.min.8c3cbcb0324c2bb4875ceccba4007cbad4b4ac8377f33af9953c3e7684534a50.css" rel="stylesheet">
+<link href="/lib/fancybox/jquery.fancybox-3.1.20.min.css" rel="stylesheet">
+
+
+<meta property="og:title" content="ansible-playbook部署LNMP和LAMP" />
+<meta property="og:description" content="ansible-playbook部署LAMP和LNMP套件
+LAMP
+playbook编写" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://halface.gitee.io/post/ansible-playbook%E9%83%A8%E7%BD%B2lnmp%E5%92%8Clamp/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2020-04-14T09:32:18+00:00" />
+<meta property="article:modified_time" content="2020-04-14T09:32:18+00:00" />
+
+<meta itemprop="name" content="ansible-playbook部署LNMP和LAMP">
+<meta itemprop="description" content="ansible-playbook部署LAMP和LNMP套件
+LAMP
+playbook编写"><meta itemprop="datePublished" content="2020-04-14T09:32:18+00:00" />
+<meta itemprop="dateModified" content="2020-04-14T09:32:18+00:00" />
+<meta itemprop="wordCount" content="713">
+<meta itemprop="keywords" content="运维," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="ansible-playbook部署LNMP和LAMP"/>
+<meta name="twitter:description" content="ansible-playbook部署LAMP和LNMP套件
+LAMP
+playbook编写"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Halface</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Halface</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">ansible-playbook部署LNMP和LAMP</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-04-14 </span>
+        <div class="post-category">
+            <a href="/categories/ansible/"> ansible </a>
+            </div>
+          <span class="more-meta"> 约 713 字 </span>
+          <span class="more-meta"> 预计阅读 2 分钟 </span>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#lamp">LAMP</a></li>
+    <li><a href="#lnmp">LNMP</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <h1 id="ansible-playbook部署lamp和lnmp套件">ansible-playbook部署LAMP和LNMP套件</h1>
+<h2 id="lamp">LAMP</h2>
+<p>playbook编写</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nn">---</span><span class="w">
+</span><span class="w"></span>- <span class="nt">hosts</span><span class="p">:</span><span class="w"> </span><span class="l">all</span><span class="w">
+</span><span class="w">  </span><span class="nt">tasks</span><span class="p">:</span><span class="w"> 
+</span><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">install httpd </span><span class="w"> </span><span class="c"># 安装httpd</span><span class="w">
+</span><span class="w">      </span><span class="nt">yum</span><span class="p">:</span><span class="w"> </span><span class="l">name=httpd state=latest</span><span class="w">
+</span><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">httpd start and enable</span><span class="w"> </span><span class="c"># 启动，设置自启</span><span class="w">
+</span><span class="w">      </span><span class="nt">service</span><span class="p">:</span><span class="w"> </span><span class="l">name=httpd state=started enabled=yes</span><span class="w">
+</span><span class="w">    
+</span><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">install mariadb </span><span class="w"> </span><span class="c"># 安装mariadb</span><span class="w">
+</span><span class="w">      </span><span class="nt">yum</span><span class="p">:</span><span class="w"> </span><span class="l">name={{item}} state=latest</span><span class="w">
+</span><span class="w">      </span><span class="nt">with_items</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span>- <span class="l">mariadb</span><span class="w">
+</span><span class="w">        </span>- <span class="l">mariadb-server</span><span class="w">
+</span><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">mariadb start and enable</span><span class="w">
+</span><span class="w">      </span><span class="nt">service</span><span class="p">:</span><span class="w"> </span><span class="l">name=mariadb state=started enabled=yes</span><span class="w">
+</span><span class="w">
+</span><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">install php  </span><span class="w"> </span><span class="c"># 安装php</span><span class="w">
+</span><span class="w">      </span><span class="nt">yum</span><span class="p">:</span><span class="w"> </span><span class="l">name={{item}} state=latest</span><span class="w">
+</span><span class="w">      </span><span class="nt">with_items</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span>- <span class="l">php</span><span class="w">
+</span><span class="w">        </span>- <span class="l">php-devel</span><span class="w">
+</span><span class="w">        </span>- <span class="l">php-mysql</span><span class="w">
+</span><span class="w">      </span><span class="nt">notify</span><span class="p">:</span><span class="w">      </span><span class="c"># 当安装完php,通知handler执行httpd重启</span><span class="w">
+</span><span class="w">        </span>- <span class="l">httpd restart</span><span class="w">
+</span><span class="w">  </span><span class="nt">handlers</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">httpd restart</span><span class="w">
+</span><span class="w">      </span><span class="nt">service</span><span class="p">:</span><span class="w"> </span><span class="l">name=httpd state=restarted</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><p>然后我们可以使用</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">ansible-playbook xxx.yml --syntax-check
+</code></pre></td></tr></table>
+</div>
+</div><p>来检查yml是否有语法错误</p>
+<p>使用</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">ansible-playbook -i /etc/ansible/hosts ./LAMP.yml
+</code></pre></td></tr></table>
+</div>
+</div><p>执行剧本</p>
+<p><img src="/img/ansible-playbook%E9%83%A8%E7%BD%B2LNMP%E5%92%8CLAMP/2020-03-19_100752.png" alt=""></p>
+<p><img src="/img/ansible-playbook%E9%83%A8%E7%BD%B2LNMP%E5%92%8CLAMP/2020-03-19_105357.png" alt=""></p>
+<p>这里，做的时候，另外两台机器之前装过mariadb和httpd，所以这里显示change是0</p>
+<p><img src="/img/ansible-playbook%E9%83%A8%E7%BD%B2LNMP%E5%92%8CLAMP/2020-03-19_105534.png" alt=""></p>
+<p><img src="/img/ansible-playbook%E9%83%A8%E7%BD%B2LNMP%E5%92%8CLAMP/2020-03-19_105645.png" alt="">
+<img src="/img/ansible-playbook%E9%83%A8%E7%BD%B2LNMP%E5%92%8CLAMP/2020-03-19_110301.png" alt=""></p>
+<p><img src="/img/ansible-playbook%E9%83%A8%E7%BD%B2LNMP%E5%92%8CLAMP/2020-03-19_110535.png" alt=""></p>
+<p><img src="/img/ansible-playbook%E9%83%A8%E7%BD%B2LNMP%E5%92%8CLAMP/2020-03-19_110558.png" alt=""></p>
+<p>确定每台机器都正常运行。</p>
+<h2 id="lnmp">LNMP</h2>
+<p>playbook编写，我们可以直接从刚才的playbook上改动一点就行</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nn">---</span><span class="w">
+</span><span class="w"></span>- <span class="nt">hosts</span><span class="p">:</span><span class="w"> </span><span class="l">all</span><span class="w">
+</span><span class="w">  </span><span class="nt">tasks</span><span class="p">:</span><span class="w"> 
+</span><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">install nginx </span><span class="w"> </span><span class="c"># 安装nginx</span><span class="w">
+</span><span class="w">      </span><span class="nt">yum</span><span class="p">:</span><span class="w"> </span><span class="l">name=httpd state=latest</span><span class="w">
+</span><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">httpd start and enable</span><span class="w"> </span><span class="c"># 启动，设置自启</span><span class="w">
+</span><span class="w">      </span><span class="nt">service</span><span class="p">:</span><span class="w"> </span><span class="l">name=httpd state=started enabled=yes</span><span class="w">
+</span><span class="w">    
+</span><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">install mariadb </span><span class="w"> </span><span class="c"># 安装mariadb</span><span class="w">
+</span><span class="w">      </span><span class="nt">yum</span><span class="p">:</span><span class="w"> </span><span class="l">name={{item}} state=latest</span><span class="w">
+</span><span class="w">      </span><span class="nt">with_items</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span>- <span class="l">mariadb</span><span class="w">
+</span><span class="w">        </span>- <span class="l">mariadb-server</span><span class="w">
+</span><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">mariadb start and enable</span><span class="w">
+</span><span class="w">      </span><span class="nt">service</span><span class="p">:</span><span class="w"> </span><span class="l">name=mariadb state=started enabled=yes</span><span class="w">
+</span><span class="w">
+</span><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">install php  </span><span class="w"> </span><span class="c"># 安装php</span><span class="w">
+</span><span class="w">      </span><span class="nt">yum</span><span class="p">:</span><span class="w"> </span><span class="l">name={{item}} state=latest</span><span class="w">
+</span><span class="w">      </span><span class="nt">with_items</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span>- <span class="l">php</span><span class="w">
+</span><span class="w">        </span>- <span class="l">php-devel</span><span class="w">
+</span><span class="w">        </span>- <span class="l">php-mysql</span><span class="w">
+</span><span class="w">      </span><span class="nt">notify</span><span class="p">:</span><span class="w">      </span><span class="c"># 当安装完php,通知handler执行httpd重启</span><span class="w">
+</span><span class="w">        </span>- <span class="l">nginx restart</span><span class="w">
+</span><span class="w">  </span><span class="nt">handlers</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">nginx restart</span><span class="w">
+</span><span class="w">      </span><span class="nt">service</span><span class="p">:</span><span class="w"> </span><span class="l">name=nginx state=restarted</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><p>确认无错误，即可开始运行</p>
+<p><img src="/img/ansible-playbook%E9%83%A8%E7%BD%B2LNMP%E5%92%8CLAMP/2020-03-19_120517.png" alt=""></p>
+<p>中途遇到个错误</p>
+<p><img src="/img/ansible-playbook%E9%83%A8%E7%BD%B2LNMP%E5%92%8CLAMP/2020-03-19_121300.png" alt=""></p>
+<p>端口被占用，才想起httpd还开着，然后赶紧关了重新执行剧本</p>
+<p><img src="/img/ansible-playbook%E9%83%A8%E7%BD%B2LNMP%E5%92%8CLAMP/2020-03-19_121204.png" alt=""></p>
+<p><img src="/img/ansible-playbook%E9%83%A8%E7%BD%B2LNMP%E5%92%8CLAMP/2020-03-19_121239.png" alt=""></p>
+<p>完成安装后，写个php连接mysql就可以确定是否正常。</p>
+<p><img src="/img/ansible-playbook%E9%83%A8%E7%BD%B2LNMP%E5%92%8CLAMP/2020-03-19_121632.png" alt=""></p>
+<p>然后重启nginx，发现不能解析php，然后在/etc/nginx/nginx.conf中编辑
+<img src="/img/ansible-playbook%E9%83%A8%E7%BD%B2LNMP%E5%92%8CLAMP/2020-03-19_124118.png" alt=""></p>
+<p>再次重启，又发现中文乱码，还是在nginx.conf中编辑</p>
+<p><img src="/img/ansible-playbook%E9%83%A8%E7%BD%B2LNMP%E5%92%8CLAMP/2020-03-19_124058.png" alt=""></p>
+<p><img src="/img/ansible-playbook%E9%83%A8%E7%BD%B2LNMP%E5%92%8CLAMP/2020-03-19_123930.png" alt=""></p>
+<p><img src="/img/ansible-playbook%E9%83%A8%E7%BD%B2LNMP%E5%92%8CLAMP/2020-03-19_124010.png" alt=""></p>
+<p><img src="/img/ansible-playbook%E9%83%A8%E7%BD%B2LNMP%E5%92%8CLAMP/2020-03-19_124029.png" alt=""></p>
+<p>然后可以正常显示了，连接成功说明都是正常的</p>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">halface</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2020-04-14
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/%E8%BF%90%E7%BB%B4/">运维</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/playbook%E9%83%A8%E7%BD%B2elk%E6%97%A5%E5%BF%97%E7%B3%BB%E7%BB%9F/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">ansible实战</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/docker%E6%9E%84%E5%BB%BAmysqlzabbixprometheus/">
+            <span class="next-text nav-default">docker构建mysql,zabbix,Prometheus</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+  <a href="https://halface.gitee.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2021
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">halface</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+  <script type="text/javascript" src="/lib/fancybox/jquery.fancybox-3.1.20.min.js"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.2517c0eb67172a0bae917de4af59b10ca2531411a009d4c0b82f5685259e5771.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>汇编_寄存器 - Halface</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="halface" /><meta name="description" content="笔记19/3/5 0x00简单介绍  通常我们写汇编语言时，会接触到CPU中的主要部件，寄存器。寄存器是CPU中，我们可以用指令读写的部件，我们可以同过改变各种寄存器中的内容实现控制寄存器。这里，我学习的汇编是基于8086CPU的。不同的CPU，寄存器个数不同，结构也不同。8086有14个寄存器，分别是：AX,BX,CX,DX,SI,DI,SP,BP,IP,CS,SS,DS,ES,PSW。
+" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.85.0 with theme even" />
+
+
+<link rel="canonical" href="https://halface.gitee.io/post/%E6%B1%87%E7%BC%96-%E5%AF%84%E5%AD%98%E5%99%A8/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<link href="/sass/main.min.8c3cbcb0324c2bb4875ceccba4007cbad4b4ac8377f33af9953c3e7684534a50.css" rel="stylesheet">
+<link href="/lib/fancybox/jquery.fancybox-3.1.20.min.css" rel="stylesheet">
+
+
+<meta property="og:title" content="汇编_寄存器" />
+<meta property="og:description" content="笔记19/3/5
+0x00简单介绍
+
+通常我们写汇编语言时，会接触到CPU中的主要部件，寄存器。寄存器是CPU中，我们可以用指令读写的部件，我们可以同过改变各种寄存器中的内容实现控制寄存器。这里，我学习的汇编是基于8086CPU的。不同的CPU，寄存器个数不同，结构也不同。8086有14个寄存器，分别是：AX,BX,CX,DX,SI,DI,SP,BP,IP,CS,SS,DS,ES,PSW。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://halface.gitee.io/post/%E6%B1%87%E7%BC%96-%E5%AF%84%E5%AD%98%E5%99%A8/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2019-03-05T08:37:49+00:00" />
+<meta property="article:modified_time" content="2019-03-05T08:37:49+00:00" />
+
+<meta itemprop="name" content="汇编_寄存器">
+<meta itemprop="description" content="笔记19/3/5
+0x00简单介绍
+
+通常我们写汇编语言时，会接触到CPU中的主要部件，寄存器。寄存器是CPU中，我们可以用指令读写的部件，我们可以同过改变各种寄存器中的内容实现控制寄存器。这里，我学习的汇编是基于8086CPU的。不同的CPU，寄存器个数不同，结构也不同。8086有14个寄存器，分别是：AX,BX,CX,DX,SI,DI,SP,BP,IP,CS,SS,DS,ES,PSW。"><meta itemprop="datePublished" content="2019-03-05T08:37:49+00:00" />
+<meta itemprop="dateModified" content="2019-03-05T08:37:49+00:00" />
+<meta itemprop="wordCount" content="2220">
+<meta itemprop="keywords" content="组成原理,笔记," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="汇编_寄存器"/>
+<meta name="twitter:description" content="笔记19/3/5
+0x00简单介绍
+
+通常我们写汇编语言时，会接触到CPU中的主要部件，寄存器。寄存器是CPU中，我们可以用指令读写的部件，我们可以同过改变各种寄存器中的内容实现控制寄存器。这里，我学习的汇编是基于8086CPU的。不同的CPU，寄存器个数不同，结构也不同。8086有14个寄存器，分别是：AX,BX,CX,DX,SI,DI,SP,BP,IP,CS,SS,DS,ES,PSW。"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Halface</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Halface</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">汇编_寄存器</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-03-05 </span>
+        
+          <span class="more-meta"> 约 2220 字 </span>
+          <span class="more-meta"> 预计阅读 5 分钟 </span>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#0x00简单介绍">0x00简单介绍</a></li>
+    <li><a href="#0x01-用到的寄存器">0x01 用到的寄存器</a>
+      <ul>
+        <li><a href="#通用寄存器">通用寄存器</a></li>
+        <li><a href="#ds寄存器">DS寄存器</a></li>
+      </ul>
+    </li>
+    <li><a href="#两个例子">两个例子</a>
+      <ul>
+        <li><a href="#1movaddsub命令">1.mov,add,sub命令</a></li>
+        <li><a href="#2使用masm工具">2.使用masm工具</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <h1 id="笔记1935">笔记19/3/5</h1>
+<h2 id="0x00简单介绍">0x00简单介绍</h2>
+<hr>
+<p>通常我们写汇编语言时，会接触到CPU中的主要部件，寄存器。寄存器是CPU中，我们可以用指令读写的部件，我们可以同过改变各种寄存器中的内容实现控制寄存器。这里，我学习的汇编是基于8086CPU的。不同的CPU，寄存器个数不同，结构也不同。8086有14个寄存器，分别是：AX,BX,CX,DX,SI,DI,SP,BP,IP,CS,SS,DS,ES,PSW。</p>
+<h2 id="0x01-用到的寄存器">0x01 用到的寄存器</h2>
+<hr>
+<h3 id="通用寄存器">通用寄存器</h3>
+<hr>
+<p>通用寄存器：AX，BX，CX，DX；
+8086寄存器都是16位的，可存放两个字节，因为这四个寄存器一般用来存放一般性的数据，所以就叫通用寄存器喏~以AX为例，其逻辑结构如下
+<img src="/img/%E6%B1%87%E7%BC%96-%E5%AF%84%E5%AD%98%E5%99%A8/1.png" alt=""></p>
+<ul>
+<li>
+<p>这四个寄存器都可以分为两个独立的8位寄存器来用</p>
+</li>
+<li>
+<p>AX-&gt;{AH,AL];</p>
+</li>
+<li>
+<p>BX-&gt;{BH,BL};</p>
+</li>
+<li>
+<p>CX-&gt;{CH,CL};</p>
+</li>
+<li>
+<p>DX-&gt;{DH,DL}.</p>
+</li>
+</ul>
+<p>整个16位一起，叫做字，当分成H,L时，也就是高位，低位，那么这两个8位的数据就叫做字节
+这里我们先来看一个汇编指令mov
+他的格式是：mov dst,src（目的操作数，源操作数）</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">mov ax,11    #将11送入ax,相当于ax=11
+mov ah,20    #将20送入ah,相当于ah=20
+mov al,44    #将44送入al,相当于al=44
+mov ax,bx    #将bx中的数据送入ax,相当于ax=bx
+add ax,bx    #将bx与ax相加，再存入ax，相当于ax=ax+bx
+</code></pre></td></tr></table>
+</div>
+</div><p>这里有个要注意的地方，在进行数据传送或运算时，注意指令的两个操作对象的位数应当一致。</p>
+<hr>
+<p>这里先暂停讨论寄存器，我们半路来谈一下物理地址，8086有20位的地址总线，可传送20位地址，但是呢8086又是个16位的结构，其内部一次性处理数据时地址为16位，这样的话，他的寻址能力就只有
+$$
+2^{16}=64KB
+$$
+所以8086采用一种方式在内部使用两个16位的地址，合成为一个20位的地址。
+当读写内存时，CPU中的相关部件提供了两个地址，一个叫做段地址，一个叫做偏移地址，段地址和偏移地址通过总线送入一个地址加法器，然后就合成了一个20位的物理地址，然后加法器再将物理地址送入I/O控制电路，I/O控制电路再将其送往地址总线，最后传送到存储器。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">地址加法器采用的公式：物理地址=段地址*10H+偏移地址  #其实就是左移了四位
+</code></pre></td></tr></table>
+</div>
+</div><p>这里后面涉及到一个段的概念，我们举个例子就明白了：
+我们假设有一个数据存放在31A50H这个内存单元中，刚好，它是20位的地址，但是我们如何将其更好地用段来解释，我们可以这样来说</p>
+<ul>
+<li>数据存放在3000:1A50 单元中</li>
+<li>数据存放在3000段，在此段的1A50单元处</li>
+</ul>
+<p>这已经很显而易见了，我们对比公式，3000是段地址，1A50是偏移地址，刚好，计算得到的物理地址是31A50，这样就比较好理解了。</p>
+<h3 id="ds寄存器">DS寄存器</h3>
+<hr>
+<p>当CPU要读写一个内存单元时，首先要给出这个内存单元的地址，我们前面说过，内存地址，由段地址和偏移地址组成，8086CPU中有个DS寄存器，一般是来存放将要访问的数据的段地址。说白一点，就是，我们在某个段中放入了数据，那么我们就会把这个段的段地址存入DS中，方便我们进行操作，然后接着后面的指令就会对这个段内的数据进行操作，如果我们不给出DS，我们就不知道数据在哪。后面详细举例说明。。
+我们先看这个段：（假设为5000段）</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">偏移地址</th>
+<th style="text-align:center">数据</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">0000</td>
+<td style="text-align:center">12</td>
+</tr>
+<tr>
+<td style="text-align:center">0001</td>
+<td style="text-align:center">45</td>
+</tr>
+<tr>
+<td style="text-align:center">0002</td>
+<td style="text-align:center">26</td>
+</tr>
+</tbody>
+</table>
+<p>如果将[0000]处的数据存入al中，那么就会存8位，因而只会将12存入，但是如果我要将同样偏移地址处的数据存入ax中，那么就会存16位，因而会将4512存入，这里是将高地址做ah,低位地址做al，所以45会在ah，12在al中。</p>
+<h2 id="两个例子">两个例子</h2>
+<h3 id="1movaddsub命令">1.mov,add,sub命令</h3>
+<p>mov相当于赋值，add是加命令，sub是减命令，下面举例：</p>
+<p>在5000:0000处写入20 30 40 00 12 34 11 22 44 55 00，然后进行20+30-40，3412+2211-5544，的运算，将结果分别存入，两个00的位置即[0003]与[000A]。
+先介绍几个debug程序中的命令：</p>
+<ul>
+<li>r命令    查看、改变寄存器的内容</li>
+<li>d命令   查看内存中的内容（你会看到的形式是段地址+偏移地址）</li>
+<li>e命令   改写内存中的内容（我们写入数据用的就是e命令）</li>
+<li>u命令   查看写入的或内存中原有的机器码所对应的汇编指令。</li>
+<li>t命令    执行CS：IP指向的命令（一个一个执行）</li>
+<li>g命令   同t执行命令（整个执行）</li>
+</ul>
+<p>我们首先使用DOS进入debug（这里说明一下，64位系统不支持debug,请安装dosbox+debug,或者使用虚拟机）然后使用e命令写入数据
+<img src="/img/%E6%B1%87%E7%BC%96-%E5%AF%84%E5%AD%98%E5%99%A8/2.png" alt=""></p>
+<p>然后使用a命令编写汇编指令</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">mov ax,5000
+mov ds,ax
+mov al,[0000]
+add al,[0001]
+sub al,[0002]
+mov [0003],al
+mov ax,[0004]
+add ax,[0006]
+sub ax,[0008]
+mov [000A],ax
+</code></pre></td></tr></table>
+</div>
+</div><p>然后就可以使用T命令运行了，得到结果
+<img src="/img/%E6%B1%87%E7%BC%96-%E5%AF%84%E5%AD%98%E5%99%A8/3.png" alt=""></p>
+<h3 id="2使用masm工具">2.使用masm工具</h3>
+<ul>
+<li>1建立源程序</li>
+</ul>
+<p>首先是段：段有代码段，数据段，附加段，堆栈段，我们目前先使用前面两个。</p>
+<p>段定义是
+段名    segment
+&hellip;.
+段名  ends</p>
+<p>我们用DOS进入masm工具文件夹，使用edit编辑代码</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">data segment
+  x1 db  27,4,?,?,?,?,?,?
+  x2 dw  2345h,1234h,?,?,?,?,?,?
+data ends
+code segment
+   assume cs:code,ds:data
+   start:
+       mov ax,data
+       mov ds,ax
+       add al,x1+1
+       mov x1+2,al
+       mov al,x1
+       sub al,x1+1
+       mov x1+3,al
+       mov al,x1
+       mul x1+1
+       mov x1+4,al
+       mov al,x1
+       cbw
+       div x1+1
+       mov x1+6,al
+       mov x1+7,ah
+       mov ax,x2
+       add ax,x2+2
+       mov x2+4,ax
+       mov ax,x2
+       sub ax,x2+2
+       mov x2+6,ax
+       mov ax,x2
+       mul x2+2
+       mov x2+8,ax
+       mov x2+10,dx
+       mov ax,x2
+       cwd
+       div x2+2
+       mov x2+12,ax
+       mov x2+14,dx
+       mov ah,4ch
+       int 21h
+code ends
+end start
+</code></pre></td></tr></table>
+</div>
+</div><p>然后保存为.asm文件，使用masm xx.asm编译
+编译过程一路enter，然后得到xx.obj文件，再使用link xx.obj进行链接，然后得到xx.exe
+我们直接xx.exe运行一下，再使用debug xx.exe打开
+使用u命令可以反编译查看指令，我们记好指令偏移地址的起止，然后使用g=[首]:[尾]直接运行
+记住ds地址，查看d [ds的地址:0000]可以看到运行结果</p>
+<p><img src="/img/%E6%B1%87%E7%BC%96-%E5%AF%84%E5%AD%98%E5%99%A8/4.png" alt=""></p>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">halface</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2019-03-05
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/">组成原理</a>
+          <a href="/tags/%E7%AC%94%E8%AE%B0/">笔记</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/%E5%87%BD%E6%95%B0%E4%BE%9D%E8%B5%96/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">函数依赖</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/hadoop%E5%88%86%E5%B8%83%E5%BC%8F%E6%90%AD%E5%BB%BA/">
+            <span class="next-text nav-default">hadoop分布式搭建</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+  <a href="https://halface.gitee.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2021
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">halface</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+  <script type="text/javascript" src="/lib/fancybox/jquery.fancybox-3.1.20.min.js"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.2517c0eb67172a0bae917de4af59b10ca2531411a009d4c0b82f5685259e5771.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>
