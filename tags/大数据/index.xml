@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>大数据 on Halface</title>
-    <link>https://halface.gitee.io/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/</link>
+    <link>https://h4lf4c3.github.io/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/</link>
     <description>Recent content in 大数据 on Halface</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Fri, 23 Jul 2021 09:32:15 +0800</lastBuildDate><atom:link href="https://halface.gitee.io/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 23 Jul 2021 09:32:15 +0800</lastBuildDate><atom:link href="https://h4lf4c3.github.io/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Hive配置jdbc</title>
-      <link>https://halface.gitee.io/post/hive%E9%85%8D%E7%BD%AEjdbc/</link>
+      <link>https://h4lf4c3.github.io/post/hive%E9%85%8D%E7%BD%AEjdbc/</link>
       <pubDate>Fri, 23 Jul 2021 09:32:15 +0800</pubDate>
       
-      <guid>https://halface.gitee.io/post/hive%E9%85%8D%E7%BD%AEjdbc/</guid>
+      <guid>https://h4lf4c3.github.io/post/hive%E9%85%8D%E7%BD%AEjdbc/</guid>
       <description>Hive单机部署过程 旧电脑上面之前搭建过各种单机大数据平台，当时没有一一记录下来过程，导致后续再次搭建的时候还是要跌坑，现在打算把所有平台全</description>
     </item>
     

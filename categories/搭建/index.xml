@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>搭建 on Halface</title>
-    <link>https://halface.gitee.io/categories/%E6%90%AD%E5%BB%BA/</link>
+    <link>https://h4lf4c3.github.io/categories/%E6%90%AD%E5%BB%BA/</link>
     <description>Recent content in 搭建 on Halface</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Fri, 17 Apr 2020 10:03:33 +0000</lastBuildDate><atom:link href="https://halface.gitee.io/categories/%E6%90%AD%E5%BB%BA/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 17 Apr 2020 10:03:33 +0000</lastBuildDate><atom:link href="https://h4lf4c3.github.io/categories/%E6%90%AD%E5%BB%BA/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>spark&#43;IDEA示例</title>
-      <link>https://halface.gitee.io/post/spark&#43;idea%E7%A4%BA%E4%BE%8B/</link>
+      <link>https://h4lf4c3.github.io/post/spark&#43;idea%E7%A4%BA%E4%BE%8B/</link>
       <pubDate>Fri, 17 Apr 2020 10:03:33 +0000</pubDate>
       
-      <guid>https://halface.gitee.io/post/spark&#43;idea%E7%A4%BA%E4%BE%8B/</guid>
+      <guid>https://h4lf4c3.github.io/post/spark&#43;idea%E7%A4%BA%E4%BE%8B/</guid>
       <description>&lt;h1 id=&#34;sparkidea示例&#34;&gt;spark+IDEA示例&lt;/h1&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -41,10 +41,10 @@ spark安装包的选择根据你的hadoop和scala版本来，官网有详细说�
     
     <item>
       <title>ansible实战</title>
-      <link>https://halface.gitee.io/post/playbook%E9%83%A8%E7%BD%B2elk%E6%97%A5%E5%BF%97%E7%B3%BB%E7%BB%9F/</link>
+      <link>https://h4lf4c3.github.io/post/playbook%E9%83%A8%E7%BD%B2elk%E6%97%A5%E5%BF%97%E7%B3%BB%E7%BB%9F/</link>
       <pubDate>Tue, 14 Apr 2020 13:33:29 +0000</pubDate>
       
-      <guid>https://halface.gitee.io/post/playbook%E9%83%A8%E7%BD%B2elk%E6%97%A5%E5%BF%97%E7%B3%BB%E7%BB%9F/</guid>
+      <guid>https://h4lf4c3.github.io/post/playbook%E9%83%A8%E7%BD%B2elk%E6%97%A5%E5%BF%97%E7%B3%BB%E7%BB%9F/</guid>
       <description>&lt;h1 id=&#34;playbook部署elk日志系统&#34;&gt;playbook部署ELK日志系统&lt;/h1&gt;
 &lt;h2 id=&#34;前话&#34;&gt;前话&lt;/h2&gt;
 &lt;p&gt;ansible管理集群是真的强啊。之前手动一步一步搭建ELK切换来切换去的很是麻烦，但是这次尝试使用playbook，直接给弄好，便捷啊&lt;/p&gt;</description>

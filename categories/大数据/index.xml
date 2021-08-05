@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>大数据 on Halface</title>
-    <link>https://halface.gitee.io/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/</link>
+    <link>https://h4lf4c3.github.io/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/</link>
     <description>Recent content in 大数据 on Halface</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 14 May 2020 10:53:55 +0000</lastBuildDate><atom:link href="https://halface.gitee.io/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 14 May 2020 10:53:55 +0000</lastBuildDate><atom:link href="https://h4lf4c3.github.io/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>spark中的aggregate函数</title>
-      <link>https://halface.gitee.io/post/spark%E4%B8%AD%E7%9A%84aggregate%E5%87%BD%E6%95%B0/</link>
+      <link>https://h4lf4c3.github.io/post/spark%E4%B8%AD%E7%9A%84aggregate%E5%87%BD%E6%95%B0/</link>
       <pubDate>Thu, 14 May 2020 10:53:55 +0000</pubDate>
       
-      <guid>https://halface.gitee.io/post/spark%E4%B8%AD%E7%9A%84aggregate%E5%87%BD%E6%95%B0/</guid>
+      <guid>https://h4lf4c3.github.io/post/spark%E4%B8%AD%E7%9A%84aggregate%E5%87%BD%E6%95%B0/</guid>
       <description>&lt;h1 id=&#34;spark中的aggregate函数&#34;&gt;spark中的aggregate函数&lt;/h1&gt;
 &lt;p&gt;学习到spark的RDD行动操作时，有一个函数可让我废了半天脑筋，就是aggregate函数，aggregate的意思是&lt;strong&gt;聚合&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;我们首先来看一下spark官方文档对这一函数的说明：&lt;/p&gt;</description>
@@ -20,10 +20,10 @@
     
     <item>
       <title>hadoop分布式搭建</title>
-      <link>https://halface.gitee.io/post/hadoop%E5%88%86%E5%B8%83%E5%BC%8F%E6%90%AD%E5%BB%BA/</link>
+      <link>https://h4lf4c3.github.io/post/hadoop%E5%88%86%E5%B8%83%E5%BC%8F%E6%90%AD%E5%BB%BA/</link>
       <pubDate>Fri, 25 Jan 2019 08:37:49 +0000</pubDate>
       
-      <guid>https://halface.gitee.io/post/hadoop%E5%88%86%E5%B8%83%E5%BC%8F%E6%90%AD%E5%BB%BA/</guid>
+      <guid>https://h4lf4c3.github.io/post/hadoop%E5%88%86%E5%B8%83%E5%BC%8F%E6%90%AD%E5%BB%BA/</guid>
       <description>&lt;h1 id=&#34;hadoop分布式集群搭建&#34;&gt;Hadoop分布式集群搭建&lt;/h1&gt;
 &lt;h2 id=&#34;写在前面&#34;&gt;写在前面&lt;/h2&gt;
 &lt;p&gt;之前已经搭过Hadoop伪分布式，这次就大致说说分布式是怎么回事，其实他们也就是配置文件不一样，其他都是差不多的，但是为了更熟悉相关操作，我还是建立了三台虚拟机，从头搭起（&lt;del&gt;为了更好的体验，我特地加了内存条，心疼我的钱啊&lt;/del&gt;）当然，搭建的方法不限于这一种，且顺序也不一定相同，我只是按自己的来&lt;/p&gt;</description>

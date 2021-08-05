@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>笔记 on Halface</title>
-    <link>https://halface.gitee.io/tags/%E7%AC%94%E8%AE%B0/</link>
+    <link>https://h4lf4c3.github.io/tags/%E7%AC%94%E8%AE%B0/</link>
     <description>Recent content in 笔记 on Halface</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 14 May 2020 10:53:55 +0000</lastBuildDate><atom:link href="https://halface.gitee.io/tags/%E7%AC%94%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 14 May 2020 10:53:55 +0000</lastBuildDate><atom:link href="https://h4lf4c3.github.io/tags/%E7%AC%94%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>spark中的aggregate函数</title>
-      <link>https://halface.gitee.io/post/spark%E4%B8%AD%E7%9A%84aggregate%E5%87%BD%E6%95%B0/</link>
+      <link>https://h4lf4c3.github.io/post/spark%E4%B8%AD%E7%9A%84aggregate%E5%87%BD%E6%95%B0/</link>
       <pubDate>Thu, 14 May 2020 10:53:55 +0000</pubDate>
       
-      <guid>https://halface.gitee.io/post/spark%E4%B8%AD%E7%9A%84aggregate%E5%87%BD%E6%95%B0/</guid>
+      <guid>https://h4lf4c3.github.io/post/spark%E4%B8%AD%E7%9A%84aggregate%E5%87%BD%E6%95%B0/</guid>
       <description>&lt;h1 id=&#34;spark中的aggregate函数&#34;&gt;spark中的aggregate函数&lt;/h1&gt;
 &lt;p&gt;学习到spark的RDD行动操作时，有一个函数可让我废了半天脑筋，就是aggregate函数，aggregate的意思是&lt;strong&gt;聚合&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;我们首先来看一下spark官方文档对这一函数的说明：&lt;/p&gt;</description>
@@ -20,10 +20,10 @@
     
     <item>
       <title>redis笔记2-命令</title>
-      <link>https://halface.gitee.io/post/redis%E7%AC%94%E8%AE%B02-%E5%91%BD%E4%BB%A4/</link>
+      <link>https://h4lf4c3.github.io/post/redis%E7%AC%94%E8%AE%B02-%E5%91%BD%E4%BB%A4/</link>
       <pubDate>Sun, 26 Apr 2020 08:25:58 +0000</pubDate>
       
-      <guid>https://halface.gitee.io/post/redis%E7%AC%94%E8%AE%B02-%E5%91%BD%E4%BB%A4/</guid>
+      <guid>https://h4lf4c3.github.io/post/redis%E7%AC%94%E8%AE%B02-%E5%91%BD%E4%BB%A4/</guid>
       <description>&lt;h1 id=&#34;redis各个常用命令总结&#34;&gt;Redis各个常用命令总结&lt;/h1&gt;
 &lt;blockquote&gt;
 &lt;p&gt;基础的命令在上一篇文章&lt;/p&gt;
@@ -32,10 +32,10 @@
     
     <item>
       <title>redis笔记1-基础</title>
-      <link>https://halface.gitee.io/post/redis%E7%AC%94%E8%AE%B01-%E5%9F%BA%E7%A1%80/</link>
+      <link>https://h4lf4c3.github.io/post/redis%E7%AC%94%E8%AE%B01-%E5%9F%BA%E7%A1%80/</link>
       <pubDate>Wed, 22 Apr 2020 21:30:18 +0000</pubDate>
       
-      <guid>https://halface.gitee.io/post/redis%E7%AC%94%E8%AE%B01-%E5%9F%BA%E7%A1%80/</guid>
+      <guid>https://h4lf4c3.github.io/post/redis%E7%AC%94%E8%AE%B01-%E5%9F%BA%E7%A1%80/</guid>
       <description>&lt;h1 id=&#34;redis笔记1-基础部分&#34;&gt;Redis笔记1-基础部分&lt;/h1&gt;
 &lt;h2 id=&#34;redis数据结构&#34;&gt;Redis数据结构&lt;/h2&gt;
 &lt;p&gt;redis的数据结构主要是五种，即string(字符串)，list(列表)，set(集合)，hash(散列)，zset(有序集合)&lt;/p&gt;</description>
@@ -43,10 +43,10 @@
     
     <item>
       <title>函数依赖</title>
-      <link>https://halface.gitee.io/post/%E5%87%BD%E6%95%B0%E4%BE%9D%E8%B5%96/</link>
+      <link>https://h4lf4c3.github.io/post/%E5%87%BD%E6%95%B0%E4%BE%9D%E8%B5%96/</link>
       <pubDate>Sun, 24 Mar 2019 08:37:49 +0000</pubDate>
       
-      <guid>https://halface.gitee.io/post/%E5%87%BD%E6%95%B0%E4%BE%9D%E8%B5%96/</guid>
+      <guid>https://h4lf4c3.github.io/post/%E5%87%BD%E6%95%B0%E4%BE%9D%E8%B5%96/</guid>
       <description>&lt;h1 id=&#34;关系模型与规范化&#34;&gt;关系模型与规范化&lt;/h1&gt;
 &lt;h2 id=&#34;具体定义&#34;&gt;具体定义&lt;/h2&gt;
 &lt;p&gt;二话不说，直接上书上定义，比较枯燥。&lt;/p&gt;</description>
@@ -54,10 +54,10 @@
     
     <item>
       <title>汇编_寄存器</title>
-      <link>https://halface.gitee.io/post/%E6%B1%87%E7%BC%96-%E5%AF%84%E5%AD%98%E5%99%A8/</link>
+      <link>https://h4lf4c3.github.io/post/%E6%B1%87%E7%BC%96-%E5%AF%84%E5%AD%98%E5%99%A8/</link>
       <pubDate>Tue, 05 Mar 2019 08:37:49 +0000</pubDate>
       
-      <guid>https://halface.gitee.io/post/%E6%B1%87%E7%BC%96-%E5%AF%84%E5%AD%98%E5%99%A8/</guid>
+      <guid>https://h4lf4c3.github.io/post/%E6%B1%87%E7%BC%96-%E5%AF%84%E5%AD%98%E5%99%A8/</guid>
       <description>&lt;h1 id=&#34;笔记1935&#34;&gt;笔记19/3/5&lt;/h1&gt;
 &lt;h2 id=&#34;0x00简单介绍&#34;&gt;0x00简单介绍&lt;/h2&gt;
 &lt;hr&gt;

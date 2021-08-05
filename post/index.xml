@@ -2,62 +2,62 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on Halface</title>
-    <link>https://halface.gitee.io/post/</link>
+    <link>https://h4lf4c3.github.io/post/</link>
     <description>Recent content in Posts on Halface</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Fri, 23 Jul 2021 09:32:15 +0800</lastBuildDate><atom:link href="https://halface.gitee.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 23 Jul 2021 09:32:15 +0800</lastBuildDate><atom:link href="https://h4lf4c3.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Hive配置jdbc</title>
-      <link>https://halface.gitee.io/post/hive%E9%85%8D%E7%BD%AEjdbc/</link>
+      <link>https://h4lf4c3.github.io/post/hive%E9%85%8D%E7%BD%AEjdbc/</link>
       <pubDate>Fri, 23 Jul 2021 09:32:15 +0800</pubDate>
       
-      <guid>https://halface.gitee.io/post/hive%E9%85%8D%E7%BD%AEjdbc/</guid>
+      <guid>https://h4lf4c3.github.io/post/hive%E9%85%8D%E7%BD%AEjdbc/</guid>
       <description>Hive单机部署过程 旧电脑上面之前搭建过各种单机大数据平台，当时没有一一记录下来过程，导致后续再次搭建的时候还是要跌坑，现在打算把所有平台全</description>
     </item>
     
     <item>
       <title>Spark二次排序笔记</title>
-      <link>https://halface.gitee.io/post/spark%E4%BA%8C%E6%AC%A1%E6%8E%92%E5%BA%8F%E7%AC%94%E8%AE%B0/</link>
+      <link>https://h4lf4c3.github.io/post/spark%E4%BA%8C%E6%AC%A1%E6%8E%92%E5%BA%8F%E7%AC%94%E8%AE%B0/</link>
       <pubDate>Wed, 09 Sep 2020 13:58:04 +0800</pubDate>
       
-      <guid>https://halface.gitee.io/post/spark%E4%BA%8C%E6%AC%A1%E6%8E%92%E5%BA%8F%E7%AC%94%E8%AE%B0/</guid>
+      <guid>https://h4lf4c3.github.io/post/spark%E4%BA%8C%E6%AC%A1%E6%8E%92%E5%BA%8F%E7%AC%94%E8%AE%B0/</guid>
       <description>Spark二次排序笔记 引言 让我们先思考一下什么是二次排序，这是一个很典型的数据处理算法。首先我们有一个数据，这个数据的key之间是有序的，而</description>
     </item>
     
     <item>
       <title>Hadoop案例笔记2</title>
-      <link>https://halface.gitee.io/post/hadoop%E6%A1%88%E4%BE%8B%E7%AC%94%E8%AE%B02/</link>
+      <link>https://h4lf4c3.github.io/post/hadoop%E6%A1%88%E4%BE%8B%E7%AC%94%E8%AE%B02/</link>
       <pubDate>Tue, 18 Aug 2020 15:25:22 +0800</pubDate>
       
-      <guid>https://halface.gitee.io/post/hadoop%E6%A1%88%E4%BE%8B%E7%AC%94%E8%AE%B02/</guid>
+      <guid>https://h4lf4c3.github.io/post/hadoop%E6%A1%88%E4%BE%8B%E7%AC%94%E8%AE%B02/</guid>
       <description>Hadoop案例笔记2 内容接上一个笔记 Hadoop案例笔记1 我们对题目进行一个扩展，在上一个案例得出的结果上将统计的结果按照总流量的倒序排序</description>
     </item>
     
     <item>
       <title>Hadoop案例笔记1</title>
-      <link>https://halface.gitee.io/post/hadoop%E6%A1%88%E4%BE%8B%E7%AC%94%E8%AE%B01/</link>
+      <link>https://h4lf4c3.github.io/post/hadoop%E6%A1%88%E4%BE%8B%E7%AC%94%E8%AE%B01/</link>
       <pubDate>Mon, 17 Aug 2020 17:12:01 +0800</pubDate>
       
-      <guid>https://halface.gitee.io/post/hadoop%E6%A1%88%E4%BE%8B%E7%AC%94%E8%AE%B01/</guid>
+      <guid>https://h4lf4c3.github.io/post/hadoop%E6%A1%88%E4%BE%8B%E7%AC%94%E8%AE%B01/</guid>
       <description>Hadoop 用户手机流量处理1 hadoop的mapreduce一个经典入门案例就是wordcount，对单词进行词频统计，其输入输出的数据类型都是ha</description>
     </item>
     
     <item>
       <title>Mysql主主互备</title>
-      <link>https://halface.gitee.io/post/mysql%E4%B8%BB%E4%B8%BB%E4%BA%92%E5%A4%87/</link>
+      <link>https://h4lf4c3.github.io/post/mysql%E4%B8%BB%E4%B8%BB%E4%BA%92%E5%A4%87/</link>
       <pubDate>Wed, 15 Jul 2020 13:57:46 +0800</pubDate>
       
-      <guid>https://halface.gitee.io/post/mysql%E4%B8%BB%E4%B8%BB%E4%BA%92%E5%A4%87/</guid>
+      <guid>https://h4lf4c3.github.io/post/mysql%E4%B8%BB%E4%B8%BB%E4%BA%92%E5%A4%87/</guid>
       <description>mysql主主互备 1 2 3 实验环境： hjj2017110109 192.168.160.80 hjj2017110109_node2 192.168.160.81 修改第一节点的/etc/my.cnf配置文件 添加如下 1 2 3 4 5 6 server_id = 1 log-bin = mysql-bin relay-log = mysql-relay-bin replicate-wild-ignore-table=mysql.% #指定不需要复</description>
     </item>
     
     <item>
       <title>spark中的aggregate函数</title>
-      <link>https://halface.gitee.io/post/spark%E4%B8%AD%E7%9A%84aggregate%E5%87%BD%E6%95%B0/</link>
+      <link>https://h4lf4c3.github.io/post/spark%E4%B8%AD%E7%9A%84aggregate%E5%87%BD%E6%95%B0/</link>
       <pubDate>Thu, 14 May 2020 10:53:55 +0000</pubDate>
       
-      <guid>https://halface.gitee.io/post/spark%E4%B8%AD%E7%9A%84aggregate%E5%87%BD%E6%95%B0/</guid>
+      <guid>https://h4lf4c3.github.io/post/spark%E4%B8%AD%E7%9A%84aggregate%E5%87%BD%E6%95%B0/</guid>
       <description>&lt;h1 id=&#34;spark中的aggregate函数&#34;&gt;spark中的aggregate函数&lt;/h1&gt;
 &lt;p&gt;学习到spark的RDD行动操作时，有一个函数可让我废了半天脑筋，就是aggregate函数，aggregate的意思是&lt;strong&gt;聚合&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;我们首先来看一下spark官方文档对这一函数的说明：&lt;/p&gt;</description>
@@ -65,20 +65,20 @@
     
     <item>
       <title>spark示例遇到的一个坑</title>
-      <link>https://halface.gitee.io/post/idea%E8%BF%9C%E7%A8%8B%E6%8F%90%E4%BA%A4spark%E7%A4%BA%E4%BE%8B%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%B8%AA%E5%9D%91/</link>
+      <link>https://h4lf4c3.github.io/post/idea%E8%BF%9C%E7%A8%8B%E6%8F%90%E4%BA%A4spark%E7%A4%BA%E4%BE%8B%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%B8%AA%E5%9D%91/</link>
       <pubDate>Tue, 12 May 2020 08:37:49 +0000</pubDate>
       
-      <guid>https://halface.gitee.io/post/idea%E8%BF%9C%E7%A8%8B%E6%8F%90%E4%BA%A4spark%E7%A4%BA%E4%BE%8B%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%B8%AA%E5%9D%91/</guid>
+      <guid>https://h4lf4c3.github.io/post/idea%E8%BF%9C%E7%A8%8B%E6%8F%90%E4%BA%A4spark%E7%A4%BA%E4%BE%8B%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%B8%AA%E5%9D%91/</guid>
       <description>&lt;h1 id=&#34;idea远程提交spark示例遇到的一个坑&#34;&gt;IDEA远程提交spark示例遇到的一个坑&lt;/h1&gt;
 &lt;p&gt;先前使用idea进行远程提交spark程序采用的是local，也就相当于单机版spark，于是乎我又试了一下spark自带的standalone模式。但是在setMaster(&amp;ldquo;spark://192.168.160.30:7077&amp;rdquo;)的时候出现了问题&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>redis笔记2-命令</title>
-      <link>https://halface.gitee.io/post/redis%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6/</link>
+      <link>https://h4lf4c3.github.io/post/redis%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6/</link>
       <pubDate>Thu, 30 Apr 2020 09:42:58 +0000</pubDate>
       
-      <guid>https://halface.gitee.io/post/redis%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6/</guid>
+      <guid>https://h4lf4c3.github.io/post/redis%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6/</guid>
       <description>&lt;p&gt;reds主从复制笔记&lt;/p&gt;
 &lt;h2 id=&#34;关于redis的风险问题讨论&#34;&gt;关于redis的风险问题讨论&lt;/h2&gt;
 &lt;ul&gt;
@@ -92,10 +92,10 @@
     
     <item>
       <title>redis笔记2-命令</title>
-      <link>https://halface.gitee.io/post/redis%E7%AC%94%E8%AE%B02-%E5%91%BD%E4%BB%A4/</link>
+      <link>https://h4lf4c3.github.io/post/redis%E7%AC%94%E8%AE%B02-%E5%91%BD%E4%BB%A4/</link>
       <pubDate>Sun, 26 Apr 2020 08:25:58 +0000</pubDate>
       
-      <guid>https://halface.gitee.io/post/redis%E7%AC%94%E8%AE%B02-%E5%91%BD%E4%BB%A4/</guid>
+      <guid>https://h4lf4c3.github.io/post/redis%E7%AC%94%E8%AE%B02-%E5%91%BD%E4%BB%A4/</guid>
       <description>&lt;h1 id=&#34;redis各个常用命令总结&#34;&gt;Redis各个常用命令总结&lt;/h1&gt;
 &lt;blockquote&gt;
 &lt;p&gt;基础的命令在上一篇文章&lt;/p&gt;
@@ -104,10 +104,10 @@
     
     <item>
       <title>redis笔记1-基础</title>
-      <link>https://halface.gitee.io/post/redis%E7%AC%94%E8%AE%B01-%E5%9F%BA%E7%A1%80/</link>
+      <link>https://h4lf4c3.github.io/post/redis%E7%AC%94%E8%AE%B01-%E5%9F%BA%E7%A1%80/</link>
       <pubDate>Wed, 22 Apr 2020 21:30:18 +0000</pubDate>
       
-      <guid>https://halface.gitee.io/post/redis%E7%AC%94%E8%AE%B01-%E5%9F%BA%E7%A1%80/</guid>
+      <guid>https://h4lf4c3.github.io/post/redis%E7%AC%94%E8%AE%B01-%E5%9F%BA%E7%A1%80/</guid>
       <description>&lt;h1 id=&#34;redis笔记1-基础部分&#34;&gt;Redis笔记1-基础部分&lt;/h1&gt;
 &lt;h2 id=&#34;redis数据结构&#34;&gt;Redis数据结构&lt;/h2&gt;
 &lt;p&gt;redis的数据结构主要是五种，即string(字符串)，list(列表)，set(集合)，hash(散列)，zset(有序集合)&lt;/p&gt;</description>
@@ -115,10 +115,10 @@
     
     <item>
       <title>spark&#43;IDEA示例</title>
-      <link>https://halface.gitee.io/post/spark&#43;idea%E7%A4%BA%E4%BE%8B/</link>
+      <link>https://h4lf4c3.github.io/post/spark&#43;idea%E7%A4%BA%E4%BE%8B/</link>
       <pubDate>Fri, 17 Apr 2020 10:03:33 +0000</pubDate>
       
-      <guid>https://halface.gitee.io/post/spark&#43;idea%E7%A4%BA%E4%BE%8B/</guid>
+      <guid>https://h4lf4c3.github.io/post/spark&#43;idea%E7%A4%BA%E4%BE%8B/</guid>
       <description>&lt;h1 id=&#34;sparkidea示例&#34;&gt;spark+IDEA示例&lt;/h1&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -147,10 +147,10 @@ spark安装包的选择根据你的hadoop和scala版本来，官网有详细说�
     
     <item>
       <title>ansible实战</title>
-      <link>https://halface.gitee.io/post/playbook%E9%83%A8%E7%BD%B2elk%E6%97%A5%E5%BF%97%E7%B3%BB%E7%BB%9F/</link>
+      <link>https://h4lf4c3.github.io/post/playbook%E9%83%A8%E7%BD%B2elk%E6%97%A5%E5%BF%97%E7%B3%BB%E7%BB%9F/</link>
       <pubDate>Tue, 14 Apr 2020 13:33:29 +0000</pubDate>
       
-      <guid>https://halface.gitee.io/post/playbook%E9%83%A8%E7%BD%B2elk%E6%97%A5%E5%BF%97%E7%B3%BB%E7%BB%9F/</guid>
+      <guid>https://h4lf4c3.github.io/post/playbook%E9%83%A8%E7%BD%B2elk%E6%97%A5%E5%BF%97%E7%B3%BB%E7%BB%9F/</guid>
       <description>&lt;h1 id=&#34;playbook部署elk日志系统&#34;&gt;playbook部署ELK日志系统&lt;/h1&gt;
 &lt;h2 id=&#34;前话&#34;&gt;前话&lt;/h2&gt;
 &lt;p&gt;ansible管理集群是真的强啊。之前手动一步一步搭建ELK切换来切换去的很是麻烦，但是这次尝试使用playbook，直接给弄好，便捷啊&lt;/p&gt;</description>
@@ -158,10 +158,10 @@ spark安装包的选择根据你的hadoop和scala版本来，官网有详细说�
     
     <item>
       <title>ansible-playbook部署LNMP和LAMP</title>
-      <link>https://halface.gitee.io/post/ansible-playbook%E9%83%A8%E7%BD%B2lnmp%E5%92%8Clamp/</link>
+      <link>https://h4lf4c3.github.io/post/ansible-playbook%E9%83%A8%E7%BD%B2lnmp%E5%92%8Clamp/</link>
       <pubDate>Tue, 14 Apr 2020 09:32:18 +0000</pubDate>
       
-      <guid>https://halface.gitee.io/post/ansible-playbook%E9%83%A8%E7%BD%B2lnmp%E5%92%8Clamp/</guid>
+      <guid>https://h4lf4c3.github.io/post/ansible-playbook%E9%83%A8%E7%BD%B2lnmp%E5%92%8Clamp/</guid>
       <description>&lt;h1 id=&#34;ansible-playbook部署lamp和lnmp套件&#34;&gt;ansible-playbook部署LAMP和LNMP套件&lt;/h1&gt;
 &lt;h2 id=&#34;lamp&#34;&gt;LAMP&lt;/h2&gt;
 &lt;p&gt;playbook编写&lt;/p&gt;</description>
@@ -169,10 +169,10 @@ spark安装包的选择根据你的hadoop和scala版本来，官网有详细说�
     
     <item>
       <title>docker构建mysql,zabbix,Prometheus</title>
-      <link>https://halface.gitee.io/post/docker%E6%9E%84%E5%BB%BAmysqlzabbixprometheus/</link>
+      <link>https://h4lf4c3.github.io/post/docker%E6%9E%84%E5%BB%BAmysqlzabbixprometheus/</link>
       <pubDate>Tue, 14 Apr 2020 08:58:05 +0000</pubDate>
       
-      <guid>https://halface.gitee.io/post/docker%E6%9E%84%E5%BB%BAmysqlzabbixprometheus/</guid>
+      <guid>https://h4lf4c3.github.io/post/docker%E6%9E%84%E5%BB%BAmysqlzabbixprometheus/</guid>
       <description>&lt;h1 id=&#34;docker部署mysqlzabbixprometheus&#34;&gt;docker部署mysql,zabbix,prometheus&lt;/h1&gt;
 &lt;h2 id=&#34;docker安装&#34;&gt;docker安装&lt;/h2&gt;
 &lt;p&gt;根据阿里开源镜像站上提示做即可&lt;/p&gt;</description>
@@ -180,10 +180,10 @@ spark安装包的选择根据你的hadoop和scala版本来，官网有详细说�
     
     <item>
       <title>redis集群安装</title>
-      <link>https://halface.gitee.io/post/redis%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2/</link>
+      <link>https://h4lf4c3.github.io/post/redis%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2/</link>
       <pubDate>Tue, 14 Apr 2020 00:05:39 +0000</pubDate>
       
-      <guid>https://halface.gitee.io/post/redis%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2/</guid>
+      <guid>https://h4lf4c3.github.io/post/redis%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2/</guid>
       <description>&lt;h1 id=&#34;redis集群安装&#34;&gt;redis集群安装&lt;/h1&gt;
 &lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
 &lt;p&gt;标准redis集群为3主3从，我们在同一台主机中部署redis集群，节点分别为6391-6396&lt;/p&gt;
@@ -192,10 +192,10 @@ spark安装包的选择根据你的hadoop和scala版本来，官网有详细说�
     
     <item>
       <title>mysql高可用Amoeba读写分离</title>
-      <link>https://halface.gitee.io/post/mysql%E9%AB%98%E5%8F%AF%E7%94%A8amoeba%E8%AF%BB%E5%86%99%E5%88%86%E7%A6%BB/</link>
+      <link>https://h4lf4c3.github.io/post/mysql%E9%AB%98%E5%8F%AF%E7%94%A8amoeba%E8%AF%BB%E5%86%99%E5%88%86%E7%A6%BB/</link>
       <pubDate>Mon, 09 Mar 2020 08:16:27 +0000</pubDate>
       
-      <guid>https://halface.gitee.io/post/mysql%E9%AB%98%E5%8F%AF%E7%94%A8amoeba%E8%AF%BB%E5%86%99%E5%88%86%E7%A6%BB/</guid>
+      <guid>https://h4lf4c3.github.io/post/mysql%E9%AB%98%E5%8F%AF%E7%94%A8amoeba%E8%AF%BB%E5%86%99%E5%88%86%E7%A6%BB/</guid>
       <description>&lt;h1 id=&#34;mysql-amoeba读写分离&#34;&gt;Mysql Amoeba读写分离&lt;/h1&gt;
 &lt;p&gt;环境：192.168.160.133 hjj2017110109&lt;/p&gt;
 &lt;p&gt;192.168.160.134 slave-node&lt;/p&gt;
@@ -205,10 +205,10 @@ spark安装包的选择根据你的hadoop和scala版本来，官网有详细说�
     
     <item>
       <title>函数依赖</title>
-      <link>https://halface.gitee.io/post/%E5%87%BD%E6%95%B0%E4%BE%9D%E8%B5%96/</link>
+      <link>https://h4lf4c3.github.io/post/%E5%87%BD%E6%95%B0%E4%BE%9D%E8%B5%96/</link>
       <pubDate>Sun, 24 Mar 2019 08:37:49 +0000</pubDate>
       
-      <guid>https://halface.gitee.io/post/%E5%87%BD%E6%95%B0%E4%BE%9D%E8%B5%96/</guid>
+      <guid>https://h4lf4c3.github.io/post/%E5%87%BD%E6%95%B0%E4%BE%9D%E8%B5%96/</guid>
       <description>&lt;h1 id=&#34;关系模型与规范化&#34;&gt;关系模型与规范化&lt;/h1&gt;
 &lt;h2 id=&#34;具体定义&#34;&gt;具体定义&lt;/h2&gt;
 &lt;p&gt;二话不说，直接上书上定义，比较枯燥。&lt;/p&gt;</description>
@@ -216,10 +216,10 @@ spark安装包的选择根据你的hadoop和scala版本来，官网有详细说�
     
     <item>
       <title>汇编_寄存器</title>
-      <link>https://halface.gitee.io/post/%E6%B1%87%E7%BC%96-%E5%AF%84%E5%AD%98%E5%99%A8/</link>
+      <link>https://h4lf4c3.github.io/post/%E6%B1%87%E7%BC%96-%E5%AF%84%E5%AD%98%E5%99%A8/</link>
       <pubDate>Tue, 05 Mar 2019 08:37:49 +0000</pubDate>
       
-      <guid>https://halface.gitee.io/post/%E6%B1%87%E7%BC%96-%E5%AF%84%E5%AD%98%E5%99%A8/</guid>
+      <guid>https://h4lf4c3.github.io/post/%E6%B1%87%E7%BC%96-%E5%AF%84%E5%AD%98%E5%99%A8/</guid>
       <description>&lt;h1 id=&#34;笔记1935&#34;&gt;笔记19/3/5&lt;/h1&gt;
 &lt;h2 id=&#34;0x00简单介绍&#34;&gt;0x00简单介绍&lt;/h2&gt;
 &lt;hr&gt;
@@ -228,10 +228,10 @@ spark安装包的选择根据你的hadoop和scala版本来，官网有详细说�
     
     <item>
       <title>hadoop分布式搭建</title>
-      <link>https://halface.gitee.io/post/hadoop%E5%88%86%E5%B8%83%E5%BC%8F%E6%90%AD%E5%BB%BA/</link>
+      <link>https://h4lf4c3.github.io/post/hadoop%E5%88%86%E5%B8%83%E5%BC%8F%E6%90%AD%E5%BB%BA/</link>
       <pubDate>Fri, 25 Jan 2019 08:37:49 +0000</pubDate>
       
-      <guid>https://halface.gitee.io/post/hadoop%E5%88%86%E5%B8%83%E5%BC%8F%E6%90%AD%E5%BB%BA/</guid>
+      <guid>https://h4lf4c3.github.io/post/hadoop%E5%88%86%E5%B8%83%E5%BC%8F%E6%90%AD%E5%BB%BA/</guid>
       <description>&lt;h1 id=&#34;hadoop分布式集群搭建&#34;&gt;Hadoop分布式集群搭建&lt;/h1&gt;
 &lt;h2 id=&#34;写在前面&#34;&gt;写在前面&lt;/h2&gt;
 &lt;p&gt;之前已经搭过Hadoop伪分布式，这次就大致说说分布式是怎么回事，其实他们也就是配置文件不一样，其他都是差不多的，但是为了更熟悉相关操作，我还是建立了三台虚拟机，从头搭起（&lt;del&gt;为了更好的体验，我特地加了内存条，心疼我的钱啊&lt;/del&gt;）当然，搭建的方法不限于这一种，且顺序也不一定相同，我只是按自己的来&lt;/p&gt;</description>

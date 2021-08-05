@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>数据库 on Halface</title>
-    <link>https://halface.gitee.io/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/</link>
+    <link>https://h4lf4c3.github.io/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/</link>
     <description>Recent content in 数据库 on Halface</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sun, 24 Mar 2019 08:37:49 +0000</lastBuildDate><atom:link href="https://halface.gitee.io/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 24 Mar 2019 08:37:49 +0000</lastBuildDate><atom:link href="https://h4lf4c3.github.io/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>函数依赖</title>
-      <link>https://halface.gitee.io/post/%E5%87%BD%E6%95%B0%E4%BE%9D%E8%B5%96/</link>
+      <link>https://h4lf4c3.github.io/post/%E5%87%BD%E6%95%B0%E4%BE%9D%E8%B5%96/</link>
       <pubDate>Sun, 24 Mar 2019 08:37:49 +0000</pubDate>
       
-      <guid>https://halface.gitee.io/post/%E5%87%BD%E6%95%B0%E4%BE%9D%E8%B5%96/</guid>
+      <guid>https://h4lf4c3.github.io/post/%E5%87%BD%E6%95%B0%E4%BE%9D%E8%B5%96/</guid>
       <description>&lt;h1 id=&#34;关系模型与规范化&#34;&gt;关系模型与规范化&lt;/h1&gt;
 &lt;h2 id=&#34;具体定义&#34;&gt;具体定义&lt;/h2&gt;
 &lt;p&gt;二话不说，直接上书上定义，比较枯燥。&lt;/p&gt;</description>
