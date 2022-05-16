@@ -6,7 +6,16 @@
     <description>Recent content in Posts on Halface</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Fri, 23 Jul 2021 09:32:15 +0800</lastBuildDate><atom:link href="https://h4lf4c3.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 16 May 2022 22:32:05 +0800</lastBuildDate><atom:link href="https://h4lf4c3.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Git基本使用教程</title>
+      <link>https://h4lf4c3.github.io/post/git%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/</link>
+      <pubDate>Mon, 16 May 2022 22:32:05 +0800</pubDate>
+      
+      <guid>https://h4lf4c3.github.io/post/git%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/</guid>
+      <description>Git基本使用教程 Git介绍 是一个分布式版本控制软件，最初由林纳斯·托瓦兹创作，于2005年以GPL授权条款释出。最初目的是为了更好地管理L</description>
+    </item>
+    
     <item>
       <title>Hive配置jdbc</title>
       <link>https://h4lf4c3.github.io/post/hive%E9%85%8D%E7%BD%AEjdbc/</link>

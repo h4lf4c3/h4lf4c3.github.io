@@ -112,6 +112,29 @@
           <section id="posts" class="posts">
     <article class="post">
   <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/post/mysql%E4%B8%BB%E4%B8%BB%E4%BA%92%E5%A4%87/">Mysql主主互备</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2020-07-15 </span>
+      <div class="post-category">
+          <a href="/categories/mysql/"> mysql </a>
+          </div>
+        <span class="more-meta"> 约 342 字 </span>
+        <span class="more-meta"> 预计阅读 1 分钟 </span>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      mysql主主互备 1 2 3 实验环境： hjj2017110109 192.168.160.80 hjj2017110109_node2 192.168.160.81 修改第一节点的/etc/my.cnf配置文件 添加如下 1 2 3 4 5 6 server_id = 1 log-bin = mysql-bin relay-log = mysql-relay-bin replicate-wild-ignore-table=mysql.% #指定不需要复
+    </div>
+    <div class="read-more">
+      <a href="/post/mysql%E4%B8%BB%E4%B8%BB%E4%BA%92%E5%A4%87/" class="read-more-link">阅读更多</a>
+    </div>
+  </div>
+</article>
+
+    <article class="post">
+  <header class="post-header">
     <h1 class="post-title"><a class="post-link" href="/post/spark%E4%B8%AD%E7%9A%84aggregate%E5%87%BD%E6%95%B0/">spark中的aggregate函数</a></h1>
     <div class="post-meta">
       <span class="post-time"> 2020-05-14 </span>
@@ -218,32 +241,6 @@
   </div>
 </article>
 
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/post/redis%E7%AC%94%E8%AE%B01-%E5%9F%BA%E7%A1%80/">redis笔记1-基础</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2020-04-22 </span>
-      <div class="post-category">
-          <a href="/categories/redis/"> redis </a>
-          <a href="/categories/nosql/"> nosql </a>
-          </div>
-        <span class="more-meta"> 约 1012 字 </span>
-        <span class="more-meta"> 预计阅读 3 分钟 </span>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      <h1 id="redis笔记1-基础部分">Redis笔记1-基础部分</h1>
-<h2 id="redis数据结构">Redis数据结构</h2>
-<p>redis的数据结构主要是五种，即string(字符串)，list(列表)，set(集合)，hash(散列)，zset(有序集合)</p>
-    </div>
-    <div class="read-more">
-      <a href="/post/redis%E7%AC%94%E8%AE%B01-%E5%9F%BA%E7%A1%80/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
     </section>
   
   <nav class="pagination">
@@ -286,7 +283,7 @@
   <span class="copyright-year">
     &copy; 
     2017 - 
-    2021
+    2022
     <span class="heart">
       <i class="iconfont icon-heart"></i>
     </span>
