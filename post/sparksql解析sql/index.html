@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>SparkSQL解析SQL - Halface</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="halface" /><meta name="description" content="SparkSQL解析SQL SparkSQL采用Antlr来解析SQL，我们可以直接使用该工具，对SQL进行一个自定义的解析。Antlr全称为" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.85.0 with theme even" />
+
+
+<link rel="canonical" href="https://h4lf4c3.github.io/post/sparksql%E8%A7%A3%E6%9E%90sql/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<link href="/sass/main.min.8c3cbcb0324c2bb4875ceccba4007cbad4b4ac8377f33af9953c3e7684534a50.css" rel="stylesheet">
+<link href="/lib/fancybox/jquery.fancybox-3.1.20.min.css" rel="stylesheet">
+
+
+<meta property="og:title" content="SparkSQL解析SQL" />
+<meta property="og:description" content="SparkSQL解析SQL SparkSQL采用Antlr来解析SQL，我们可以直接使用该工具，对SQL进行一个自定义的解析。Antlr全称为" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://h4lf4c3.github.io/post/sparksql%E8%A7%A3%E6%9E%90sql/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2023-02-07T09:58:00+08:00" />
+<meta property="article:modified_time" content="2023-02-07T09:58:00+08:00" />
+
+<meta itemprop="name" content="SparkSQL解析SQL">
+<meta itemprop="description" content="SparkSQL解析SQL SparkSQL采用Antlr来解析SQL，我们可以直接使用该工具，对SQL进行一个自定义的解析。Antlr全称为"><meta itemprop="datePublished" content="2023-02-07T09:58:00+08:00" />
+<meta itemprop="dateModified" content="2023-02-07T09:58:00+08:00" />
+<meta itemprop="wordCount" content="1282">
+<meta itemprop="keywords" content="Spark," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="SparkSQL解析SQL"/>
+<meta name="twitter:description" content="SparkSQL解析SQL SparkSQL采用Antlr来解析SQL，我们可以直接使用该工具，对SQL进行一个自定义的解析。Antlr全称为"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Halface</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Halface</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">SparkSQL解析SQL</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2023-02-07 </span>
+        <div class="post-category">
+            <a href="/categories/spark/"> Spark </a>
+            </div>
+          <span class="more-meta"> 约 1282 字 </span>
+          <span class="more-meta"> 预计阅读 3 分钟 </span>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#antlr解析sql的阶段">Antlr解析SQL的阶段</a></li>
+    <li><a href="#遍历模式">遍历模式</a></li>
+    <li><a href="#解析sql识别复杂sql">解析SQL，识别复杂SQL</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <h1 id="sparksql解析sql">SparkSQL解析SQL</h1>
+<p>SparkSQL采用Antlr来解析SQL，我们可以直接使用该工具，对SQL进行一个自定义的解析。Antlr全称为<strong>ANother Tool for Language Recognition</strong></p>
+<h2 id="antlr解析sql的阶段">Antlr解析SQL的阶段</h2>
+<p>Antlr解析SQL一般可分为如下几个阶段：</p>
+<ul>
+<li>词法分析阶段(lexer)</li>
+</ul>
+<p>词法分析，Antlr主要按照定义的词法规则来识别SQL中的词法单元(token)，比如关键字，标识符，常量等。</p>
+<ul>
+<li>语法分析阶段</li>
+</ul>
+<p>在该阶段，Antlr使用定义的语法规则来描述SQL的语法结构，并使用词法分析阶段中的token流来构建一个抽象语法树(AST)</p>
+<ul>
+<li>代码生成阶段</li>
+</ul>
+<p>通过语法分析阶段得到的AST，来生成目标语言的代码。</p>
+<h2 id="遍历模式">遍历模式</h2>
+<ul>
+<li>Listener（观察者模式）</li>
+</ul>
+<p>它将语法树的遍历过程和对语法树的处理分离开来。在该模式下，ANTLR 会自动遍历语法树，并在遍历过程中调用相应的观察者方法。</p>
+<ul>
+<li>Visitor（访问者模式）</li>
+</ul>
+<p>这种模式将遍历语法树和处理语法树的过程结合在一起。在该模式下，开发者编写一个自定义访问者类，该类实现了遍历语法树的过程和处理语法树的过程。</p>
+<h2 id="解析sql识别复杂sql">解析SQL，识别复杂SQL</h2>
+<p>这里的思路是，解析SQL，根据解析出的语法树，识别出SQL中对应的操作，如果某些复杂操作超过指定次数，那么就认为这个SQL是复杂的。下面使用Visitor来实现。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kn">import</span> <span class="nn">org.apache.spark.sql.catalyst.parser.SqlBaseBaseVisitor</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.apache.spark.sql.catalyst.parser.SqlBaseParser</span><span class="o">;</span>
+
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">QueryComplexityAnalyzer</span> <span class="kd">extends</span> <span class="n">SqlBaseBaseVisitor</span><span class="o">&lt;</span><span class="n">Void</span><span class="o">&gt;</span> <span class="o">{</span>
+    <span class="cm">/**
+</span><span class="cm">     * 定义复杂度值初始为0
+</span><span class="cm">     */</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">complexity</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isComplex</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">complexity</span> <span class="o">&gt;</span> <span class="n">5</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="n">Void</span> <span class="nf">visitJoinRelation</span><span class="o">(</span><span class="n">SqlBaseParser</span><span class="o">.</span><span class="na">JoinRelationContext</span> <span class="n">ctx</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">complexity</span><span class="o">++;</span>
+        <span class="k">return</span> <span class="kd">super</span><span class="o">.</span><span class="na">visitJoinRelation</span><span class="o">(</span><span class="n">ctx</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="n">Void</span> <span class="nf">visitSubqueryExpression</span><span class="o">(</span><span class="n">SqlBaseParser</span><span class="o">.</span><span class="na">SubqueryExpressionContext</span> <span class="n">ctx</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">complexity</span><span class="o">++;</span>
+        <span class="k">return</span> <span class="kd">super</span><span class="o">.</span><span class="na">visitSubqueryExpression</span><span class="o">(</span><span class="n">ctx</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="n">Void</span> <span class="nf">visitWindowClause</span><span class="o">(</span><span class="n">SqlBaseParser</span><span class="o">.</span><span class="na">WindowClauseContext</span> <span class="n">ctx</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">complexity</span><span class="o">++;</span>
+        <span class="k">return</span> <span class="kd">super</span><span class="o">.</span><span class="na">visitWindowClause</span><span class="o">(</span><span class="n">ctx</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="n">Void</span> <span class="nf">visitHavingClause</span><span class="o">(</span><span class="n">SqlBaseParser</span><span class="o">.</span><span class="na">HavingClauseContext</span> <span class="n">ctx</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">complexity</span><span class="o">++;</span>
+        <span class="k">return</span> <span class="kd">super</span><span class="o">.</span><span class="na">visitHavingClause</span><span class="o">(</span><span class="n">ctx</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="n">Void</span> <span class="nf">visitFunctionCall</span><span class="o">(</span><span class="n">SqlBaseParser</span><span class="o">.</span><span class="na">FunctionCallContext</span> <span class="n">ctx</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">complexity</span><span class="o">++;</span>
+        <span class="k">return</span> <span class="kd">super</span><span class="o">.</span><span class="na">visitFunctionCall</span><span class="o">(</span><span class="n">ctx</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>这里，我们自定义了visitor，重写了部分方法，我们把涉及到<strong>join</strong>操作，<strong>子查询</strong>操作，<strong>窗口函数</strong>操作，<strong>having</strong>操作，<strong>函数</strong>操作的语句认定为复杂，如果解析出的SQL中，这些操作共有5个以上时，认定为复杂SQL。</p>
+<p>接下来是主函数部分</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kn">import</span> <span class="nn">org.antlr.v4.runtime.CharStream</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.antlr.v4.runtime.CharStreams</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.antlr.v4.runtime.CommonTokenStream</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.antlr.v4.runtime.tree.ParseTree</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.apache.spark.sql.catalyst.parser.SqlBaseLexer</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.apache.spark.sql.catalyst.parser.SqlBaseParser</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.example.util.QueryComplexityAnalyzer</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ParseSQLComplex</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+
+        <span class="c1">// SQL语句
+</span><span class="c1"></span>        <span class="n">String</span> <span class="n">query</span> <span class="o">=</span> <span class="s">&#34;SELECT * \n&#34;</span> <span class="o">+</span>
+                <span class="s">&#34;FROM TABLEA A\n&#34;</span> <span class="o">+</span>
+                <span class="s">&#34;LEFT JOIN (\n&#34;</span> <span class="o">+</span>
+                <span class="s">&#34;  SELECT * FROM TABLEB WHERE 1=0\n&#34;</span> <span class="o">+</span>
+                <span class="s">&#34;  ) B\n&#34;</span> <span class="o">+</span>
+                <span class="s">&#34;ON A.XX = B.XX\n&#34;</span> <span class="o">+</span>
+                <span class="s">&#34;LEFT JOIN (\n&#34;</span> <span class="o">+</span>
+                <span class="s">&#34;  SELECT * FROM TABLEB WHERE 1=0\n&#34;</span> <span class="o">+</span>
+                <span class="s">&#34;  ) B\n&#34;</span> <span class="o">+</span>
+                <span class="s">&#34;ON A.XX = B.XX\n&#34;</span> <span class="o">+</span>
+                <span class="s">&#34;LEFT JOIN (\n&#34;</span> <span class="o">+</span>
+                <span class="s">&#34;  SELECT * FROM TABLEB WHERE 1=0\n&#34;</span> <span class="o">+</span>
+                <span class="s">&#34;  ) B\n&#34;</span> <span class="o">+</span>
+                <span class="s">&#34;ON A.XX = B.XX\n&#34;</span> <span class="o">+</span>
+                <span class="s">&#34;LEFT JOIN (\n&#34;</span> <span class="o">+</span>
+                <span class="s">&#34;  SELECT * FROM TABLEB WHERE 1=0\n&#34;</span> <span class="o">+</span>
+                <span class="s">&#34;  ) B\n&#34;</span> <span class="o">+</span>
+                <span class="s">&#34;ON A.XX = B.XX\n&#34;</span> <span class="o">+</span>
+                <span class="s">&#34;LEFT JOIN (\n&#34;</span> <span class="o">+</span>
+                <span class="s">&#34;  SELECT * FROM TABLEB WHERE 1=0\n&#34;</span> <span class="o">+</span>
+                <span class="s">&#34;  ) B\n&#34;</span> <span class="o">+</span>
+                <span class="s">&#34;ON A.XX = B.XX&#34;</span><span class="o">;</span>
+
+        <span class="c1">// 将SQL语句转为CharStream
+</span><span class="c1"></span>        <span class="n">CharStream</span> <span class="n">charStream</span> <span class="o">=</span> <span class="n">CharStreams</span><span class="o">.</span><span class="na">fromString</span><span class="o">(</span><span class="n">query</span><span class="o">);</span>
+
+        <span class="c1">// 定义解析器
+</span><span class="c1"></span>        <span class="n">SqlBaseLexer</span> <span class="n">lexer</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SqlBaseLexer</span><span class="o">(</span><span class="n">charStream</span><span class="o">);</span>
+
+        <span class="c1">// 定义tokenStream
+</span><span class="c1"></span>        <span class="n">CommonTokenStream</span> <span class="n">tokenStream</span> <span class="o">=</span> <span class="k">new</span> <span class="n">CommonTokenStream</span><span class="o">(</span><span class="n">lexer</span><span class="o">);</span>
+        <span class="c1">// 解析SQL
+</span><span class="c1"></span>        <span class="n">SqlBaseParser</span> <span class="n">parser</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SqlBaseParser</span><span class="o">(</span><span class="n">tokenStream</span><span class="o">);</span>
+
+        <span class="c1">// 通过解析，得到语法树
+</span><span class="c1"></span>        <span class="n">ParseTree</span> <span class="n">tree</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="na">singleStatement</span><span class="o">();</span>
+
+        <span class="c1">// 自定义的visitor
+</span><span class="c1"></span>        <span class="n">QueryComplexityAnalyzer</span> <span class="n">queryComplexityAnalyzer</span> <span class="o">=</span> <span class="k">new</span> <span class="n">QueryComplexityAnalyzer</span><span class="o">();</span>
+
+
+        <span class="c1">// 传入tree
+</span><span class="c1"></span>        <span class="n">queryComplexityAnalyzer</span><span class="o">.</span><span class="na">visit</span><span class="o">(</span><span class="n">tree</span><span class="o">);</span>
+
+        <span class="k">if</span> <span class="o">(</span><span class="n">queryComplexityAnalyzer</span><span class="o">.</span><span class="na">isComplex</span><span class="o">())</span> <span class="o">{</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;该查询是复杂的&#34;</span><span class="o">);</span>
+
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;该查询是简单的&#34;</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+</code></pre></td></tr></table>
+</div>
+</div><p>上面代码中，<strong>CharStreams</strong> 用于读取字符序列作为词法分析的来源，传给Lexer进行词法解析。<strong>CommonTokenStream</strong> 则表示词法分析器生成的token序列，用以生成抽象语法树。</p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">halface</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2023-02-07
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/spark/">Spark</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="/post/git%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/">
+            <span class="next-text nav-default">Git基本使用教程</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+  <a href="https://h4lf4c3.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2023
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">halface</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+  <script type="text/javascript" src="/lib/fancybox/jquery.fancybox-3.1.20.min.js"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.2517c0eb67172a0bae917de4af59b10ca2531411a009d4c0b82f5685259e5771.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>
