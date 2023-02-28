@@ -55,7 +55,7 @@
 学习到spark的RDD行动操作时，有一个函数可让我废了半天脑筋，就是aggregate函数，aggregate的意思是聚合
 我们首先来看一下spark官方文档对这一函数的说明："><meta itemprop="datePublished" content="2020-05-14T10:53:55+00:00" />
 <meta itemprop="dateModified" content="2020-05-14T10:53:55+00:00" />
-<meta itemprop="wordCount" content="1003">
+<meta itemprop="wordCount" content="1002">
 <meta itemprop="keywords" content="spark,笔记," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="spark中的aggregate函数"/>
 <meta name="twitter:description" content="spark中的aggregate函数
@@ -131,8 +131,8 @@
             <a href="/categories/spark/"> spark </a>
             <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"> 大数据 </a>
             </div>
-          <span class="more-meta"> 约 1003 字 </span>
-          <span class="more-meta"> 预计阅读 3 分钟 </span>
+          <span class="more-meta"> 约 1002 字 </span>
+          <span class="more-meta"> 预计阅读 2 分钟 </span>
         <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
       </div>
     </header>
@@ -223,7 +223,7 @@ acc一开始为初始值(0,0),所以acc._1和acc._2都是0，而number是1
 这里我们只有一个分区，当然我们也可以假设成两个分区的情况.
 比如:List(1,2,3,4)被分成(1,2)和(3,4),那么刚才的步骤得到两个结果part1(3,2),part2(7,2)
 所以这个时候会进行combOp操作，将两个分区再聚合，(part1,part2) =&gt; (part1._1+part2._1, part1._2+part2._2)   ---&gt; (3+7,2+2)也就等于(10,4)
-最后10/4得到平均数2.25
+最后10/4得到平均数2.5
 </code></pre></td></tr></table>
 </div>
 </div>
