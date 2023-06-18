@@ -25,7 +25,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.85.0 with theme even" />
+<meta name="generator" content="Hugo 0.92.2 with theme even" />
 
 
 <link rel="canonical" href="https://h4lf4c3.github.io/post/redis%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2/" />
@@ -161,12 +161,12 @@
 <p>首先建立redis集群目录，然后再建立6个节点的工作目录</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">mkdir -p /usr/local/redis-cluster
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">mkdir -p /usr/local/redis-cluster
 cd /usr/local/redis-cluster
 mkdir -p 
 </code></pre></td></tr></table>
@@ -176,20 +176,20 @@ mkdir -p
 <p>首先是gcc gcc-c++环境</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback"> yum -y install gcc gcc-c++ libstdc++-devel
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"> yum -y install gcc gcc-c++ libstdc++-devel
 </code></pre></td></tr></table>
 </div>
 </div><p><img src="/img/redis%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2/1584344003510.png" alt=""></p>
 <p>安装ruby</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">yum -y install rh-ruby25
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">yum -y install rh-ruby25
 </code></pre></td></tr></table>
 </div>
 </div><p><img src="/img/redis%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2/1584344144629.png" alt=""></p>
@@ -201,10 +201,10 @@ mkdir -p
 <p><img src="/img/redis%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2/1584344660018.png" alt=""></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">tar-zxvf redis-4.0.11.tar.gz
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">tar-zxvf redis-4.0.11.tar.gz
 </code></pre></td></tr></table>
 </div>
 </div><p>然后重命名一下</p>
@@ -217,7 +217,7 @@ mkdir -p
 <p>配置6个节点的redis.conf文件</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -226,7 +226,7 @@ mkdir -p
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">#bind 127.0.0.1
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">#bind 127.0.0.1
 protected-mode no
 daemonize yes
 cluster-enabled yes
@@ -240,10 +240,10 @@ port参数改为对应的端口号
 <p>配置好之后就可以启动节点。分别在6个节点目录下执行</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">./bin/redis-server ./redis.conf
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">./bin/redis-server ./redis.conf
 </code></pre></td></tr></table>
 </div>
 </div><p><img src="/img/redis%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2/1584346720293.png" alt=""></p>
@@ -251,24 +251,24 @@ port参数改为对应的端口号
 <p>接着我们进入解压的安装包的src目录下,执行</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback"> ./redis-trib.rb create --replicas 1 127.0.0.1:6391 127.0.0.1:6392 127.0.0.1:6393 127.0.0.1:6394 127.0.0.1:6395 127.0.0.1:6396
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"> ./redis-trib.rb create --replicas 1 127.0.0.1:6391 127.0.0.1:6392 127.0.0.1:6393 127.0.0.1:6394 127.0.0.1:6395 127.0.0.1:6396
 </code></pre></td></tr></table>
 </div>
 </div><p><img src="/img/redis%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2/1584346906079.png" alt=""></p>
 <h2 id="验证集群">验证集群</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">cd /usr/local/redis-cluster/6391
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">cd /usr/local/redis-cluster/6391
 # 登录6391节点
 ./bin/redis-cli -c -p 6391
 # 然后我们随便写入一个数据
@@ -347,13 +347,10 @@ set redis cluster
   <span class="copyright-year">
     &copy; 
     2017 - 
-    2023
-    <span class="heart">
-      <i class="iconfont icon-heart"></i>
-    </span>
-    <span class="author">halface</span>
+    2023<span class="heart"><i class="iconfont icon-heart"></i></span><span>halface</span>
   </span>
 </div>
+
     </footer>
 
     <div class="back-to-top" id="back-to-top">

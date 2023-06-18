@@ -25,7 +25,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.85.0 with theme even" />
+<meta name="generator" content="Hugo 0.92.2 with theme even" />
 
 
 <link rel="canonical" href="https://h4lf4c3.github.io/post/spark%E4%B8%AD%E7%9A%84aggregate%E5%87%BD%E6%95%B0/" />
@@ -149,10 +149,10 @@
 <p>我们首先来看一下spark官方文档对这一函数的说明：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">def</span> <span class="n">aggregate</span><span class="o">[</span><span class="kt">U</span><span class="o">](</span><span class="n">zeroValue</span><span class="k">:</span> <span class="kt">U</span><span class="o">)(</span><span class="n">seqOp</span><span class="k">:</span> <span class="o">(</span><span class="kt">U</span><span class="o">,</span> <span class="kt">T</span><span class="o">)</span> <span class="k">⇒</span> <span class="n">U</span><span class="o">,</span> <span class="n">combOp</span><span class="k">:</span> <span class="o">(</span><span class="kt">U</span><span class="o">,</span> <span class="kt">U</span><span class="o">)</span> <span class="k">⇒</span> <span class="n">U</span><span class="o">)(</span><span class="k">implicit</span> <span class="n">arg0</span><span class="k">:</span> <span class="kt">ClassTag</span><span class="o">[</span><span class="kt">U</span><span class="o">])</span><span class="k">:</span> <span class="kt">U</span>
+<pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="k">def</span> <span class="n">aggregate</span><span class="o">[</span><span class="kt">U</span><span class="o">](</span><span class="n">zeroValue</span><span class="k">:</span> <span class="kt">U</span><span class="o">)(</span><span class="n">seqOp</span><span class="k">:</span> <span class="o">(</span><span class="kt">U</span><span class="o">,</span> <span class="kt">T</span><span class="o">)</span> <span class="k">⇒</span> <span class="n">U</span><span class="o">,</span> <span class="n">combOp</span><span class="k">:</span> <span class="o">(</span><span class="kt">U</span><span class="o">,</span> <span class="kt">U</span><span class="o">)</span> <span class="k">⇒</span> <span class="n">U</span><span class="o">)(</span><span class="k">implicit</span> <span class="n">arg0</span><span class="k">:</span> <span class="kt">ClassTag</span><span class="o">[</span><span class="kt">U</span><span class="o">])</span><span class="k">:</span> <span class="kt">U</span>
 </code></pre></td></tr></table>
 </div>
 </div><blockquote>
@@ -180,7 +180,7 @@ an associative operator used to combine results from different partitions</p>
 <p>字面描述不太直观，我们举个例子，计算数据的平均数：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -188,7 +188,7 @@ an associative operator used to combine results from different partitions</p>
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">val</span> <span class="n">input</span> <span class="k">=</span> <span class="n">sc</span><span class="o">.</span><span class="n">parallelize</span><span class="o">(</span><span class="nc">List</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span><span class="mi">2</span><span class="o">,</span><span class="mi">3</span><span class="o">,</span><span class="mi">4</span><span class="o">))</span>
+<pre tabindex="0" class="chroma"><code class="language-scala" data-lang="scala"><span class="k">val</span> <span class="n">input</span> <span class="k">=</span> <span class="n">sc</span><span class="o">.</span><span class="n">parallelize</span><span class="o">(</span><span class="nc">List</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span><span class="mi">2</span><span class="o">,</span><span class="mi">3</span><span class="o">,</span><span class="mi">4</span><span class="o">))</span>
 <span class="k">val</span> <span class="n">result</span> <span class="k">=</span> <span class="n">input</span><span class="o">.</span><span class="n">aggregate</span><span class="o">((</span><span class="mi">0</span><span class="o">,</span><span class="mi">0</span><span class="o">))(</span>
 		<span class="o">(</span><span class="n">acc</span><span class="o">,</span><span class="n">number</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="o">(</span><span class="n">acc</span><span class="o">.</span><span class="n">_1</span><span class="o">+</span><span class="n">number</span><span class="o">,</span> <span class="n">acc</span><span class="o">.</span><span class="n">_2</span><span class="o">+</span><span class="mi">1</span><span class="o">),</span>
 		<span class="o">(</span><span class="n">part1</span><span class="o">,</span><span class="n">part2</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="o">(</span><span class="n">part1</span><span class="o">.</span><span class="n">_1</span><span class="o">+</span><span class="n">part2</span><span class="o">.</span><span class="n">_1</span><span class="o">,</span> <span class="n">part1</span><span class="o">.</span><span class="n">_2</span><span class="o">+</span><span class="n">part2</span><span class="o">.</span><span class="n">_2</span><span class="o">)</span>
@@ -200,7 +200,7 @@ an associative operator used to combine results from different partitions</p>
 <p>aggregate初始值为(0,0)</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -213,7 +213,7 @@ an associative operator used to combine results from different partitions</p>
 </span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">计算过程为:
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">计算过程为:
 acc一开始为初始值(0,0),所以acc._1和acc._2都是0，而number是1
 则第一步为：0+1，0+1 ----&gt;(1,1)   此时acc变成了(1,1),number下一步就是2了
 2.  1+2,1+1 ----&gt;(3,2)  接上，类推
@@ -297,13 +297,10 @@ acc一开始为初始值(0,0),所以acc._1和acc._2都是0，而number是1
   <span class="copyright-year">
     &copy; 
     2017 - 
-    2023
-    <span class="heart">
-      <i class="iconfont icon-heart"></i>
-    </span>
-    <span class="author">halface</span>
+    2023<span class="heart"><i class="iconfont icon-heart"></i></span><span>halface</span>
   </span>
 </div>
+
     </footer>
 
     <div class="back-to-top" id="back-to-top">

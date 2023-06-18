@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.85.0 with theme even" />
+<meta name="generator" content="Hugo 0.92.2 with theme even" />
 
 
 <link rel="canonical" href="https://h4lf4c3.github.io/post/hadoop%E6%A1%88%E4%BE%8B%E7%AC%94%E8%AE%B01/" />
@@ -164,7 +164,7 @@
 <p>新建FlowBean类，要实现Writable接口中的两个方法，一个write(序列化)，一个readFields(反序列化)，然后就是把这个java bean写完，具体代码如下：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -243,7 +243,7 @@
 </span><span class="lnt">77
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">com.hjj.FlowSum</span><span class="o">;</span>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">com.hjj.FlowSum</span><span class="o">;</span>
 
 <span class="kn">import</span> <span class="nn">org.apache.hadoop.io.Writable</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">java.io.DataInput</span><span class="o">;</span>
@@ -325,11 +325,11 @@
 </div><p>接下来就可以正式来写map方法了，现看看每个字段的特点：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">1363157985066 	13726230503	00-FD-07-A4-72-B8:CMCC	120.196.100.82	i02.c.aliimg.com	24	27	2481	24681	200
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">1363157985066 	13726230503	00-FD-07-A4-72-B8:CMCC	120.196.100.82	i02.c.aliimg.com	24	27	2481	24681	200
 1363157995052 	13826544101	5C-0E-8B-C7-F1-E0:CMCC	120.197.40.4			4	0	264	0	200
 </code></pre></td></tr></table>
 </div>
@@ -338,7 +338,7 @@
 <p>但是我们的FlowBean没有使用两个参数的构造方法，所以我们前面的FlowBean中还要添加一个两个参数的构造方法。前文的代码中已经添加过了。最后给出map代码：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -365,7 +365,7 @@
 </span><span class="lnt">25
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">com.hjj.FlowSum</span><span class="o">;</span>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">com.hjj.FlowSum</span><span class="o">;</span>
 
 <span class="kn">import</span> <span class="nn">org.apache.hadoop.io.LongWritable</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">org.apache.hadoop.io.Text</span><span class="o">;</span>
@@ -395,7 +395,7 @@
 </div><p>但是如果这么写的话，在性能上面有个问题，map每进行一次处理的时候，都会去new一个Text和FlowBean，那么如果我们数据很多的话，最终垃圾回收会影响到性能。所以我们在map方法前就定义好Text对象和FlowBean对象，然后每进行一次map处理，只需要使用set即可，而不需要再实例化对象，Text是hadoop封装的类型，可以直接使用set方法，但是FlowBean是我们自定义的类，所以我们还要再前面的FlowBean代码中添加set，前面的代码已经添加过了。所以最终map代码如下：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -425,7 +425,7 @@
 </span><span class="lnt">28
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">com.hjj.FlowSum</span><span class="o">;</span>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">com.hjj.FlowSum</span><span class="o">;</span>
 
 <span class="kn">import</span> <span class="nn">org.apache.hadoop.io.LongWritable</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">org.apache.hadoop.io.Text</span><span class="o">;</span>
@@ -459,7 +459,7 @@
 <p>reduce阶段相对就简单了，定义两个计数变量用于遍历的时候累加，然后同样采用优化，在方法前就实例化对象，然后set。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -489,7 +489,7 @@
 </span><span class="lnt">28
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">com.hjj.FlowSum</span><span class="o">;</span>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">com.hjj.FlowSum</span><span class="o">;</span>
 
 <span class="kn">import</span> <span class="nn">org.apache.hadoop.io.Text</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">org.apache.hadoop.mapreduce.Reducer</span><span class="o">;</span>
@@ -523,7 +523,7 @@
 <p>这里都是模板化的，直接给出代码</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -565,7 +565,7 @@
 </span><span class="lnt">40
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">com.hjj.FlowSum</span><span class="o">;</span>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">com.hjj.FlowSum</span><span class="o">;</span>
 
 <span class="kn">import</span> <span class="nn">org.apache.hadoop.conf.Configuration</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">org.apache.hadoop.fs.Path</span><span class="o">;</span>
@@ -614,13 +614,13 @@
 <p>额，原来是FlowBean的toString方法忘了写，所以还要在FlowBean中添加：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Override</span>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Override</span>
 <span class="kd">public</span> <span class="n">String</span> <span class="nf">toString</span><span class="o">()</span> <span class="o">{</span>
     <span class="k">return</span> <span class="n">upFlow</span><span class="o">+</span><span class="s">&#34;\t&#34;</span><span class="o">+</span><span class="n">downFlow</span><span class="o">+</span><span class="s">&#34;\t&#34;</span><span class="o">+</span><span class="n">sumFlow</span><span class="o">;</span>
 <span class="o">}</span>
@@ -698,13 +698,10 @@
   <span class="copyright-year">
     &copy; 
     2017 - 
-    2023
-    <span class="heart">
-      <i class="iconfont icon-heart"></i>
-    </span>
-    <span class="author">halface</span>
+    2023<span class="heart"><i class="iconfont icon-heart"></i></span><span>halface</span>
   </span>
 </div>
+
     </footer>
 
     <div class="back-to-top" id="back-to-top">

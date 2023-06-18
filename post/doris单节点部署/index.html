@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Doris单节点部署 - Halface</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="halface" /><meta name="description" content="Doris单机安装 Doris介绍 Apache Doris 是一个基于 MPP 架构的高性能、实时的分析型数据库，以极速易用的特点被人们所熟知，仅需亚秒级响应时间即可返回海" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.92.2 with theme even" />
+
+
+<link rel="canonical" href="https://h4lf4c3.github.io/post/doris%E5%8D%95%E8%8A%82%E7%82%B9%E9%83%A8%E7%BD%B2/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<link href="/sass/main.min.8c3cbcb0324c2bb4875ceccba4007cbad4b4ac8377f33af9953c3e7684534a50.css" rel="stylesheet">
+<link href="/lib/fancybox/jquery.fancybox-3.1.20.min.css" rel="stylesheet">
+
+
+<meta property="og:title" content="Doris单节点部署" />
+<meta property="og:description" content="Doris单机安装 Doris介绍 Apache Doris 是一个基于 MPP 架构的高性能、实时的分析型数据库，以极速易用的特点被人们所熟知，仅需亚秒级响应时间即可返回海" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://h4lf4c3.github.io/post/doris%E5%8D%95%E8%8A%82%E7%82%B9%E9%83%A8%E7%BD%B2/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2023-06-18T20:41:00+08:00" />
+<meta property="article:modified_time" content="2023-06-18T20:41:00+08:00" />
+
+<meta itemprop="name" content="Doris单节点部署">
+<meta itemprop="description" content="Doris单机安装 Doris介绍 Apache Doris 是一个基于 MPP 架构的高性能、实时的分析型数据库，以极速易用的特点被人们所熟知，仅需亚秒级响应时间即可返回海"><meta itemprop="datePublished" content="2023-06-18T20:41:00+08:00" />
+<meta itemprop="dateModified" content="2023-06-18T20:41:00+08:00" />
+<meta itemprop="wordCount" content="1567">
+<meta itemprop="keywords" content="大数据," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Doris单节点部署"/>
+<meta name="twitter:description" content="Doris单机安装 Doris介绍 Apache Doris 是一个基于 MPP 架构的高性能、实时的分析型数据库，以极速易用的特点被人们所熟知，仅需亚秒级响应时间即可返回海"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Halface</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Halface</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Doris单节点部署</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2023-06-18 </span>
+        <div class="post-category">
+            <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"> 大数据 </a>
+            </div>
+          <span class="more-meta"> 约 1567 字 </span>
+          <span class="more-meta"> 预计阅读 4 分钟 </span>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#doris介绍">Doris介绍</a></li>
+    <li><a href="#doris安装部署-单机">Doris安装部署-单机</a>
+      <ul>
+        <li><a href="#0x00-设置系统最大打开文件句柄数">0x00 设置系统最大打开文件句柄数</a></li>
+        <li><a href="#0x01-下载安装包">0x01 下载安装包</a></li>
+        <li><a href="#0x02-解压安装">0x02 解压安装</a></li>
+        <li><a href="#0x03-fe配置">0x03 FE配置</a></li>
+        <li><a href="#0x04-be配置">0x04 BE配置</a></li>
+        <li><a href="#0x05-集群配置">0x05 集群配置</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <h1 id="doris单机安装">Doris单机安装</h1>
+<h2 id="doris介绍">Doris介绍</h2>
+<p>Apache Doris 是一个基于 MPP 架构的高性能、实时的分析型数据库，以极速易用的特点被人们所熟知，仅需亚秒级响应时间即可返回海量数据下的查询结果，不仅可以支持高并发的点查询场景，也能支持高吞吐的复杂分析场景。基于此，Apache Doris 能够较好的满足报表分析、即席查询、统一数仓构建、数据湖联邦查询加速等使用场景，用户可以在此之上构建用户行为分析、AB 实验平台、日志检索分析、用户画像分析、订单分析等应用。</p>
+<h2 id="doris安装部署-单机">Doris安装部署-单机</h2>
+<p>Doris 架构非常简单，只有两类进程</p>
+<ul>
+<li><strong>Frontend（FE）</strong>，主要负责用户请求的接入、查询解析规划、元数据的管理、节点管理相关工作。</li>
+<li><strong>Backend（BE）</strong>，主要负责数据存储、查询计划的执行。</li>
+</ul>
+<p>所以，我们安装也是针对于这两个进程来进行。由于我们在虚拟机中搭建学习环境，单机部署即可，集群部署与单机部署方法一直，仅需将BE部署多台服务器即可。</p>
+<p>环境：（本次安装在Ubuntu 20.04，CentOS7安装步骤相同）</p>
+<table>
+<thead>
+<tr>
+<th>系统</th>
+<th>CentOS7/Ubuntu</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Doris版本</td>
+<td>1.2.1</td>
+</tr>
+</tbody>
+</table>
+<h3 id="0x00-设置系统最大打开文件句柄数">0x00 设置系统最大打开文件句柄数</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">vim /etc/security/limits.conf
+<span class="c1"># 尾部添加</span>
+* soft nofile <span class="m">65536</span>
+* hard nofile <span class="m">65536</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="0x01-下载安装包">0x01 下载安装包</h3>
+<p>下载地址：https://archive.apache.org/dist/doris/1.2/1.2.1-rc01/</p>
+<p>我们下载下图的三个安装包</p>
+<p><img src="https://raw.githubusercontent.com/h4lf4c3/images/master/image/2023image-20230618191443142.png" alt="image-20230618191443142"></p>
+<h3 id="0x02-解压安装">0x02 解压安装</h3>
+<p>执行下面的命令进行解压</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">tar -xvJf apache-doris-be-1.2.1-bin-x86_64.tar.xz
+tar -xvJf apache-doris-fe-1.2.1-bin-x86_64.tar.xz
+tar -xvJf apache-doris-dependencies-1.2.1-bin-x86_64.tar.xz
+<span class="c1"># 文件夹重命名</span>
+mv apache-doris-be-1.2.1-bin-x86_64 doris-be
+mv apache-doris-fe-1.2.1-bin-x86_64 doris-fe
+mv apache-doris-dependencies-1.2.1-bin-x86_64 doris-dependencies
+<span class="c1"># 将java-udf的jar包文件复制到be的lib中</span>
+cp doris-dependencies/java-udf-jar-with-dependencies.jar doris-be/lib/
+</code></pre></td></tr></table>
+</div>
+</div><p>添加环境变量</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">vim /etc/profile
+<span class="c1"># 尾部添加</span>
+<span class="nb">export</span> <span class="nv">DORIS_BE_HOME</span><span class="o">=</span>你的BE目录
+<span class="nb">export</span> <span class="nv">DORIS_FE_HOME</span><span class="o">=</span>你的FE目录
+<span class="nb">export</span> <span class="nv">$DORIS_BE_HOME</span>/bin:<span class="nv">$DORIS_FE_HOME</span>/bin:<span class="nv">$PATH</span>
+
+<span class="c1"># 编辑完后生效一下</span>
+<span class="nb">source</span> /etc/profile
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="0x03-fe配置">0x03 FE配置</h3>
+<p>进入到 FE 目录的 conf 目录中，这里是 FE 配置文件所在目录，我们编辑 <strong>fe.conf</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">vim fe.conf
+
+<span class="c1"># 编辑内容如下</span>
+<span class="nv">priority_networks</span> <span class="o">=</span> 192.168.10.128/24  <span class="c1"># 这里填上你事先规划好的FE机器IP</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>其他参数可以按需配置，详情可见官网 <a href="https://doris.apache.org/zh-CN/docs/dev/admin-manual/config/fe-config">https://doris.apache.org/zh-CN/docs/dev/admin-manual/config/fe-config</a></p>
+<hr>
+<p>配置好后，我们就可以启动FE了，由于我们配置了环境变量，命令如下</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">start_fe.sh --daemon
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>注意</strong>： 如果出现下面的报错，是因为端口被占用，这时我们可以从fe.conf中，将被占用的端口修改。</p>
+<p><img src="https://raw.githubusercontent.com/h4lf4c3/images/master/image/2023image-20230618193830835.png" alt="image-20230618193830835"></p>
+<p>FE启动完成后，我们可以访问 ip:[http_port] 来访问Doris的前端页面，目前我们没有配置连接MySQL，所以直接输入内置的root就可以登录。</p>
+<p><img src="https://raw.githubusercontent.com/h4lf4c3/images/master/image/2023image-20230618194447225.png" alt="image-20230618194447225"></p>
+<h3 id="0x04-be配置">0x04 BE配置</h3>
+<p>进入到 BE 目录的 conf 目录中，这里是 FE 配置文件所在目录，我们编辑 <strong>be.conf</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">vim be.conf
+
+<span class="c1"># 编辑内容如下</span>
+<span class="nv">priority_networks</span> <span class="o">=</span> 192.168.10.128/24  <span class="c1"># 这里填上你事先规划好的BE机器IP,如果是集群，那么就用分号隔开</span>
+<span class="c1"># storage_root_path 该参数为BE数据存储的目录,多目录之间用英文状态的分号分隔，默认是${DORIS_HOME}/storage，可按需修改</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>其他参数可以按需配置，详情可见官网 <a href="https://doris.apache.org/zh-CN/docs/dev/admin-manual/config/be-config">https://doris.apache.org/zh-CN/docs/dev/admin-manual/config/be-config</a></p>
+<hr>
+<p>配置好后，我们就可以启动FE了，由于我们配置了环境变量，命令如下</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">start_be.sh --daemon
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>注意</strong>： 如果出现下面的报错，是因为端口被占用，这时我们可以从be.conf中，将被占用的端口修改。(吐槽一下，doris官方就不能给个与其他大数据组件不冲突的端口么)</p>
+<p><img src="https://raw.githubusercontent.com/h4lf4c3/images/master/image/2023image-20230618195925621.png" alt="image-20230618195925621"></p>
+<h3 id="0x05-集群配置">0x05 集群配置</h3>
+<p>将BE启动后，我们连接MySQL，把BE添加到FE中</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="o">#</span><span class="w"> </span><span class="err">连接</span><span class="n">FE</span><span class="w">
+</span><span class="w"></span><span class="n">mysql</span><span class="w"> </span><span class="o">-</span><span class="n">h192</span><span class="p">.</span><span class="mi">168</span><span class="p">.</span><span class="mi">10</span><span class="p">.</span><span class="mi">128</span><span class="w"> </span><span class="o">-</span><span class="n">P9030</span><span class="w"> </span><span class="o">-</span><span class="n">uroot</span><span class="w">
+</span><span class="w"></span><span class="o">#</span><span class="err">第一次无需输入密码，进入后我们设置密码</span><span class="w">
+</span><span class="w"></span><span class="k">SET</span><span class="w"> </span><span class="n">PASSWORD</span><span class="w"> </span><span class="k">FOR</span><span class="w"> </span><span class="s1">&#39;root&#39;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PASSWORD</span><span class="p">(</span><span class="s1">&#39;123456&#39;</span><span class="p">);</span><span class="w">
+</span><span class="w"></span><span class="o">#</span><span class="w"> </span><span class="err">退出，用密码登录</span><span class="w">
+</span><span class="w"></span><span class="n">mysql</span><span class="w"> </span><span class="o">-</span><span class="n">h192</span><span class="p">.</span><span class="mi">168</span><span class="p">.</span><span class="mi">10</span><span class="p">.</span><span class="mi">128</span><span class="w"> </span><span class="o">-</span><span class="n">P9030</span><span class="w"> </span><span class="o">-</span><span class="n">uroot</span><span class="w"> </span><span class="o">-</span><span class="n">p123456</span><span class="w">
+</span><span class="w"></span><span class="o">#</span><span class="w"> </span><span class="err">添加</span><span class="n">BE</span><span class="w">
+</span><span class="w"></span><span class="k">ALTER</span><span class="w"> </span><span class="k">SYSTEM</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="n">BACKEND</span><span class="w"> </span><span class="s2">&#34;192.168.10.128:9050&#34;</span><span class="p">;</span><span class="w">
+</span><span class="w"></span><span class="o">#</span><span class="w"> </span><span class="err">如果是集群，那么就将集群中配置的</span><span class="n">BE都加入进来</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<p>添加BE后，我们查看BE的状态</p>
+<p><code>SHOW PROC '/backends' \G;</code></p>
+<p><img src="https://raw.githubusercontent.com/h4lf4c3/images/master/image/2023image-20230618200437790.png" alt="image-20230618200437790"></p>
+<p>查看FE状态</p>
+<p><code>SHOW PROC '/frontends' \G;</code></p>
+<p><img src="https://raw.githubusercontent.com/h4lf4c3/images/master/image/2023image-20230618200533622.png" alt="image-20230618200533622"></p>
+<p>此时，我们再登录前端页面，发现需要密码了，输入密码进入后，我们可以开始操作Doris了。</p>
+<p><img src="https://raw.githubusercontent.com/h4lf4c3/images/master/image/2023image-20230618200651967.png" alt="image-20230618200651967"></p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">halface</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2023-06-18
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/">大数据</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="/post/sparksql%E8%A7%A3%E6%9E%90sql/">
+            <span class="next-text nav-default">SparkSQL解析SQL</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+  <a href="https://h4lf4c3.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+      <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2023<span class="heart"><i class="iconfont icon-heart"></i></span><span>halface</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+  <script type="text/javascript" src="/lib/fancybox/jquery.fancybox-3.1.20.min.js"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.2517c0eb67172a0bae917de4af59b10ca2531411a009d4c0b82f5685259e5771.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.85.0 with theme even" />
+<meta name="generator" content="Hugo 0.92.2 with theme even" />
 
 
 <link rel="canonical" href="https://h4lf4c3.github.io/post/hive%E9%85%8D%E7%BD%AEjdbc/" />
@@ -148,7 +148,7 @@
 <p>首先解压安装包，然后进入hive目录下的conf中，新建hive-site.xml 文件，配置为。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -172,7 +172,7 @@
 </span><span class="lnt">22
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;configuration&gt;</span>
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;configuration&gt;</span>
 <span class="nt">&lt;property&gt;</span>
 <span class="nt">&lt;name&gt;</span>javax.jdo.option.ConnectionURL<span class="nt">&lt;/name&gt;</span>
 <span class="nt">&lt;value&gt;</span>jdbc:mysql://master:3306/metastore?createDatabaseIfNotExist=true<span class="nt">&lt;/value&gt;</span>
@@ -199,11 +199,11 @@
 </div><p>然后配置hive-env.sh，添加</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="nb">export</span> <span class="nv">HADOOP_HOME</span><span class="o">=[</span>Hadoop的目录<span class="o">]</span>
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="nb">export</span> <span class="nv">HADOOP_HOME</span><span class="o">=[</span>Hadoop的目录<span class="o">]</span>
 <span class="nb">export</span> <span class="nv">HIVE_CONF_DIR</span><span class="o">=[</span>hive的conf目录<span class="o">]</span>
 </code></pre></td></tr></table>
 </div>
@@ -288,13 +288,10 @@
   <span class="copyright-year">
     &copy; 
     2017 - 
-    2023
-    <span class="heart">
-      <i class="iconfont icon-heart"></i>
-    </span>
-    <span class="author">halface</span>
+    2023<span class="heart"><i class="iconfont icon-heart"></i></span><span>halface</span>
   </span>
 </div>
+
     </footer>
 
     <div class="back-to-top" id="back-to-top">

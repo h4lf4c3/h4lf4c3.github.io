@@ -6,7 +6,16 @@
     <description>Recent content in 大数据 on Halface</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 14 May 2020 10:53:55 +0000</lastBuildDate><atom:link href="https://h4lf4c3.github.io/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 18 Jun 2023 20:41:00 +0800</lastBuildDate><atom:link href="https://h4lf4c3.github.io/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Doris单节点部署</title>
+      <link>https://h4lf4c3.github.io/post/doris%E5%8D%95%E8%8A%82%E7%82%B9%E9%83%A8%E7%BD%B2/</link>
+      <pubDate>Sun, 18 Jun 2023 20:41:00 +0800</pubDate>
+      
+      <guid>https://h4lf4c3.github.io/post/doris%E5%8D%95%E8%8A%82%E7%82%B9%E9%83%A8%E7%BD%B2/</guid>
+      <description>Doris单机安装 Doris介绍 Apache Doris 是一个基于 MPP 架构的高性能、实时的分析型数据库，以极速易用的特点被人们所熟知，仅需亚秒级响应时间即可返回海</description>
+    </item>
+    
     <item>
       <title>spark中的aggregate函数</title>
       <link>https://h4lf4c3.github.io/post/spark%E4%B8%AD%E7%9A%84aggregate%E5%87%BD%E6%95%B0/</link>

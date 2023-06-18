@@ -6,7 +6,16 @@
     <description>Recent content in Categories on Halface</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Tue, 07 Feb 2023 09:58:00 +0800</lastBuildDate><atom:link href="https://h4lf4c3.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 18 Jun 2023 20:41:00 +0800</lastBuildDate><atom:link href="https://h4lf4c3.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>大数据</title>
+      <link>https://h4lf4c3.github.io/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/</link>
+      <pubDate>Sun, 18 Jun 2023 20:41:00 +0800</pubDate>
+      
+      <guid>https://h4lf4c3.github.io/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>spark</title>
       <link>https://h4lf4c3.github.io/categories/spark/</link>
@@ -76,15 +85,6 @@
       <pubDate>Wed, 15 Jul 2020 13:57:46 +0800</pubDate>
       
       <guid>https://h4lf4c3.github.io/categories/mysql/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>大数据</title>
-      <link>https://h4lf4c3.github.io/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/</link>
-      <pubDate>Thu, 14 May 2020 10:53:55 +0000</pubDate>
-      
-      <guid>https://h4lf4c3.github.io/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/</guid>
       <description></description>
     </item>
     

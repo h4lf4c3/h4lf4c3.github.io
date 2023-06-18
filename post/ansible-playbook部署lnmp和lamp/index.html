@@ -24,7 +24,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.85.0 with theme even" />
+<meta name="generator" content="Hugo 0.92.2 with theme even" />
 
 
 <link rel="canonical" href="https://h4lf4c3.github.io/post/ansible-playbook%E9%83%A8%E7%BD%B2lnmp%E5%92%8Clamp/" />
@@ -152,7 +152,7 @@ playbook编写"/>
 <p>playbook编写</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -181,7 +181,7 @@ playbook编写"/>
 </span><span class="lnt">27
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nn">---</span><span class="w">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nn">---</span><span class="w">
 </span><span class="w"></span>- <span class="nt">hosts</span><span class="p">:</span><span class="w"> </span><span class="l">all</span><span class="w">
 </span><span class="w">  </span><span class="nt">tasks</span><span class="p">:</span><span class="w"> 
 </span><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">install httpd </span><span class="w"> </span><span class="c"># 安装httpd</span><span class="w">
@@ -213,20 +213,20 @@ playbook编写"/>
 </div><p>然后我们可以使用</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">ansible-playbook xxx.yml --syntax-check
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">ansible-playbook xxx.yml --syntax-check
 </code></pre></td></tr></table>
 </div>
 </div><p>来检查yml是否有语法错误</p>
 <p>使用</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">ansible-playbook -i /etc/ansible/hosts ./LAMP.yml
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">ansible-playbook -i /etc/ansible/hosts ./LAMP.yml
 </code></pre></td></tr></table>
 </div>
 </div><p>执行剧本</p>
@@ -243,7 +243,7 @@ playbook编写"/>
 <p>playbook编写，我们可以直接从刚才的playbook上改动一点就行</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -272,7 +272,7 @@ playbook编写"/>
 </span><span class="lnt">27
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nn">---</span><span class="w">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nn">---</span><span class="w">
 </span><span class="w"></span>- <span class="nt">hosts</span><span class="p">:</span><span class="w"> </span><span class="l">all</span><span class="w">
 </span><span class="w">  </span><span class="nt">tasks</span><span class="p">:</span><span class="w"> 
 </span><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">install nginx </span><span class="w"> </span><span class="c"># 安装nginx</span><span class="w">
@@ -387,13 +387,10 @@ playbook编写"/>
   <span class="copyright-year">
     &copy; 
     2017 - 
-    2023
-    <span class="heart">
-      <i class="iconfont icon-heart"></i>
-    </span>
-    <span class="author">halface</span>
+    2023<span class="heart"><i class="iconfont icon-heart"></i></span><span>halface</span>
   </span>
 </div>
+
     </footer>
 
     <div class="back-to-top" id="back-to-top">

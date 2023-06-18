@@ -3,21 +3,49 @@
   
   <url>
     <loc>https://h4lf4c3.github.io/categories/</loc>
-    <lastmod>2023-02-07T09:58:00+08:00</lastmod>
+    <lastmod>2023-06-18T20:41:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://h4lf4c3.github.io/post/doris%E5%8D%95%E8%8A%82%E7%82%B9%E9%83%A8%E7%BD%B2/</loc>
+    <lastmod>2023-06-18T20:41:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://h4lf4c3.github.io/</loc>
-    <lastmod>2023-02-07T09:58:00+08:00</lastmod>
+    <lastmod>2023-06-18T20:41:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://h4lf4c3.github.io/post/</loc>
-    <lastmod>2023-02-07T09:58:00+08:00</lastmod>
+    <lastmod>2023-06-18T20:41:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://h4lf4c3.github.io/tags/</loc>
+    <lastmod>2023-06-18T20:41:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://h4lf4c3.github.io/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/</loc>
+    <lastmod>2023-06-18T20:41:00+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://h4lf4c3.github.io/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/</loc>
+    <lastmod>2023-06-18T20:41:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -38,13 +66,6 @@
   
   <url>
     <loc>https://h4lf4c3.github.io/post/sparksql%E8%A7%A3%E6%9E%90sql/</loc>
-    <lastmod>2023-02-07T09:58:00+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://h4lf4c3.github.io/tags/</loc>
     <lastmod>2023-02-07T09:58:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -87,13 +108,6 @@
   
   <url>
     <loc>https://h4lf4c3.github.io/post/hive%E9%85%8D%E7%BD%AEjdbc/</loc>
-    <lastmod>2021-07-23T09:32:15+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://h4lf4c3.github.io/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/</loc>
     <lastmod>2021-07-23T09:32:15+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -178,13 +192,6 @@
   
   <url>
     <loc>https://h4lf4c3.github.io/post/spark%E4%B8%AD%E7%9A%84aggregate%E5%87%BD%E6%95%B0/</loc>
-    <lastmod>2020-05-14T10:53:55+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://h4lf4c3.github.io/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/</loc>
     <lastmod>2020-05-14T10:53:55+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>

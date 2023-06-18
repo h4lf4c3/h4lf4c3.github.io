@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.85.0 with theme even" />
+<meta name="generator" content="Hugo 0.92.2 with theme even" />
 
 
 <link rel="canonical" href="https://h4lf4c3.github.io/post/mysql%E4%B8%BB%E4%B8%BB%E4%BA%92%E5%A4%87/" />
@@ -146,12 +146,12 @@
       <h1 id="mysql主主互备">mysql主主互备</h1>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">实验环境：
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">实验环境：
 hjj2017110109 192.168.160.80   
 hjj2017110109_node2 192.168.160.81
 </code></pre></td></tr></table>
@@ -160,7 +160,7 @@ hjj2017110109_node2 192.168.160.81
 <p>添加如下</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -168,7 +168,7 @@ hjj2017110109_node2 192.168.160.81
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">server_id = 1
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">server_id = 1
 log-bin = mysql-bin
 relay-log = mysql-relay-bin
 replicate-wild-ignore-table=mysql.% #指定不需要复制的库，mysql.%表示mysql库下的所有对象
@@ -180,7 +180,7 @@ replicate-wild-ignore-table=information_schema.%
 <p>添加如下</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -188,7 +188,7 @@ replicate-wild-ignore-table=information_schema.%
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">server_id = 2
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">server_id = 2
 log-bin = mysql-bin
 relay-log = mysql-relay-bin
 replicate-wild-ignore-table=mysql.%
@@ -285,13 +285,10 @@ replicate-wild-ignore-table=information_schema.%
   <span class="copyright-year">
     &copy; 
     2017 - 
-    2023
-    <span class="heart">
-      <i class="iconfont icon-heart"></i>
-    </span>
-    <span class="author">halface</span>
+    2023<span class="heart"><i class="iconfont icon-heart"></i></span><span>halface</span>
   </span>
 </div>
+
     </footer>
 
     <div class="back-to-top" id="back-to-top">

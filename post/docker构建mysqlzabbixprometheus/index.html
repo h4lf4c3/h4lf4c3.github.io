@@ -24,7 +24,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.85.0 with theme even" />
+<meta name="generator" content="Hugo 0.92.2 with theme even" />
 
 
 <link rel="canonical" href="https://h4lf4c3.github.io/post/docker%E6%9E%84%E5%BB%BAmysqlzabbixprometheus/" />
@@ -165,7 +165,7 @@ docker安装
 <p>根据阿里开源镜像站上提示做即可</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -176,7 +176,7 @@ docker安装
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback"># step 1: 安装必要的一些系统工具
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"># step 1: 安装必要的一些系统工具
 yum install -y yum-utils device-mapper-persistent-data lvm2
 # Step 2: 添加软件源信息
 yum-config-manager --add-repo https://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
@@ -191,7 +191,7 @@ sudo service docker start
 <p>由于docker官方访问极慢，所以我们需要设置镜像加速器，我们可以登录阿里云的容器镜像服务，获取加速器地址</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -201,7 +201,7 @@ sudo service docker start
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">vim /etc/docker/daemon.json
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">vim /etc/docker/daemon.json
 # 添加如下部分
 {
   &#34;registry-mirrors&#34;: [&#34;https://e1dmqt0r.mirror.aliyuncs.com&#34;]
@@ -216,13 +216,13 @@ systemctl restart docker
 <p>执行命令获取镜像</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">docker pull mysql:5.7
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">docker pull mysql:5.7
 docker pull zabbix/zabbix-server-mysql
 docker pull zabbix/zabbix-agent
 docker pull zabbix/zabbix-web-nginx-mysql
@@ -238,7 +238,7 @@ docker pull zabbix/zabbix-web-nginx-mysql
 <h3 id="启动mysql">启动mysql</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -247,7 +247,7 @@ docker pull zabbix/zabbix-web-nginx-mysql
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">docker run --name mysql-zabbix \
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">docker run --name mysql-zabbix \
 -e MYSQL_ROOT_PASSWORD=&#34;123456&#34; \ # 数据库root用户密码
 -e MYSQL_USER=&#34;zabbix&#34; \   # 新建zabbix用户
 -e MYSQL_PASSWORD=&#34;zabbix&#34; \  # zabbix密码为zabbix
@@ -260,7 +260,7 @@ docker pull zabbix/zabbix-web-nginx-mysql
 <h3 id="启动zabbix-server-mysql">启动zabbix-server-mysql</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -271,7 +271,7 @@ docker pull zabbix/zabbix-web-nginx-mysql
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">docker run --name zabbix-server \
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">docker run --name zabbix-server \
 -e DB_SERVER_HOST=&#34;mysql-zabbix&#34; \
 -e MYSQL_DATABASE=&#34;zabbix&#34; \
 -e MYSQL_USER=&#34;zabbix&#34; \
@@ -286,7 +286,7 @@ docker pull zabbix/zabbix-web-nginx-mysql
 <h3 id="启动zabbix-web-nginx-mysql">启动zabbix-web-nginx-mysql</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -298,7 +298,7 @@ docker pull zabbix/zabbix-web-nginx-mysql
 </span><span class="lnt">10
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">docker run --name zabbix-web \
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">docker run --name zabbix-web \
 -e DB_SERVER_HOST=&#34;mysql-zabbix&#34; \
 -e MYSQL_USER=&#34;zabbix&#34; \
 -e MYSQL_PASSWORD=&#34;zabbix&#34; \
@@ -314,12 +314,12 @@ docker pull zabbix/zabbix-web-nginx-mysql
 <h3 id="启动zabbix-agent">启动zabbix-agent</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">docker run --name zabbix-agent \
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">docker run --name zabbix-agent \
 --link zabbix-server:zabbix-server \
 -d zabbix/zabbix-agent:latest
 </code></pre></td></tr></table>
@@ -411,13 +411,10 @@ docker pull zabbix/zabbix-web-nginx-mysql
   <span class="copyright-year">
     &copy; 
     2017 - 
-    2023
-    <span class="heart">
-      <i class="iconfont icon-heart"></i>
-    </span>
-    <span class="author">halface</span>
+    2023<span class="heart"><i class="iconfont icon-heart"></i></span><span>halface</span>
   </span>
 </div>
+
     </footer>
 
     <div class="back-to-top" id="back-to-top">

@@ -6,7 +6,16 @@
     <description>Recent content on Halface</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Tue, 07 Feb 2023 09:58:00 +0800</lastBuildDate><atom:link href="https://h4lf4c3.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 18 Jun 2023 20:41:00 +0800</lastBuildDate><atom:link href="https://h4lf4c3.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Doris单节点部署</title>
+      <link>https://h4lf4c3.github.io/post/doris%E5%8D%95%E8%8A%82%E7%82%B9%E9%83%A8%E7%BD%B2/</link>
+      <pubDate>Sun, 18 Jun 2023 20:41:00 +0800</pubDate>
+      
+      <guid>https://h4lf4c3.github.io/post/doris%E5%8D%95%E8%8A%82%E7%82%B9%E9%83%A8%E7%BD%B2/</guid>
+      <description>Doris单机安装 Doris介绍 Apache Doris 是一个基于 MPP 架构的高性能、实时的分析型数据库，以极速易用的特点被人们所熟知，仅需亚秒级响应时间即可返回海</description>
+    </item>
+    
     <item>
       <title>SparkSQL解析SQL</title>
       <link>https://h4lf4c3.github.io/post/sparksql%E8%A7%A3%E6%9E%90sql/</link>
@@ -140,7 +149,7 @@
       <description>&lt;h1 id=&#34;sparkidea示例&#34;&gt;spark+IDEA示例&lt;/h1&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
@@ -150,7 +159,7 @@
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;集群
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;集群
 master 192.168.160.21
 slave1 192.168.160.22
 slave2 192.168.160.23

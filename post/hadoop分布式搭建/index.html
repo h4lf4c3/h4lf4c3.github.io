@@ -24,7 +24,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.85.0 with theme even" />
+<meta name="generator" content="Hugo 0.92.2 with theme even" />
 
 
 <link rel="canonical" href="https://h4lf4c3.github.io/post/hadoop%E5%88%86%E5%B8%83%E5%BC%8F%E6%90%AD%E5%BB%BA/" />
@@ -183,14 +183,14 @@
 <p><strong>每台虚拟机中设置hostname</strong></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">sudo vi /etc/sysconfig/network
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">sudo vi /etc/sysconfig/network
 然后编辑下列文本
 <span class="nv">NETWORKING</span><span class="o">=</span>yes
 <span class="nv">HOSTNAME</span><span class="o">=</span>master   <span class="c1">#master中就写master,slave1就写slave1,2就写2</span>
@@ -200,14 +200,14 @@
 </div><p><strong>然后设置hostname与IP的映射</strong></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">sudo vi /etc/hosts
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">sudo vi /etc/hosts
 然后在文本最底下添加
 192.168.xxx.xxx master <span class="c1">#IP地址是你的虚拟机的，你可以使用ifconfig查看</span>
 192.168.xxx.xxx slave1
@@ -223,10 +223,10 @@
 <p>为了省去每次登录输入密码的操作（人的本性懒）我们设置ssh免密登录</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">ssh-keygen -t rsa <span class="c1">#生成key</span>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">ssh-keygen -t rsa <span class="c1">#生成key</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>然后一路回车（每个虚拟机都要生成一次）</p>
@@ -236,12 +236,12 @@
 <p>然后我们不是确定了master为老大么，我们分别使用</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">ssh-copy-id -i ~/.ssh/id_rsa.pub master
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">ssh-copy-id -i ~/.ssh/id_rsa.pub master
 ssh-copy-id -i ~/.ssh/id_rsa.pub slave1
 ssh-copy-id -i ~/.ssh/id_rsa.pub slave2
 </code></pre></td></tr></table>
@@ -252,14 +252,14 @@ ssh-copy-id -i ~/.ssh/id_rsa.pub slave2
 <p>这个具体我就不说了，详情参照伪分布那篇文章，不过这次我是在 home中建了个app文件夹，方便我后面操作，所以环境变量配置也是要配置正确</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">sudo vi /etc/profile
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">sudo vi /etc/profile
 <span class="c1">#然后在最底下键入</span>
 <span class="nb">export</span> <span class="nv">JAVA_HOME</span><span class="o">=</span>/root/app/jdk  <span class="c1">#这里是你jdk的安装路径</span>
 <span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="nv">$JAVA_HOME</span>/bin:<span class="nv">$PATH</span>
@@ -270,14 +270,14 @@ ssh-copy-id -i ~/.ssh/id_rsa.pub slave2
 <p>我将Hadoop安装包解压至我建立的app文件夹中，然后配置Hadoop环境变量</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">sudo vi /etc/profile
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">sudo vi /etc/profile
 <span class="c1">#在刚才Jdk下面键入</span>
 <span class="nb">export</span> <span class="nv">HADOOP_HOME</span><span class="o">=</span>/root/app/hadoop <span class="c1">#这是你Hadoop的安装路径</span>
 <span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="nv">$HADOOP_HOME</span>/bin:<span class="nv">$PATH</span>
@@ -290,12 +290,12 @@ ssh-copy-id -i ~/.ssh/id_rsa.pub slave2
 <p>先配置hadoop-env.sh，</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">sudo vi hadoop-env.sh
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">sudo vi hadoop-env.sh
 <span class="c1">#找到 export JAVA_HOME=${JAVA_HOME}</span>
 将<span class="si">${</span><span class="nv">java_home</span><span class="si">}</span>改成你的java_home路径
 </code></pre></td></tr></table>
@@ -303,7 +303,7 @@ ssh-copy-id -i ~/.ssh/id_rsa.pub slave2
 </div><h3 id="core-sitexml配置">core-site.xml配置</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -322,7 +322,7 @@ ssh-copy-id -i ~/.ssh/id_rsa.pub slave2
 </span><span class="lnt">17
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-xml" data-lang="xml">sudo vi core-site.xml
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml">sudo vi core-site.xml
 #键入配置
 <span class="nt">&lt;configuration&gt;</span>
         <span class="nt">&lt;property&gt;</span>
@@ -344,7 +344,7 @@ ssh-copy-id -i ~/.ssh/id_rsa.pub slave2
 </div><h3 id="hdfs-sitexml配置">hdfs-site.xml配置</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -359,7 +359,7 @@ ssh-copy-id -i ~/.ssh/id_rsa.pub slave2
 </span><span class="lnt">13
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-xml" data-lang="xml">sudo vi hdfs-site.xml
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml">sudo vi hdfs-site.xml
 #添加
 <span class="nt">&lt;configuration&gt;</span>
     <span class="nt">&lt;property&gt;</span>
@@ -379,7 +379,7 @@ ssh-copy-id -i ~/.ssh/id_rsa.pub slave2
 <p>mv mapred-site.xml.template mapred-site.xml 修改文件名</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -398,7 +398,7 @@ ssh-copy-id -i ~/.ssh/id_rsa.pub slave2
 </span><span class="lnt">17
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-xml" data-lang="xml">sudo vi mapred-site.xml
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml">sudo vi mapred-site.xml
 #添加
 <span class="nt">&lt;configuration&gt;</span>
    <span class="nt">&lt;property&gt;</span>
@@ -420,7 +420,7 @@ ssh-copy-id -i ~/.ssh/id_rsa.pub slave2
 </div><h3 id="yarn-sitexml配置">yarn-site.xml配置</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -443,7 +443,7 @@ ssh-copy-id -i ~/.ssh/id_rsa.pub slave2
 </span><span class="lnt">21
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-xml" data-lang="xml">sudo vi yarn-site.xml
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml">sudo vi yarn-site.xml
 #添加
 <span class="nt">&lt;configuration&gt;</span>
     <span class="nt">&lt;property&gt;</span>
@@ -470,7 +470,7 @@ ssh-copy-id -i ~/.ssh/id_rsa.pub slave2
 <p>顾名思义，这个就是将我们的slave放进去</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -478,7 +478,7 @@ ssh-copy-id -i ~/.ssh/id_rsa.pub slave2
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">sudo vi slaves
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">sudo vi slaves
 <span class="c1">#删去原有的localhost，添加</span>
 master
 slave1
@@ -493,14 +493,14 @@ slave2
 <p>我们使用的命令是</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">scp -r ~/app hadoop@slave1:~/
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">scp -r ~/app hadoop@slave1:~/
 <span class="c1">#这里hadoop@slave1就是你终端前面那个东西,:后面是你分发到的文件路径，</span>
 <span class="c1">#最好跟master一样，要不然环境变量里面路径得改</span>
 <span class="c1">#-r是递归的意思，app中所有文件全部分发</span>
@@ -510,12 +510,12 @@ scp -r ~/app hadoop@slave2:~/
 </div><p>当然，.bash_profile也要发的</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">scp ~/.bash_profile hadoop@slave1:~/
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">scp ~/.bash_profile hadoop@slave1:~/
 scp ~/.bash_profile hadoop@slave2:~/
 <span class="c1">#这个东西分发过去别忘了生效</span>
 </code></pre></td></tr></table>
@@ -525,10 +525,10 @@ scp ~/.bash_profile hadoop@slave2:~/
 <p>这一步在master上执行,进入 cd /app/hadoop/bin/  然后执行</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">./hdfs namenode -format
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">./hdfs namenode -format
 </code></pre></td></tr></table>
 </div>
 </div><p><img src="/img/hadoop%E5%88%86%E5%B8%83%E5%BC%8F%E6%90%AD%E5%BB%BA/6.png" alt="6"></p>
@@ -540,23 +540,23 @@ scp ~/.bash_profile hadoop@slave2:~/
 <p>然后我们开始启动hadoop</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">./start-all.sh  #启动所有，当然也可以一个一个启动
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">./start-all.sh  #启动所有，当然也可以一个一个启动
 </code></pre></td></tr></table>
 </div>
 </div><p>启动完毕我们执行jps命令，master中出现</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">namenode
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">namenode
 secondarynamenode
 datanode
 resourcemanager
@@ -566,22 +566,22 @@ nodemanager
 </div><p>slave1中出现</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">datanode
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">datanode
 nodemanager
 </code></pre></td></tr></table>
 </div>
 </div><p>slave2中出现</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">datanode
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">datanode
 nodemanager
 </code></pre></td></tr></table>
 </div>
@@ -653,13 +653,10 @@ nodemanager
   <span class="copyright-year">
     &copy; 
     2017 - 
-    2023
-    <span class="heart">
-      <i class="iconfont icon-heart"></i>
-    </span>
-    <span class="author">halface</span>
+    2023<span class="heart"><i class="iconfont icon-heart"></i></span><span>halface</span>
   </span>
 </div>
+
     </footer>
 
     <div class="back-to-top" id="back-to-top">
